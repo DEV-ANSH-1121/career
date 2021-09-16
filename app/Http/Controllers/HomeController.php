@@ -53,7 +53,7 @@ class HomeController extends Controller
         }
         $data['name'] = strtoupper($data['name']);
         $user = User::create($data);
-        //Mail::to($data['email'])->send(new SendPasswordMail($data));
+        Mail::to($data['email'])->send(new SendPasswordMail($data));
         \Session::flash('message', 'Registered Successfully. Please check your mail for password.');
         return redirect()->route('loginPage');
     }
