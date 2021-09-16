@@ -20,3 +20,5 @@ Route::get('/login', [HomeController::class, 'loginPage'])->name('loginPage');
 Route::post('/signup', [HomeController::class, 'register'])->name('registerUser');
 Route::post('/sendMailOtp', [HomeController::class, 'sendMailOtp'])->name('sendMailOtp');
 Route::post('/verifyMailOtp', [HomeController::class, 'verifyMailOtp'])->name('verifyMailOtp');
+Route::post('/sendMobileOtpsendMobileOtp', [HomeController::class, 'sendMobileOtp'])->name('sendMobileOtp');
+Route::post('/verifyMobileOtp', [HomeController::class, 'verifyMobileOtp'])->name('verifyMobileOtp');

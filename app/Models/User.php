@@ -58,4 +58,9 @@ class User extends Authenticatable
     protected $hidden = [
         'passcode',
     ];
+
+    public function routeNotificationForSns($notification)
+    {
+        return $this->mobile;
+    }
 }

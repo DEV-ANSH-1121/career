@@ -89,7 +89,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-5 p-2 field">
-                                <span><i class="fa fa-phone-square"></i></span><input type="text" class=" input-text form-control" placeholder="Mobile" name="mobile" id="mobile" autocomplete="off" pattern="^[0-9]{10}$" maxlength="10" required=""><button class="send">Send</button>
+                                <span><i class="fa fa-phone-square"></i></span><input type="text" class=" input-text form-control" placeholder="Mobile" name="mobile" id="mobile" autocomplete="off" pattern="^[0-9]{10}$" maxlength="10" required=""><a class="send sendmobileotp cursor-pointer">Send</a>
                             </div>
                             <div class="col-sm-12 col-md-3 p-2">
                                 <div class="otp input_">
@@ -101,7 +101,7 @@
                             </div>
                             <div class="col-sm-12 col-md-3 p-2">
                                 <div class="otp">
-                                    <button class="Verify Verify_">Verify</button>
+                                    <a class="Verify Verify_ verifymobileotp cursor-pointer">Verify</a>
                                 </div>
                             </div>
                             @error('mobile')
@@ -238,6 +238,34 @@
 				},
 				success : function(response){
 					jQuery('.email-msg').html(response.message);
+				}
+			});
+		});
+
+		jQuery('.sendemobileotp').click(function(){
+			jQuery.ajax({
+				url : jQuery('#baseurl').val()+'/sendMobileOtp',
+				method : 'post',
+				data : {
+					'mobile' : jQuery('#mobile').val()
+				},
+				success : function(response){
+					jQuery('.mobile-msg').html(response.message);
+				}
+			});
+		});
+
+		jQuery('.verifymobileotp').click(function(){
+			var otp = jQuery('#n1').val()+jQuery('#n2').val()+jQuery('#n3').val()+jQuery('#n4').val();
+			jQuery.ajax({
+				url : jQuery('#baseurl').val()+'/verifyMobileOtp',
+				method : 'post',
+				data : {
+					'mobile' : jQuery('#mobile').val(),
+					'otp' : otp
+				},
+				success : function(response){
+					jQuery('.mobile-msg').html(response.message);
 				}
 			});
 		});
