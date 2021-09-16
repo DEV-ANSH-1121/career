@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,15 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('homePage');
 Route::get('/login', [HomeController::class, 'loginPage'])->name('loginPage');
+Route::post('/login', [HomeController::class, 'login'])->name('login');
 Route::post('/signup', [HomeController::class, 'register'])->name('registerUser');
 Route::post('/sendMailOtp', [HomeController::class, 'sendMailOtp'])->name('sendMailOtp');
 Route::post('/verifyMailOtp', [HomeController::class, 'verifyMailOtp'])->name('verifyMailOtp');
 Route::post('/sendMobileOtpsendMobileOtp', [HomeController::class, 'sendMobileOtp'])->name('sendMobileOtp');
 Route::post('/verifyMobileOtp', [HomeController::class, 'verifyMobileOtp'])->name('verifyMobileOtp');
+
+
+Route::group(['as' => 'user.','middleware' => ['auth']], function () {
+    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::get('/update-profile', [UserController::class, 'updateProfile'])->name('updateProfile');
+});

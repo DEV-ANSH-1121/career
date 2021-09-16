@@ -32,16 +32,32 @@
 				</div>
                 <div class=" col-md-12 col-lg-3">
                     <h1 class="login-title font-weight-bold text-center mb-3"><img class="icon2" src="images/icon.png">Sign In</h1>
-                    <form >
+                    <form method="post" action="{{route('login')}}">
+                        {{csrf_field()}}
                         <div class="my-auto">
                             <div class="form-group field">
                                 <span><i class="fa fa-envelope"></i></span><input type="text" name="loginemail" id="loginemail" class="form-control" placeholder="Email">
                                 <div id="loginemailerror"></div>
                             </div>
+                            @error('loginemail')
+                                <div class="form-group field alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                             <div class="form-group mt-3 field">
-                                <span><i class="fa fa-unlock-alt"></i></span><input type="password" name="password" id="password" class="form-control" placeholder="Passsword">
+                                <span><i class="fa fa-unlock-alt"></i></span><input type="password" name="password" id="password" class="form-control" placeholder="Passsword"><br>
                                 <div id="passworderror"></div>
                             </div>
+                            @error('password')
+                                <div class="form-group field alert alert-danger">
+                                    {{ $message }}
+                                </div>
+                            @enderror
+                            @if(Session::has('loginError'))
+                                <div class="form-group field alert alert-danger">
+                                    {{ Session::get('loginError') }}
+                                </div>
+                            @endif
                             <div id="loginerror"></div>
                             <div id="loginmeserror"></div>
                             <div id="example1">

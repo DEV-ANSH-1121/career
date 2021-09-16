@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserCreateReqeust;
 use App\Http\Requests\MailRequest;
+use App\Http\Requests\MobileRequest;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Mail\SendOTPAWSMail;
@@ -96,6 +98,16 @@ class HomeController extends Controller
             return['message' => 'Mobile Verified Successfully'];
         }else{
             return['message' => 'Incorrect OTP'];
+        }
+    }
+
+    public function login(LoginRequest $request)
+    {
+        if (\Auth::attempt(['email' => $request->loginemail,'password' => $request->password])) {
+            return redirect()->route('user.dashboard');
+        }else{
+            \Session::flash('loginError', 'Your password is incorrect');
+            return redirect()->route('loginPage');
         }
     }
 }

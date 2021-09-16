@@ -12,6 +12,8 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $primaryKey = 'userID';
+
     public $timestamps = false;
 
     protected $table = 'user';
@@ -62,5 +64,15 @@ class User extends Authenticatable
     public function routeNotificationForSns($notification)
     {
         return $this->mobile;
+    }
+
+    /**
+     * Get the password for the user.
+     *
+     * @return string
+     */
+    public function getAuthPassword()
+    {
+        return $this->passcode;
     }
 }
