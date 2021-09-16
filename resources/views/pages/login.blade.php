@@ -25,9 +25,11 @@
     <div class="admin_">
         <div class="container-fluid max-width1200px">
             <div class="row justify-content-center">
-            	@if(Session::has('message'))
-					<p class="alert alert-success">{{ Session::get('message') }}</p>
-				@endif
+            	<div class=" col-12">
+	            	@if(Session::has('message'))
+						<p class="alert alert-success">{{ Session::get('message') }}</p>
+					@endif
+				</div>
                 <div class=" col-md-12 col-lg-3">
                     <h1 class="login-title font-weight-bold text-center mb-3"><img class="icon2" src="images/icon.png">Sign In</h1>
                     <form >
@@ -81,6 +83,9 @@
                                 </div>
                             </div>
                             <div class="col-12 email-msg" style="color:red"></div>
+                            @error('email')
+							    <div class="col-12 alert alert-danger">{{ $message }}</div>
+							@enderror
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-5 p-2 field">
@@ -99,18 +104,27 @@
                                     <button class="Verify Verify_">Verify</button>
                                 </div>
                             </div>
+                            @error('mobile')
+							    <div class="col-12 alert alert-danger">{{ $message }}</div>
+							@enderror
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-5 p-2 field">
                                 <span><i class="fa fa-user"></i></span><input type="text" class=" input-text form-control" name="name" id="name" placeholder="Full Name" required="">
+	                            @error('name')
+								    <div class="col-12 alert alert-danger">{{ $message }}</div>
+								@enderror
                             </div>
                             <div class="col-sm-12 col-md-3 mt-1px">
-                                <select class="form-control" name="user_type" id="usertype">
+                                <select class="form-control" name="usertype" id="usertype">
                                     <option value="">User Type</option>
                                     <option value="S">Student</option>
                                     <option value="C">Counsellor</option>
                                     <option value="J">Jobseeker</option>
                                 </select>
+	                            @error('usertype')
+								    <div class="col-12 alert alert-danger">{{ $message }}</div>
+								@enderror
                             </div>
                             <div class="col-sm-12 col-md-2">
                             </div>

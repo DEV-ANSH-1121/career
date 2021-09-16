@@ -26,31 +26,34 @@ class HomeController extends Controller
     public function register(UserCreateReqeust $request)
     {
         $data = $request->validated();
-        $data['password'] = substr($data['email'], 0, 4).substr($data['mobile'], 0, 5);
+        $data['password'] = substr($data['email'], 0, 4).substr($data['mobile'], 0, 4);
         if(strlen(str_replace(' ', '', $data['name'])) >= 4){
             $data['password'] .= substr(str_replace(' ', '', $data['name']), 0, 4);
         }else{
             $data['password'] .= substr($data['name'], 0, strlen(str_replace(' ', '', $data['name'])));
         }
-        $data['login_ip'] = $request->ip();
-        $data['e_date'] = now();
-        $data['passcode'] = $data['password'];
-        $data['password'] = Hash::make($data['password']);
+        $data['loginIP'] = $request->ip();
+        $data['edate'] = now();
+        $data['passcode'] = Hash::make($data['password']);
 
         $mailOtp = \DB::table('otp_verifications')->where('email',$data['email'])->orWhere('mobile',$data['mobile'])->first();
         if (isset($mailOtp->email_verified) && !empty($mailOtp->email_verified)) {
-            $data['v_email'] = $mailOtp->email_verified;
+            $data['vemail'] = $mailOtp->email_verified;
             \DB::table('otp_verifications')->where('email',$data['email'])->delete();
+        }else{
+            $data['vemail'] = 'N';
         }
         if (isset($mailOtp->mobile_verified) && !empty($mailOtp->mobile_verified)) {
-            $data['v_mobile'] = $mailOtp->mobile_verified;
+            $data['vmobile'] = $mailOtp->mobile_verified;
             \DB::table('otp_verifications')->where('mobile',$data['mobile'])->delete();
+        }else{
+            $data['vmobile'] = 'N';
         }
-
+        $data['name'] = strtoupper($data['name']);
         $user = User::create($data);
-        Mail::to($data['email'])->send(new SendPasswordMail($data));
+        //Mail::to($data['email'])->send(new SendPasswordMail($data));
         \Session::flash('message', 'Registered Successfully. Please check your mail for password.');
-        return view('pages.login');
+        return redirect()->route('loginPage');
     }
 
     public function sendMailOtp(MailRequest $request)
@@ -68,7 +71,7 @@ class HomeController extends Controller
         $data = $request->all();
         $mailOtp = \DB::table('otp_verifications')->where('email',$data['email'])->value('email_otp');
         if (isset($mailOtp) && !empty($mailOtp) && $data['otp'] == $mailOtp) {
-            \DB::table('otp_verifications')->where('email',$data['email'])->update(['email_verified' => 1]);
+            \DB::table('otp_verifications')->where('email',$data['email'])->update(['email_verified' => 'Y']);
             return['message' => 'Mail Verified Successfully'];
         }else{
             return['message' => 'Incorrect OTP'];
@@ -89,7 +92,7 @@ class HomeController extends Controller
         $data = $request->all();
         $mailOtp = \DB::table('otp_verifications')->where('mobile',$data['mobile'])->value('mobile_otp');
         if (isset($mailOtp) && !empty($mailOtp) && $data['otp'] == $mailOtp) {
-            \DB::table('otp_verifications')->where('mobile',$data['mobile'])->update(['mobile_verified' => 1]);
+            \DB::table('otp_verifications')->where('mobile',$data['mobile'])->update(['mobile_verified' => 'N']);
             return['message' => 'Mobile Verified Successfully'];
         }else{
             return['message' => 'Incorrect OTP'];

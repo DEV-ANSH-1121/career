@@ -25,9 +25,9 @@ class UserCreateReqeust extends FormRequest
     {
         return [
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
-            'mobile' => 'required|unique:users,mobile',
-            'user_type' => 'required|in:S,C,J',
+            'email' => 'required|email|unique:user,email',
+            'mobile' => 'required|unique:user,mobile',
+            'usertype' => 'required|in:S,C,J',
         ];
     }
 }

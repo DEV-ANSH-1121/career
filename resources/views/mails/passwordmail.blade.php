@@ -1,1 +1,1 @@
-<h1>Your password is {{$data['passcode']}}</h1>
+<h1>Your password is {{$data['password']}}</h1>
