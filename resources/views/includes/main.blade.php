@@ -4,6 +4,8 @@
 	@include('includes.head')
 </head>
 <body>
+
+<input type="hidden" id="baseurl" value="{{url('/')}}">
 	@include('includes.header')
 	@yield('content')
 	@if(Route::current()->getName() != 'loginPage')

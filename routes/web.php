@@ -17,3 +17,6 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'index'])->name('homePage');
 Route::get('/login', [HomeController::class, 'loginPage'])->name('loginPage');
+Route::post('/signup', [HomeController::class, 'register'])->name('registerUser');
+Route::post('/sendMailOtp', [HomeController::class, 'sendMailOtp'])->name('sendMailOtp');
+Route::post('/verifyMailOtp', [HomeController::class, 'verifyMailOtp'])->name('verifyMailOtp');
