@@ -11,10 +11,40 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="forgetPassForm" method="post" action="{{url('/')}}">
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email / Mobile">
-                    <div style="color : red">OTP send please check</div>
-                    <button type="button" class="Verify">Submit</button>
+                <form class="forgetPassForm" method="post" action="{{url('/getOtpForgetPwd')}}">
+                    <input type="text" class="form-control" id="userid" aria-describedby="emailHelp" placeholder="Enter email / Mobile" name="userid">
+                    <div style="color : red" class="fpwdmsg"></div>
+                    <button type="button" class="Verify fpwdbtn">Submit</button>
+                </form>
+                <form class="resetPassForm" method="post" action="{{url('/resetPassword')}}" style="display: none;">
+                    <div class="my-auto">
+                        <div class="form-group field">
+                            <input type="text" name="fpwdotp" id="fpwdotp" class="form-control fpwdotp" placeholder="Enter OTP here" value="{{old('fpwdotp')}}">
+                        </div>
+                        @error('fpwdotp')
+                            <div class="form-group field" style="color: red;">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <div class="form-group mt-3 field">
+                            <input type="password" name="reset_password" id="reset_password" class="form-control" placeholder="Enter New Passsword">
+                        </div>
+                        @error('reset_password')
+                            <div class="form-group field" style="color: red;">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <div class="form-group mt-3 field">
+                            <input type="password" name="reset_password_confirmation" id="reset_password_confirmation" class="form-control" placeholder="Re-Enter New Passsword">
+                        </div>
+                        @error('reset_password_confirmation')
+                            <div class="form-group field" style="color: red;">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                        <br>
+                        <button class="Verify reset-password-button">Reset Password</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -89,7 +119,7 @@
                         {{csrf_field()}}
                         <div class="row ">
                             <div class="col-sm-12 col-md-5 p-2  field">
-                                <span><i class="fa fa-envelope"></i></span><input type="email" class=" input-text form-control" name="email" id="email" placeholder="Email" value="{{old('email')}}" required=""><a class="send sendemailotp cursor-pointer">Send</a>
+                                <span><i class="fa fa-envelope"></i></span><input type="email" class=" input-text form-control" name="email" id="email" placeholder="Email" value="{{old('email')}}" required=""><a class="send sendemailotp cursor-pointer" style="color : #fff">Send</a>
                             </div>
                             <div class="col-sm-12 col-md-3 p-2">
                                 <div class="otp inputs">
@@ -101,7 +131,7 @@
                             </div>
                             <div class="col-sm-12 col-md-3 p-2">
                                 <div class="otp">
-                                    <a class="Verify Verify_ verifyemailotp cursor-pointer">Verify</a>
+                                    <a class="Verify Verify_ verifyemailotp cursor-pointer" style="color : #fff">Verify</a>
                                 </div>
                             </div>
                             <div class="col-8 email-msg" style="color:red"></div>
@@ -111,7 +141,7 @@
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-5 p-2 field">
-                                <span><i class="fa fa-phone-square"></i></span><input type="text" class=" input-text form-control" placeholder="Mobile" name="mobile" id="mobile" autocomplete="off" pattern="^[0-9]{10}$" maxlength="10" value="{{old('mobile')}}" required=""><a class="send sendmobileotp cursor-pointer">Send</a>
+                                <span><i class="fa fa-phone-square"></i></span><input type="text" class=" input-text form-control" placeholder="Mobile" name="mobile" id="mobile" autocomplete="off" pattern="^[0-9]{10}$" maxlength="10" value="{{old('mobile')}}" required=""><a class="send sendmobileotp cursor-pointer" style="color : #fff">Send</a>
                             </div>
                             <div class="col-sm-12 col-md-3 p-2">
                                 <div class="otp input_">
@@ -123,7 +153,7 @@
                             </div>
                             <div class="col-sm-12 col-md-3 p-2">
                                 <div class="otp">
-                                    <a class="Verify Verify_ verifymobileotp cursor-pointer">Verify</a>
+                                    <a class="Verify Verify_ verifymobileotp cursor-pointer" style="color : #fff">Verify</a>
                                 </div>
                             </div>
                             <div class="col-8 mobile-msg" style="color:red"></div>
@@ -241,6 +271,27 @@
 </script>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
+
+        $(".fpwdbtn").click(function(e){
+            e.preventDefault();
+            jQuery.ajax({
+                url : jQuery('.forgetPassForm').attr('action'),
+                method : jQuery('.forgetPassForm').attr('method'),
+                data : {
+                    'userid' : jQuery('#userid').val()
+                },
+                success : function(response){
+                    if(response.status){
+                        jQuery('.forgetPassForm').css('display','none');
+                        jQuery('.resetPassForm').css('display','block');
+                    }else{
+                        jQuery('.fpwdmsg').css('color',response.color).html(response.message);
+                    }
+                }
+            });
+            //return false;
+        });
+
         $('.login-button').click(function(e){
             e.preventDefault();
             const ans = captcha.valid($('#captchacode').val());

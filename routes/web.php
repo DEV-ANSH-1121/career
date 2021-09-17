@@ -25,6 +25,8 @@ Route::post('/sendMailOtp', [HomeController::class, 'sendMailOtp'])->name('sendM
 Route::post('/verifyMailOtp', [HomeController::class, 'verifyMailOtp'])->name('verifyMailOtp');
 Route::post('/sendMobileOtp', [HomeController::class, 'sendMobileOtp'])->name('sendMobileOtp');
 Route::post('/verifyMobileOtp', [HomeController::class, 'verifyMobileOtp'])->name('verifyMobileOtp');
+Route::post('/getOtpForgetPwd', [HomeController::class, 'getOtpForgetPwd'])->name('getOtpForgetPwd');
+Route::post('/resetPassword', [HomeController::class, 'resetPassword'])->name('resetPassword');
 
 
 Route::group(['as' => 'user.','middleware' => ['auth']], function () {

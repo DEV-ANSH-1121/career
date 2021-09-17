@@ -16,5 +16,7 @@ class VerifyCsrfToken extends Middleware
         'verifyMailOtp',
         'sendMobileOtp',
         'verifyMobileOtp',
+        'getOtpForgetPwd',
+        'resetPassword',
     ];
 }

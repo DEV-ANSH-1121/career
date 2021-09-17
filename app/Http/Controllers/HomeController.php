@@ -7,10 +7,13 @@ use App\Http\Requests\UserCreateReqeust;
 use App\Http\Requests\MailRequest;
 use App\Http\Requests\MobileRequest;
 use App\Http\Requests\LoginRequest;
+use App\Http\Requests\ForgetPasswordRequest;
+use App\Http\Requests\ResetPasswordRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Mail\SendOTPAWSMail;
 use App\Mail\SendPasswordMail;
+use App\Mail\ForgetPasswordOtp;
 use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
@@ -82,6 +85,62 @@ class HomeController extends Controller
     public function sendMobileOtp(MobileRequest $request)
     {
         $data = $request->validated();
+        return $this->sendSmsOtp($data);
+    }
+
+    public function verifyMobileOtp(Request $request)
+    {
+        $data = $request->all();
+        $mailOtp = \DB::table('otp_verifications')->where('mobile',$data['mobile'])->value('mobile_otp');
+        if (isset($mailOtp) && !empty($mailOtp) && $data['otp'] == $mailOtp) {
+            \DB::table('otp_verifications')->where('mobile',$data['mobile'])->update(['mobile_verified' => 'Y']);
+            return['message' => 'Mobile Verified Successfully'];
+        }else{
+            return['message' => 'Incorrect OTP'];
+        }
+    }
+
+    public function login(LoginRequest $request)
+    {
+        if (\Auth::attempt(['email' => $request->loginemail,'password' => $request->password])) {
+            return redirect()->route('user.dashboard');
+        }else{
+            \Session::flash('loginError', 'Your password is incorrect');
+            return redirect()->route('loginPage');
+        }
+    }
+
+    public function getOtpForgetPwd(ForgetPasswordRequest $request)
+    {
+        $data = $request->validated();
+        $user = User::where('email',$data['userid'])->orWhere('mobile',$data['userid'])->first();
+        if (!is_null($user)) {
+            if ($user->email == $data['userid']) {
+                $data['otp'] = mt_rand(1000,9999);
+                $data['email'] = $user->email;
+                \DB::table('otp_verifications')->where('email',$data['email'])->delete();
+                Mail::to($data['email'])->send(new ForgetPasswordOtp($data));
+                \DB::table('otp_verifications')->insert(['email'=>$data['email'],'email_otp'=>$data['otp']]);
+                return['status' => true,'message' => 'Otp sent. Please check your mail', 'color' => 'green'];
+            }elseif ($user->mobile == $data['userid']) {
+                $data['mobile'] = $user->mobile;
+                //$sendSms = $this->sendSmsOtp($data);
+                return['status' => true,'message' => 'Otp sent. Please check your phone', 'color' => 'green'];
+            }else{
+                return['status' => false,'message' => 'Record does not exist', 'color' => 'red'];
+            }
+        }else{
+            return['status' => false,'message' => 'Record does not exist', 'color' => 'red'];
+        }
+    }
+
+    public function resetPassword(ResetPasswordRequest $request)
+    {
+        $data =$request->validated();
+    }
+
+    public function sendSmsOtp($data=[])
+    {
         $data['otp'] = mt_rand(1000,9999);
         $aws = \DB::table('mast_authentic')->where('provider','aws_sns')->first();
         $params = array(
@@ -110,75 +169,5 @@ class HomeController extends Controller
         }else{
             return['message' => 'Something went wrong! Please try after sometime'];
         }
-            
-    }
-
-    public function verifyMobileOtp(Request $request)
-    {
-        $data = $request->all();
-        $mailOtp = \DB::table('otp_verifications')->where('mobile',$data['mobile'])->value('mobile_otp');
-        if (isset($mailOtp) && !empty($mailOtp) && $data['otp'] == $mailOtp) {
-            \DB::table('otp_verifications')->where('mobile',$data['mobile'])->update(['mobile_verified' => 'Y']);
-            return['message' => 'Mobile Verified Successfully'];
-        }else{
-            return['message' => 'Incorrect OTP'];
-        }
-    }
-
-    public function login(LoginRequest $request)
-    {
-        if (\Auth::attempt(['email' => $request->loginemail,'password' => $request->password])) {
-            return redirect()->route('user.dashboard');
-        }else{
-            \Session::flash('loginError', 'Your password is incorrect');
-            return redirect()->route('loginPage');
-        }
-    }
-
-    public function sendSMS(Request $request){
-
-            $otp = rand(1000, 9999);
-
-            $params = array(
-                'credentials' => array(
-                    'key' => 'AKIARFL5ETBK7EHKPBOI',
-                    'secret' => '9Gxr6ePANrqonfTmtpy6sQ8b3cmrYzYmvbRDuKmJ',
-                ),
-                'region' => 'ap-south-1', // < your aws from SNS Topic region
-                'version' => 'latest'
-            );
-            $sns = new \Aws\Sns\SnsClient($params);
-            
-            $args = array(
-                "MessageAttributes" => [
-                            // You can put your senderId here. but first you have to verify the senderid by customer support of AWS then you can use your senderId.
-                            // If you don't have senderId then you can comment senderId 
-                            //  'AWS.SNS.SMS.SenderID' => [
-                            //      'DataType' => 'String',
-                            //      'StringValue' => 'CAREDU'
-                            // ],
-                            'AWS.SNS.SMS.SMSType' => [
-                                'DataType' => 'String',
-                                'StringValue' => 'Transactional'
-                            ]
-                        ],
-                "Message" => 'Your OTP is '.$otp,
-                "PhoneNumber" => "+919755135188"//.$request->mobile   // Provide phone number with country code
-            );
-            
-            
-            $result = $sns->publish($args);
-            
-            // $res = MobileVerification::updateOrCreate(['mobile' => $request->mobile], [ 
-            //     'otp' => $otp
-            // ],['isVerified' => 0]);
-
-            // var_dump($result); // You can check the response
-
-            //echo $result; 
-
-        // }
-            return true;
-
     }
 }
