@@ -36,21 +36,20 @@ class HomeController extends Controller
         }
         $data['loginIP'] = $request->ip();
         $data['edate'] = now();
-        $data['passcode'] = Hash::make($data['password']);
+        $data['passcode'] = bcrypt($data['password']);
 
         $mailOtp = \DB::table('otp_verifications')->where('email',$data['email'])->orWhere('mobile',$data['mobile'])->first();
         if (isset($mailOtp->email_verified) && !empty($mailOtp->email_verified)) {
             $data['vemail'] = $mailOtp->email_verified;
-            \DB::table('otp_verifications')->where('email',$data['email'])->delete();
         }else{
             $data['vemail'] = 'N';
         }
         if (isset($mailOtp->mobile_verified) && !empty($mailOtp->mobile_verified)) {
             $data['vmobile'] = $mailOtp->mobile_verified;
-            \DB::table('otp_verifications')->where('mobile',$data['mobile'])->delete();
         }else{
             $data['vmobile'] = 'N';
         }
+        \DB::table('otp_verifications')->where('mobile',$data['mobile'])->orWhere('email',$data['email'])->delete();
         $data['name'] = strtoupper($data['name']);
         $user = User::create($data);
         Mail::to($data['email'])->send(new SendPasswordMail($data));
@@ -84,8 +83,28 @@ class HomeController extends Controller
     {
         $data = $request->validated();
         $data['otp'] = mt_rand(1000,9999);
+        $params = array(
+            'credentials' => array(
+                'key' => 'AKIARFL5ETBKR5SSCWOX',
+                'secret' => 'V8PH8iKxWY2PmsXVgFQmEscbP2umUrQAXeZcMkgK',
+            ),
+            'region' => 'ap-south-1', // < your aws from SNS Topic region
+            'version' => 'latest'
+        );
+        $sns = new \Aws\Sns\SnsClient($params);
+        $args = array(
+            "MessageAttributes" => [
+                'AWS.SNS.SMS.SMSType' => [
+                    'DataType' => 'String',
+                    'StringValue' => 'Transactional'
+                ]
+            ],
+            "Message" => 'Your OTP is '.$data['otp'],
+            "PhoneNumber" => "+91".$data['mobile']   // Provide phone number with country code
+        );
+        $result = $sns->publish($args);
+        \DB::table('otp_verifications')->where('mobile',$data['mobile'])->delete();
         \DB::table('otp_verifications')->insert(['mobile'=>$data['mobile'],'mobile_otp'=>$data['otp']]);
-        Mail::to($data['email'])->send(new SendOTPAWSMail($data));
         return['message' => 'Please check your message for OTP'];
     }
 
@@ -94,7 +113,7 @@ class HomeController extends Controller
         $data = $request->all();
         $mailOtp = \DB::table('otp_verifications')->where('mobile',$data['mobile'])->value('mobile_otp');
         if (isset($mailOtp) && !empty($mailOtp) && $data['otp'] == $mailOtp) {
-            \DB::table('otp_verifications')->where('mobile',$data['mobile'])->update(['mobile_verified' => 'N']);
+            \DB::table('otp_verifications')->where('mobile',$data['mobile'])->update(['mobile_verified' => 'Y']);
             return['message' => 'Mobile Verified Successfully'];
         }else{
             return['message' => 'Incorrect OTP'];
@@ -109,5 +128,52 @@ class HomeController extends Controller
             \Session::flash('loginError', 'Your password is incorrect');
             return redirect()->route('loginPage');
         }
+    }
+
+    public function sendSMS(Request $request){
+
+            $otp = rand(1000, 9999);
+
+            $params = array(
+                'credentials' => array(
+                    'key' => 'AKIARFL5ETBK7EHKPBOI',
+                    'secret' => '9Gxr6ePANrqonfTmtpy6sQ8b3cmrYzYmvbRDuKmJ',
+                ),
+                'region' => 'ap-south-1', // < your aws from SNS Topic region
+                'version' => 'latest'
+            );
+            $sns = new \Aws\Sns\SnsClient($params);
+            
+            $args = array(
+                "MessageAttributes" => [
+                            // You can put your senderId here. but first you have to verify the senderid by customer support of AWS then you can use your senderId.
+                            // If you don't have senderId then you can comment senderId 
+                            //  'AWS.SNS.SMS.SenderID' => [
+                            //      'DataType' => 'String',
+                            //      'StringValue' => 'CAREDU'
+                            // ],
+                            'AWS.SNS.SMS.SMSType' => [
+                                'DataType' => 'String',
+                                'StringValue' => 'Transactional'
+                            ]
+                        ],
+                "Message" => 'Your OTP is '.$otp,
+                "PhoneNumber" => "+919755135188"//.$request->mobile   // Provide phone number with country code
+            );
+            
+            
+            $result = $sns->publish($args);
+            
+            // $res = MobileVerification::updateOrCreate(['mobile' => $request->mobile], [ 
+            //     'otp' => $otp
+            // ],['isVerified' => 0]);
+
+            // var_dump($result); // You can check the response
+
+            //echo $result; 
+
+        // }
+            return true;
+
     }
 }

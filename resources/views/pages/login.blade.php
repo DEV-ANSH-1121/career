@@ -1,4 +1,4 @@
-@extends('includes.main')
+@extends('includes.prelogin.main')
 @section('content')
 <!---------------FORGOT PASSWORD---------->
 <div class="modal fade" id="forgotpassword" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -109,10 +109,10 @@
                             </div>
                             <div class="col-sm-12 col-md-3 p-2">
                                 <div class="otp input_">
-                                    <input type="text" name="n1" class="otp-enter active input-text form-control" max="9999"  maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                                    <input type="text" name="n2" class="otp-enter input-text form-control" maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                                    <input type="text" name="n3" class="otp-enter input-text form-control" maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                                    <input type="text" name="n4" class="otp-enter input-text form-control" max="9999"  maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                    <input type="text" name="n5" id="n5" class="otp-enter active input-text form-control" max="9999"  maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                    <input type="text" name="n6" id="n6" class="otp-enter input-text form-control" maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                    <input type="text" name="n7" id="n7" class="otp-enter input-text form-control" maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                    <input type="text" name="n8" id="n8" class="otp-enter input-text form-control" max="9999"  maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-3 p-2">
@@ -120,6 +120,7 @@
                                     <a class="Verify Verify_ verifymobileotp cursor-pointer">Verify</a>
                                 </div>
                             </div>
+                            <div class="col-12 mobile-msg" style="color:red"></div>
                             @error('mobile')
 							    <div class="col-12 alert alert-danger">{{ $message }}</div>
 							@enderror
@@ -258,7 +259,7 @@
 			});
 		});
 
-		jQuery('.sendemobileotp').click(function(){
+		jQuery('.sendmobileotp').click(function(){
 			jQuery.ajax({
 				url : jQuery('#baseurl').val()+'/sendMobileOtp',
 				method : 'post',
@@ -272,7 +273,7 @@
 		});
 
 		jQuery('.verifymobileotp').click(function(){
-			var otp = jQuery('#n1').val()+jQuery('#n2').val()+jQuery('#n3').val()+jQuery('#n4').val();
+			var otp = jQuery('#n5').val()+jQuery('#n6').val()+jQuery('#n7').val()+jQuery('#n8').val();
 			jQuery.ajax({
 				url : jQuery('#baseurl').val()+'/verifyMobileOtp',
 				method : 'post',

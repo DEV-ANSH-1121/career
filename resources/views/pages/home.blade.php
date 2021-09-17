@@ -1,4 +1,4 @@
-@extends('includes.main')
+@extends('includes.prelogin.main')
 
 @section('content')
 

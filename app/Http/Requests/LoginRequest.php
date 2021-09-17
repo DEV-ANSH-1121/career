@@ -28,4 +28,16 @@ class LoginRequest extends FormRequest
             'password' => 'required',
         ];
     }
+
+    /**
+     * Failed Validation Error Message
+     *
+     * return []
+     */
+    public function messages()
+    {
+        return [
+            'loginemail.exists' => 'Your email is not correct',
+        ];
+    }
 }
