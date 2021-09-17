@@ -101,7 +101,7 @@ class HomeController extends Controller
                 ]
             ],
             "Message" => 'Your OTP is '.$data['otp'],
-            "PhoneNumber" => "+919755135188"//.$data['mobile']   // Provide phone number with country code
+            "PhoneNumber" => "+91".$data['mobile']   // Provide phone number with country code
         );
         if($sns->publish($args)){
             \DB::table('otp_verifications')->where('mobile',$data['mobile'])->delete();
