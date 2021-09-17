@@ -11,8 +11,9 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form class="myForm">
+                <form class="forgetPassForm" method="post" action="{{url('/')}}">
                     <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email / Mobile">
+                    <div style="color : red">OTP send please check</div>
                     <button type="button" class="Verify">Submit</button>
                 </form>
             </div>
