@@ -83,10 +83,11 @@ class HomeController extends Controller
     {
         $data = $request->validated();
         $data['otp'] = mt_rand(1000,9999);
+        $aws = \DB::table('mast_authentic')->where('provider','aws')->first();
         $params = array(
             'credentials' => array(
-                'key' => 'AKIARFL5ETBKR5SSCWOX',
-                'secret' => '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',
+                'key' => $aws->user,
+                'secret' => $aws->password,
             ),
             'region' => 'ap-south-1', // < your aws from SNS Topic region
             'version' => 'latest'
@@ -102,10 +103,14 @@ class HomeController extends Controller
             "Message" => 'Your OTP is '.$data['otp'],
             "PhoneNumber" => "+91".$data['mobile']   // Provide phone number with country code
         );
-        $result = $sns->publish($args);
-        \DB::table('otp_verifications')->where('mobile',$data['mobile'])->delete();
-        \DB::table('otp_verifications')->insert(['mobile'=>$data['mobile'],'mobile_otp'=>$data['otp']]);
-        return['message' => 'Please check your message for OTP'];
+        if($sns->publish($args)){
+            \DB::table('otp_verifications')->where('mobile',$data['mobile'])->delete();
+            \DB::table('otp_verifications')->insert(['mobile'=>$data['mobile'],'mobile_otp'=>$data['otp']]);
+            return['message' => 'Please check your message for OTP'];
+        }else{
+            return['message' => 'Something went wrong! Please try after sometime'];
+        }
+            
     }
 
     public function verifyMobileOtp(Request $request)
