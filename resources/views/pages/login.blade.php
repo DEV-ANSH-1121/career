@@ -36,11 +36,11 @@
                         {{csrf_field()}}
                         <div class="my-auto">
                             <div class="form-group field">
-                                <span><i class="fa fa-envelope"></i></span><input type="text" name="loginemail" id="loginemail" class="form-control" placeholder="Email">
+                                <span><i class="fa fa-envelope"></i></span><input type="text" name="loginemail" id="loginemail" class="form-control" placeholder="Email" value="{{old('loginemail')}}">
                                 <div id="loginemailerror"></div>
                             </div>
                             @error('loginemail')
-                                <div class="form-group field alert alert-danger">
+                                <div class="form-group field" style="color: red;">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -49,7 +49,7 @@
                                 <div id="passworderror"></div>
                             </div>
                             @error('password')
-                                <div class="form-group field alert alert-danger">
+                                <div class="form-group field" style="color: red;">
                                     {{ $message }}
                                 </div>
                             @enderror
@@ -79,18 +79,18 @@
                 </div>
                 <div class="col-md-12 col-lg-7">
                     <h1 class="login-title mar_left font-weight-bold text-center "><img class="icon2" src="images/icon.png">Sign Up</h1>
-                    <form method="post" action="{{route('registerUser')}}">
+                    <form method="post" action="{{route('registerUser')}}" id="signupform">
                         {{csrf_field()}}
                         <div class="row ">
                             <div class="col-sm-12 col-md-5 p-2  field">
-                                <span><i class="fa fa-envelope"></i></span><input type="email" class=" input-text form-control" name="email" id="email" placeholder="Email" required=""><a class="send sendemailotp cursor-pointer">Send</a>
+                                <span><i class="fa fa-envelope"></i></span><input type="email" class=" input-text form-control" name="email" id="email" placeholder="Email" value="{{old('email')}}" required=""><a class="send sendemailotp cursor-pointer">Send</a>
                             </div>
                             <div class="col-sm-12 col-md-3 p-2">
                                 <div class="otp inputs">
-                                    <input type="text" name="n1" id="n1" class="otp-enter active input-text form-control" max="9999"  maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                                    <input type="text" name="n2" id="n2" class="otp-enter input-text form-control" maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                                    <input type="text" name="n3" id="n3" class="otp-enter input-text form-control" maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                                    <input type="text" name="n4" id="n4" class="otp-enter input-text form-control" max="9999"  maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                    <input type="text" name="n1" value="{{old('n1')}}" id="n1" class="otp-enter active input-text form-control" max="9999"  maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                    <input type="text" name="n2" value="{{old('n2')}}" id="n2" class="otp-enter input-text form-control" maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                    <input type="text" name="n3" value="{{old('n3')}}" id="n3" class="otp-enter input-text form-control" maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                    <input type="text" name="n4" value="{{old('n4')}}" id="n4" class="otp-enter input-text form-control" max="9999"  maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-3 p-2">
@@ -98,21 +98,21 @@
                                     <a class="Verify Verify_ verifyemailotp cursor-pointer">Verify</a>
                                 </div>
                             </div>
-                            <div class="col-12 email-msg" style="color:red"></div>
+                            <div class="col-8 email-msg" style="color:red"></div>
                             @error('email')
-							    <div class="col-12 alert alert-danger">{{ $message }}</div>
+							    <div class="col-8" style="color: red">{{ $message }}</div>
 							@enderror
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-5 p-2 field">
-                                <span><i class="fa fa-phone-square"></i></span><input type="text" class=" input-text form-control" placeholder="Mobile" name="mobile" id="mobile" autocomplete="off" pattern="^[0-9]{10}$" maxlength="10" required=""><a class="send sendmobileotp cursor-pointer">Send</a>
+                                <span><i class="fa fa-phone-square"></i></span><input type="text" class=" input-text form-control" placeholder="Mobile" name="mobile" id="mobile" autocomplete="off" pattern="^[0-9]{10}$" maxlength="10" value="{{old('mobile')}}" required=""><a class="send sendmobileotp cursor-pointer">Send</a>
                             </div>
                             <div class="col-sm-12 col-md-3 p-2">
                                 <div class="otp input_">
-                                    <input type="text" name="n5" id="n5" class="otp-enter active input-text form-control" max="9999"  maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                                    <input type="text" name="n6" id="n6" class="otp-enter input-text form-control" maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                                    <input type="text" name="n7" id="n7" class="otp-enter input-text form-control" maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                                    <input type="text" name="n8" id="n8" class="otp-enter input-text form-control" max="9999"  maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                    <input type="text" name="n5" value="{{old('n5')}}" id="n5" class="otp-enter active input-text form-control" max="9999"  maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                    <input type="text" name="n6" value="{{old('n6')}}" id="n6" class="otp-enter input-text form-control" maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                    <input type="text" name="n7" value="{{old('n7')}}" id="n7" class="otp-enter input-text form-control" maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
+                                    <input type="text" name="n8" value="{{old('n8')}}" id="n8" class="otp-enter input-text form-control" max="9999"  maxlength="1"  onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
                                 </div>
                             </div>
                             <div class="col-sm-12 col-md-3 p-2">
@@ -120,35 +120,39 @@
                                     <a class="Verify Verify_ verifymobileotp cursor-pointer">Verify</a>
                                 </div>
                             </div>
-                            <div class="col-12 mobile-msg" style="color:red"></div>
+                            <div class="col-8 mobile-msg" style="color:red"></div>
                             @error('mobile')
-							    <div class="col-12 alert alert-danger">{{ $message }}</div>
+							    <div class="col-8" style="color: red">{{ $message }}</div>
 							@enderror
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-5 p-2 field">
-                                <span><i class="fa fa-user"></i></span><input type="text" class=" input-text form-control" name="name" id="name" placeholder="Full Name" required="">
-	                            @error('name')
-								    <div class="col-12 alert alert-danger">{{ $message }}</div>
-								@enderror
+                                <span><i class="fa fa-user"></i></span><input type="text" class=" input-text form-control" name="name" id="name" placeholder="Full Name" value="{{old('name')}}" required="">
                             </div>
-                            <div class="col-sm-12 col-md-3 mt-1px">
-                                <select class="form-control" name="usertype" id="usertype">
-                                    <option value="">User Type</option>
-                                    <option value="S">Student</option>
-                                    <option value="C">Counsellor</option>
-                                    <option value="J">Jobseeker</option>
+                            <div class="col-sm-12 col-md-5 mt-1px">
+                                <select class="form-control" name="usertype" id="usertype" required="">
+                                    <option >User Type</option>
+                                    <option value="S" @if(old('usertype') == 'S') selected=""  @endif>Student</option>
+                                    <option value="C" @if(old('usertype') == 'C') selected=""  @endif>Counsellor</option>
+                                    <option value="J" @if(old('usertype') == 'J') selected=""  @endif>Jobseeker</option>
                                 </select>
-	                            @error('usertype')
-								    <div class="col-12 alert alert-danger">{{ $message }}</div>
-								@enderror
                             </div>
                             <div class="col-sm-12 col-md-2">
+                            </div>
+                            <div class="col-sm-5" style="color: red">
+                                @error('name')
+                                    {{ $message }}
+                                @enderror
+                            </div>
+                            <div class="col-sm-5" style="color: red">
+                                @error('usertype')
+                                    {{ $message }}
+                                @enderror
                             </div>
                         </div>
                         <div class="row" style="position:relative;">
                             <div class="col-sm-12  p_">
-                                <span class="i_agree"><span><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" required="" ></span>I agree to terms of service and privacy policy. ||</span>
+                                <span class="i_agree"><span><input type="checkbox" id="agree" name="agree" @if(old('agree')) checked @endif required=""></span>I agree to terms of service and privacy policy. ||</span>
                                 <span class="passsword_sent">The Password will be sent to your email.</span>
                             </div>
                         </div>
@@ -231,6 +235,37 @@
 </script>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
+
+        $("#signupform1").validate({
+            rules: {
+                name: "required",
+                usertype: "required",
+                mobile: {
+                    required: true,
+                    minlength: 10,
+                    maxlength: 10,
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                agree: "required"
+            },
+            messages: {
+                name: "Please enter your name",
+                usertype: "Please select user type",
+                mobile: {
+                    required: "Please enter your mobile",
+                    minlength: "Mobile should be min 10 digit"
+                },
+                email: "Please enter a valid email address",
+                agree: "Please accept our policy",
+            },
+            submitHandler: function(form) {
+                form.submit();
+            }
+         });
+
 		jQuery('.sendemailotp').click(function(){
 			jQuery.ajax({
 				url : jQuery('#baseurl').val()+'/sendMailOtp',

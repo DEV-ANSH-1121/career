@@ -38,6 +38,8 @@ class LoginRequest extends FormRequest
     {
         return [
             'loginemail.exists' => 'Your email is not correct',
+            'loginemail.required' => 'Email is required',
+            'password.required' => 'Password is required',
         ];
     }
 }

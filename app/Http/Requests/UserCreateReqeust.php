@@ -30,4 +30,16 @@ class UserCreateReqeust extends FormRequest
             'usertype' => 'required|in:S,C,J',
         ];
     }
+
+    /**
+     * Failed Validation Error Message
+     *
+     * return []
+     */
+    public function messages()
+    {
+        return [
+            'usertype.in' => 'Please select your user type',
+        ];
+    }
 }
