@@ -84,7 +84,6 @@ class HomeController extends Controller
         $data = $request->validated();
         $data['otp'] = mt_rand(1000,9999);
         $aws = \DB::table('mast_authentic')->where('provider','aws_sns')->first();
-        return['message' => $aws->user.' and '.$aws->password];
         $params = array(
             'credentials' => array(
                 'key' => $aws->user,
