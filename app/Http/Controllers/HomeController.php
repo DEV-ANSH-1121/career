@@ -83,7 +83,7 @@ class HomeController extends Controller
     {
         $data = $request->validated();
         $data['otp'] = mt_rand(1000,9999);
-        $aws = \DB::table('mast_authentic')->where('provider','aws')->first();
+        $aws = \DB::table('mast_authentic')->where('provider','aws_sns')->first();
         $params = array(
             'credentials' => array(
                 'key' => $aws->user,
@@ -101,7 +101,7 @@ class HomeController extends Controller
                 ]
             ],
             "Message" => 'Your OTP is '.$data['otp'],
-            "PhoneNumber" => "+91".$data['mobile']   // Provide phone number with country code
+            "PhoneNumber" => "+919755135188"//.$data['mobile']   // Provide phone number with country code
         );
         if($sns->publish($args)){
             \DB::table('otp_verifications')->where('mobile',$data['mobile'])->delete();
