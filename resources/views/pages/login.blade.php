@@ -32,7 +32,7 @@
 				</div>
                 <div class=" col-md-12 col-lg-3">
                     <h1 class="login-title font-weight-bold text-center mb-3"><img class="icon2" src="images/icon.png">Sign In</h1>
-                    <form method="post" action="{{route('login')}}">
+                    <form method="post" action="{{route('login')}}" id="loginForm">
                         {{csrf_field()}}
                         <div class="my-auto">
                             <div class="form-group field">
@@ -58,17 +58,22 @@
                                     {{ Session::get('loginError') }}
                                 </div>
                             @endif
+                            <div class="captcha-box row">
+                                <div class="col-6">
+                                    <canvas id="canvas"></canvas>
+                                </div>
+                                <div class="6">
+                                    <i class="fa fa-refresh cursor-pointer refresh-captcha"></i>
+                                </div>
+                            </div>
+                            <div class="form-group mt-3 field">
+                                <input id="captchacode" class="form-control" placeholder="Enter the captcha code">
+                            </div>
+                            <div class="form-group captcha-error"></div>
                             <div id="loginerror"></div>
                             <div id="loginmeserror"></div>
-                            <div id="example1">
-                                <div style="width: 304px; height: 78px;">
-                                    <div><iframe title="reCAPTCHA" src="https://www.google.com/recaptcha/api2/anchor?ar=2&amp;k=6LdMHEMbAAAAAGVfxPf1WvX3Bu5qy1CfhAmxQVdo&amp;co=aHR0cHM6Ly9uaWNlZHUub3JnOjQ0Mw..&amp;hl=en-GB&amp;v=Eyd0Dt8h04h7r-D86uAD1JP-&amp;theme=light&amp;size=normal&amp;cb=yrbmv8wx3h3f" width="304" height="78" role="presentation" name="a-343ze5its3tv" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox"></iframe></div>
-                                    <textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea>
-                                </div>
-                                <iframe style="display: none;"></iframe>
-                            </div>
                             <br>
-                            <button class="Verify">Login</button>&nbsp;&nbsp;&nbsp;
+                            <button class="Verify login-button">Login</button>&nbsp;&nbsp;&nbsp;
                             <a href="#" class="forgot-password-link" data-toggle="modal" data-target="#forgotpassword">Forgot password?</a>
                         </div>
                     </form>
@@ -235,36 +240,44 @@
 </script>
 <script type="text/javascript">
 	jQuery(document).ready(function(){
-
-        $("#signupform1").validate({
-            rules: {
-                name: "required",
-                usertype: "required",
-                mobile: {
-                    required: true,
-                    minlength: 10,
-                    maxlength: 10,
-                },
-                email: {
-                    required: true,
-                    email: true
-                },
-                agree: "required"
-            },
-            messages: {
-                name: "Please enter your name",
-                usertype: "Please select user type",
-                mobile: {
-                    required: "Please enter your mobile",
-                    minlength: "Mobile should be min 10 digit"
-                },
-                email: "Please enter a valid email address",
-                agree: "Please accept our policy",
-            },
-            submitHandler: function(form) {
-                form.submit();
+        $('.login-button').click(function(e){
+            e.preventDefault();
+            const ans = captcha.valid($('#captchacode').val());
+            if(!ans){
+                $('.login-button').prop("disabled", true);
+                $('.captcha-error').html("<span style='color:red'>Please enter Captcha</span>");
+                captcha.refresh();
+            }else{
+                $('#loginForm').submit();
             }
-         });
+        });
+        // step-1
+        var captchaLen = 4;
+        const captcha = new Captcha($('#canvas'),{
+            length: captchaLen
+        });
+          // api
+          //captcha.refresh();
+          //captcha.getCode();
+          //captcha.valid("");
+        $('.refresh-captcha').click(function(){
+            captcha.refresh();
+        });
+        $('#captchacode').on('keyup', function() {
+            var cinput = $(this);
+            if(cinput.val().length == captchaLen){
+                const ans = captcha.valid(cinput.val());
+                if(ans){
+                    $('.login-button').prop("disabled", false);
+                    $('.captcha-error').html("<span style='color:green'>Captcha Verified Successfully</span>");
+                }else{
+                    $('.login-button').prop("disabled", true);
+                    $('.captcha-error').html("<span style='color:red'>Invalid Captcha</span>");
+                    captcha.refresh();
+                }
+            }
+            
+        });
 
 		jQuery('.sendemailotp').click(function(){
 			jQuery.ajax({

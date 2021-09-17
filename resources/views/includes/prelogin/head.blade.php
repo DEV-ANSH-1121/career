@@ -5,8 +5,7 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="{{url('css/style.css')}}">
 <link rel="stylesheet" type="text/css" href="{{url('css/responsive.css')}}">
-<link
-  rel="stylesheet"
-  href="https://unpkg.com/swiper/swiper-bundle.min.css"
-/>
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+<link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
 @yield('head')

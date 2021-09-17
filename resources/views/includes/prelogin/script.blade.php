@@ -5,7 +5,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 <script src="{{url('js/scripts.js')}}"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
+<script type="text/javascript" src="{{url('js/jquery-captcha.js')}}"></script>
 <script>
 
         $(window).scroll(function(){
