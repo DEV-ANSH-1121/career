@@ -214,3 +214,8 @@
 </div>
 <!-- /.content-wrapper -->
 @endsection
+@section('script')
+<script type="text/javascript">
+    $(".datetimepicker-input").datepicker('setDate', new Date());
+</script>
+@endsection

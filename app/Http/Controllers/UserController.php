@@ -50,8 +50,10 @@ class UserController extends Controller
         }
         User::where('userID',auth()->user()->userID)->update($data);
         return redirect()->route('user.dashboard');
-        echo "<pre>";
-        print_r($data);
-        echo "</pre>";
+    }
+
+    public function callLogs()
+    {
+        return view('pages.admin.callReports');
     }
 }

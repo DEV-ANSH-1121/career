@@ -33,4 +33,5 @@ Route::group(['as' => 'user.','middleware' => ['auth']], function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
     Route::get('/update-profile', [UserController::class, 'getProfile'])->name('getProfile');
     Route::post('/store-profile', [UserController::class, 'storeProfile'])->name('storeProfile');
+    Route::get('/call-logs', [UserController::class, 'callLogs'])->name('counsellorCall');
 });
