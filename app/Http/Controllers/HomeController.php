@@ -127,7 +127,7 @@ class HomeController extends Controller
             }elseif ($user->mobile == $data['userid']) {
                 $data['mobile'] = $user->mobile;
                 $data['for'] = 'resetpwd';
-                //$sendSms = $this->sendSmsOtp($data);
+                $sendSms = $this->sendSmsOtp($data);
                 return['status' => true,'message' => 'Otp sent. Please check your phone', 'color' => 'green'];
             }else{
                 return['status' => false,'message' => 'Record does not exist', 'color' => 'red'];
