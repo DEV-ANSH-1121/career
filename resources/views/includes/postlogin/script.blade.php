@@ -52,34 +52,6 @@
 
 <script>
   $(function () {
-   
-    $('#example3').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
-<script>
-  $(function () {
-   
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": true,
-      "searching": true,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false,
-      "responsive": true,
-    });
-  });
-</script>
-<script>
-  $(function () {
     //Initialize Select2 Elements
     $('.select2').select2()
 
@@ -96,14 +68,14 @@
     $('[data-mask]').inputmask()
 
     //Date picker
-    $('#reservationdate').datetimepicker({
+    $('#date').datetimepicker({
         format: 'L'
     });
 
     
     //Date and time picker
-
-   
+    $('#reservationdatetime').datetimepicker({ icons: { time: 'far fa-clock' } });
+    $('#reservationdatetime1').datetimepicker({ icons: { time: 'far fa-clock' } });
     $('#reservationdatetime2').datetimepicker({ icons: { time: 'far fa-clock' } });
     $('#reservationdatetime3').datetimepicker({ icons: { time: 'far fa-clock' } });
     $('#reservationdatetime4').datetimepicker({ icons: { time: 'far fa-clock' } });
@@ -221,105 +193,4 @@
     myDropzone.removeAllFiles(true)
   }
   // DropzoneJS Demo Code End
-</script>
-<script>
-      $(document).ready(function(){
-         $('.itembox').hide();
-        $('.list').click(function(e) {
-          var value = $(this).attr('data-filter');
-
-          if (value !== 'SelectContact') {
-           $('.itembox').not('.'+value).hide(1000);
-            $('.itembox').filter('.'+value).show(1000);
-          }
-          else{
-            
-          }
-        })
-      })
-    </script>
-    <script>
-      $(document).ready(function(){
-         $('.contactbyme').show(1000);
-          $('.contactbyclient').hide(1000);
-        $('.list2').click(function(e) {
-          $('.contactbyclient').show(1000);
-           $('.contactbyme').hide(1000);
-        })
-         $('.list1').click(function(e) {
-          $('.contactbyclient').hide(1000);
-           $('.contactbyme').show(1000);
-        })
-      })
-    </script>
-
-    <script>
-  $(function () {
-    // Summernote
-    $('#summernote').summernote()
-
-    // CodeMirror
-    CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-      mode: "htmlmixed",
-      theme: "monokai"
-    });
-  })
-</script>
-
-<script>
-    
-  document.addEventListener("DOMContentLoaded", function(event) {
- 
-
-function OTPInput() {
-    
-const inputs = document.querySelectorAll('.inputs input');
-for (let i = 0; i < inputs.length; i++) { 
-  inputs[i].addEventListener('keydown', function(event) { 
-    if (event.key==="Backspace" ) {
-     inputs[i].value='' ; 
-     if (i !==0) inputs[i - 1].focus(); 
-    } else { 
-      if (i===inputs.length - 1 && inputs[i].value !=='' ) {
-       return true;
-        } else if (event.keyCode >= 96 && event.keyCode <= 105) { 
-          inputs[i].value=event.key;
-           if (i !==inputs.length - 1) inputs[i + 1].focus();
-            event.preventDefault(); 
-          } else if (event.keyCode >= 48 && event.keyCode <= 57) {
-           inputs[i].value=String.fromCharCode(event.keyCode); 
-           if (i !==inputs.length - 1) inputs[i + 1].focus();
-            event.preventDefault();
-            } 
-          } 
-        });
-         }
-          } 
-          function OTPInputs() {
-    
-const inputs = document.querySelectorAll('.input_ input');
-for (let i = 0; i < inputs.length; i++) { 
-  inputs[i].addEventListener('keydown', function(event) { 
-    if (event.key==="Backspace" ) {
-     inputs[i].value='' ; 
-     if (i !==0) inputs[i - 1].focus(); 
-    } else { 
-      if (i===inputs.length - 1 && inputs[i].value !=='' ) {
-       return true;
-        } else if (event.keyCode >= 96 && event.keyCode <= 105) { 
-          inputs[i].value=event.key;
-           if (i !==inputs.length - 1) inputs[i + 1].focus();
-            event.preventDefault(); 
-          } else if (event.keyCode >= 48 && event.keyCode <= 57) {
-           inputs[i].value=String.fromCharCode(event.keyCode); 
-           if (i !==inputs.length - 1) inputs[i + 1].focus();
-            event.preventDefault();
-            } 
-          } 
-        });
-         }
-          }
-          OTPInputs(); 
-          OTPInput();
-      });
   </script>
