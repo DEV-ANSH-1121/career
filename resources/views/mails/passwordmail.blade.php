@@ -86,7 +86,7 @@
        	    </header>
        	    
        	    <div class="otp_content">
-       	    	<p>Sign In credentials for <em>www.margdarshak.org</em></p>
+       	    	<p>Sign In credentials for <em>{{url('/')}}</em></p>
        	    	<p>UserID: <em>{{$data['email']}}</em></p>
        	    	<p>Password: <em>{{$data['password']}}</em></p>
        	    	<p>Thanks & warm regards</p>

@@ -85,7 +85,7 @@
        	    </header>
        	    
        	    <div class="otp_content">
-       	    	<p>Your OTP is : <em>{{$data['otp']}}</em></p>
+       	    	<p>Your OTP is : <em>{{url('/')}}</em></p>
        	    	<p>Use this code to verify your email ID.</p>
        	    	<p>Thanks & warm regards,</p>
        	    	<p>Team Margdarshak</p>
