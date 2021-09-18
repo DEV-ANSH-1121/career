@@ -86,7 +86,6 @@
        	    </header>
        	    
        	    <div class="otp_content">
-       	    	<p>Subject: Your Log In details</p>
        	    	<p>Sign In credentials for <em>www.margdarshak.org</em></p>
        	    	<p>UserID: <em>{{$data['email']}}</em></p>
        	    	<p>Password: <em>{{$data['password']}}</em></p>

@@ -36,7 +36,7 @@ class ForgetPasswordRequest extends FormRequest
     public function messages()
     {
         return [
-            'userid.required' => 'This field is required',
+            'userid.required' => 'Please provide your email or mobile',
         ];
     }
 }

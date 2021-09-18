@@ -30,6 +30,6 @@ class SendPasswordMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Margdarshak Log In details')->view('mails.passwordmail')->with('data',$this->data);
+        return $this->subject('Your Log In details')->view('mails.passwordmail')->with('data',$this->data);
     }
 }

@@ -24,7 +24,8 @@ class ResetPasswordRequest extends FormRequest
     public function rules()
     {
         return [
-            'otp' => 'required',
+            'userid' => 'required',
+            'fpwdotp' => 'required',
             'reset_password' => 'required|confirmed',
             'reset_password_confirmation' => 'required',
         ];
@@ -38,6 +39,7 @@ class ResetPasswordRequest extends FormRequest
     public function messages()
     {
         return [
+            'fpwdotp.required' => 'Please provide OTP',
             'reset_password.required' => 'New Password is required',
             'reset_password.confirmed' => 'Password does not match with confirm password',
             'reset_password_confirmation.required' => 'Re-enter your new password',

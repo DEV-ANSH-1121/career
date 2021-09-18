@@ -86,7 +86,6 @@
        	    </header>
        	    
        	    <div class="otp_content">
-       	    	<p>Subject: OTP to reset your password</p>
        	    	<p>Your OTP is : <em>{{$data['otp']}}</em></p>
        	    	<p>Use this code to reset your password.</p>
        	    	<p>Thanks & warm regards,</p>

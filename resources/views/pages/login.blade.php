@@ -12,39 +12,32 @@
             </div>
             <div class="modal-body">
                 <form class="forgetPassForm" method="post" action="{{url('/getOtpForgetPwd')}}">
-                    <input type="text" class="form-control" id="userid" aria-describedby="emailHelp" placeholder="Enter email / Mobile" name="userid">
-                    <div style="color : red" class="fpwdmsg"></div>
-                    <button type="button" class="Verify fpwdbtn">Submit</button>
-                </form>
-                <form class="resetPassForm" method="post" action="{{url('/resetPassword')}}" style="display: none;">
+                    
+                    <div class="fpwdmsg userid_error" style="color:red"></div>
                     <div class="my-auto">
                         <div class="form-group field">
-                            <input type="text" name="fpwdotp" id="fpwdotp" class="form-control fpwdotp" placeholder="Enter OTP here" value="{{old('fpwdotp')}}">
+                            <input type="text" class="form-control" id="userid" aria-describedby="emailHelp" placeholder="Enter email / Mobile" name="userid" value="">
                         </div>
-                        @error('fpwdotp')
-                            <div class="form-group field" style="color: red;">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <div class="preotphidden" style="display:none;">
+                        <div class="form-group field">
+                            <input type="text" name="fpwdotp" id="fpwdotp" class="form-control fpwdotp" placeholder="Enter OTP here" value="">
+                        </div>
+                        <div class="form-group field fpwdotp_error" style="color: red;"></div>
                         <div class="form-group mt-3 field">
                             <input type="password" name="reset_password" id="reset_password" class="form-control" placeholder="Enter New Passsword">
                         </div>
-                        @error('reset_password')
-                            <div class="form-group field" style="color: red;">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <div class="form-group field reset_password_error" style="color: red;"></div>
                         <div class="form-group mt-3 field">
                             <input type="password" name="reset_password_confirmation" id="reset_password_confirmation" class="form-control" placeholder="Re-Enter New Passsword">
                         </div>
-                        @error('reset_password_confirmation')
-                            <div class="form-group field" style="color: red;">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <div class="form-group field reset_password_confirmation_error" style="color: red;"></div>
+                        </div>
                         <br>
-                        <button class="Verify reset-password-button">Reset Password</button>
+                        <button class="Verify fpwdbtn">Get OTP</button>
                     </div>
+                </form>
+                <form class="resetPassForm" method="post" action="{{url('/resetPassword')}}" style="display: none;">
+                    
                 </form>
             </div>
         </div>
@@ -98,7 +91,7 @@
                                 </div>
                             </div>
                             <div class="form-group mt-3 field">
-                                <input id="captchacode" class="form-control" placeholder="Enter the captcha code">
+                                <input id="captchacode" class="form-control" placeholder="Enter the captcha code" autocomplete="off" maxlength="4">
                             </div>
                             <div class="form-group captcha-error"></div>
                             <div id="loginerror"></div>
@@ -274,18 +267,36 @@
 
         $(".fpwdbtn").click(function(e){
             e.preventDefault();
+            $('.userid_error').html('');
+            $('.fpwdotp_error').html('');
+            $('.reset_password_error').html('');
+            $('.reset_password_confirmation_error').html('');
             jQuery.ajax({
                 url : jQuery('.forgetPassForm').attr('action'),
                 method : jQuery('.forgetPassForm').attr('method'),
                 data : {
-                    'userid' : jQuery('#userid').val()
+                    'userid' : jQuery('#userid').val(),
+                    'fpwdotp' : jQuery('#fpwdotp').val(),
+                    'reset_password' : jQuery('#reset_password').val(),
+                    'reset_password_confirmation' : jQuery('#reset_password_confirmation').val(),
                 },
                 success : function(response){
                     if(response.status){
-                        jQuery('.forgetPassForm').css('display','none');
-                        jQuery('.resetPassForm').css('display','block');
+                        jQuery('.forgetPassForm').attr('action',jQuery('#baseurl').val()+'/resetPassword');
+                        jQuery('.preotphidden').css('display','block');
+                        jQuery('.fpwdbtn').addClass('reset-password-button').html('Reset Password');
+                        jQuery('#userid').attr('disabled',true);
+                        jQuery('.fpwdmsg').css('color',response.color).html(response.message);
                     }else{
                         jQuery('.fpwdmsg').css('color',response.color).html(response.message);
+                    }
+                },
+                error: function (reject) {
+                    if( reject.status === 422 ) {
+                        var errors = $.parseJSON(reject.responseText);console.log(errors.errors)
+                        $.each(errors.errors, function (key, val) {
+                            $("." + key + "_error").html(val[0]);
+                        });
                     }
                 }
             });

@@ -30,6 +30,6 @@ class ForgetPasswordOtp extends Mailable
      */
     public function build()
     {
-        return $this->subject('Margdarshak | OTP to reset password')->view('mails.resetpwdotp')->with('data',$this->data);
+        return $this->subject('Margdarshak | OTP to reset your password')->view('mails.resetpwdotp')->with('data',$this->data);
     }
 }

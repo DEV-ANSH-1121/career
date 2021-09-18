@@ -31,6 +31,6 @@ class SendOTPAWSMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Margdarshak | OTP to verify your email')->view('mails.otpmail')->with('data',$this->data);
+        return $this->subject('OTP to verify your email')->view('mails.otpmail')->with('data',$this->data);
     }
 }
