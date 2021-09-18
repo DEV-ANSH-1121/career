@@ -34,8 +34,8 @@ class UpdateProfileRequest extends FormRequest
             'address' => 'sometimes',
             'gender' => 'sometimes',
             'dob' => 'sometimes',
-            'pic' => 'sometimes|nullable|mimes:jpeg,png,jpg,svg|max:3072',
-            'resume' => 'sometimes|nullable|mimes:jpeg,png,jpg,svg,doc,pdf,docx,zip|max:3072',
+            'pic' => 'sometimes|nullable|mimes:jpeg,png,jpg,svg',
+            'resume' => 'sometimes|nullable|mimes:jpeg,png,jpg,svg,doc,pdf,docx,zip',
         ];
     }
 

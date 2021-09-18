@@ -12,10 +12,11 @@
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
+
           <img src="https://margdarshak.org/public/uploads/user_img/RP.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-               <a href="#" class="d-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">RP Singh &nbsp;&nbsp;<i class="fas fa-ellipsis-v"></i></a>
+               <a href="#" class="d-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}} &nbsp;&nbsp;<i class="fas fa-ellipsis-v"></i></a>
 
                  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                       <a class="dropdown-item edit" href="edit-profile.php"><i class="nav-icon fas fa-edit"></i><span>Edit Profile</span></a>

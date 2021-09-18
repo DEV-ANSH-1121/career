@@ -33,9 +33,9 @@
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <div class="form-group">
                                             <select class="form-control select2" style="width: 100%;" name="usertype">
-                                            <option value="C" @if($user->type == 'C') selected @endif>Counsellor</option>
-                                            <option value="S" @if($user->type == 'S') selected @endif>Job Seeker</option>
-                                            <option value="J" @if($user->type == 'J') selected @endif>Student</option>
+                                            <option value="C" @if($user->type == 'C') selected @elseif(old('usertype') == 'C') selected  @endif>Counsellor</option>
+                                            <option value="S" @if($user->type == 'S') selected @elseif(old('usertype') == 'C') selected  @endif>Job Seeker</option>
+                                            <option value="J" @if($user->type == 'J') selected @elseif(old('usertype') == 'C') selected  @endif>Student</option>
                                             </select>
                                         </div>
                                         @error('usertype')
@@ -44,7 +44,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="fulname" placeholder="Full Name" value="{{$user->name}}" name="name">
+                                            <input type="text" class="form-control" id="fulname" placeholder="Full Name" @if(isset($user->name)) value="{{$user->name}}" @else {{old('name')}} @endif name="name">
                                         </div>
                                         @error('name')
                                             <br>{{$message}}
@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="omobile" placeholder="Other Mobile" value="{{$user->mobileo}}" name="mobileo">
+                                            <input type="text" class="form-control" id="omobile" placeholder="Other Mobile" @if(isset($user->mobileo)) value="{{$user->mobileo}}" @else {{old('mobileo')}} @endif  name="mobileo">
                                         </div>
                                         @error('mobileo')
                                             <br>{{$message}}
@@ -75,7 +75,7 @@
                                                 <option class="iii" selected="" value="">Select Country</option>
                                                 @endif
                                                 @foreach($countries as $country)
-                                                <option value="{{$country->countryID}}" @if($country->countryID == $user->country) selected @endif> {{$country->country}}</option>
+                                                <option value="{{$country->countryID}}" @if($country->countryID == $user->country) selected @elseif(old('country') == $country->countryID) selected @endif> {{$country->country}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -90,7 +90,7 @@
                                                 <option class="iii" selected="" value="">Select State</option>
                                                 @endif
                                                 @foreach($states as $state)
-                                                <option value="{{$state->stateID}}">{{$state->state}}</option>
+                                                <option value="{{$state->stateID}}" @if($state->stateID == $user->state) selected @elseif(old('state') == $state->stateID) selected @endif>{{$state->state}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -105,7 +105,7 @@
                                                 <option class="iii" selected="" value="">Select District</option>
                                                 @endif
                                                 @foreach($districts as $district)
-                                                <option data-country="{{$district->country}}" data-state="{{$district->state}}" value="{{$district->stateID}}">{{$district->district}}</option>
+                                                <option value="{{$district->stateID}}" @if($district->districtID == $user->district) selected @elseif(old('district') == $district->districtID) selected @endif>{{$district->district}}</option>
                                                 @endforeach
                                             </select>
                                             @error('district')
@@ -116,7 +116,7 @@
                                     </div>
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="pincode" placeholder="Enter Your Pin Code" value="{{$user->pincode}}" name="pincode">
+                                            <input type="text" class="form-control" id="pincode" placeholder="Enter Your Pin Code"  @if(isset($user->pincode)) value="{{$user->pincode}}" @else {{old('pincode')}} @endif name="pincode">
                                             @error('pincode')
                                                 <div style="color:red">{{$message}}</div>
                                             @enderror
@@ -127,10 +127,10 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
-                                            <input type="text" class="form-control" id="address" placeholder="Address.." value="{{$user->address}}" name="address">
+                                            <input type="text" class="form-control" id="address" placeholder="Address.."  @if(isset($user->address)) value="{{$user->address}}" @else {{old('address')}} @endif name="address">
                                         </div>
                                         @error('address')
-                                            <br>{{$message}}
+                                            {{$message}}
                                         @enderror
                                     </div>
                                     <div class="col-sm-12 col-md-3 col-lg-3">
@@ -139,26 +139,26 @@
                                                 @if(!isset($user->gender) || is_null($user->gender))
                                                 <option class="iii" selected="" value="">Select Gender</option>
                                                 @endif
-                                                <option value="M" @if($user->gender == 'M') selected @endif)>Male</option>
-                                                <option value="F" @if($user->gender == 'F' )selected @endif)>Female</option>
-                                                <option value="O" @if($user->gender == 'O' ) @endif)>Transgender</option>
+                                                <option value="M" @if($user->gender == 'M') selected @elseif(old('gender') == 'M') selected @endif)>Male</option>
+                                                <option value="F" @if($user->gender == 'F') selected @elseif(old('gender') == 'F') selected @endif)>Female</option>
+                                                <option value="O" @if($user->gender == 'O') selected @elseif(old('gender') == 'O') selected @endif)>Transgender</option>
                                             </select>
                                         </div>
                                         @error('gender')
-                                            <br>{{$message}}
+                                            {{$message}}
                                         @enderror
                                     </div>
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <div class="form-group">
                                             <div class="input-group date" id="date" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#date" placeholder="Date of Birth" name="dob" value="{{$user->dob}}" />
+                                                <input type="text" class="form-control datetimepicker-input" data-target="#date" placeholder="Date of Birth" name="dob"  @if(isset($user->dob)) value="{{$user->dob}}" @else {{old('dob')}} @endif />
                                                 <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
                                             </div>
                                         </div>
                                         @error('dob')
-                                            <br>{{$message}}
+                                            {{$message}}
                                         @enderror
                                     </div>
                                 </div>
@@ -171,7 +171,7 @@
                                             </div>
                                         </div>
                                         @error('pic')
-                                            <br>{{$message}}
+                                            {{$message}}
                                         @enderror
                                     </div>
                                     <div class="col-sm-1">
@@ -185,7 +185,7 @@
                                             </div>
                                         </div>
                                         @error('resume')
-                                            <br>{{$message}}
+                                            {{$message}}
                                         @enderror
                                     </div>
                                     <div class="col-sm-1">
