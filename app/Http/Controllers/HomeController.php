@@ -53,7 +53,7 @@ class HomeController extends Controller
         }else{
             $data['vmobile'] = 'N';
         }
-        \DB::table('otp_verifications')->where('userid',$data['mobile'])->orWhere('userid',$data['email'])->delete();
+        \DB::table('otp_verifications')->where('userid',$data['mobile'])->orWhere('userid',$data['email'])->where('otp_for','register')->delete();
         $data['name'] = strtoupper($data['name']);
         $user = User::create($data);
         Mail::to($data['email'])->send(new SendPasswordMail($data));
@@ -67,14 +67,14 @@ class HomeController extends Controller
         $data['otp'] = mt_rand(1000,9999);
         \DB::table('otp_verifications')->where('userid',$data['email'])->delete();
         Mail::to($data['email'])->send(new SendOTPAWSMail($data));
-        \DB::table('otp_verifications')->insert(['userid'=>$data['email'],'otp'=>$data['otp'],'for'=>'register']);
+        \DB::table('otp_verifications')->insert(['userid'=>$data['email'],'otp'=>$data['otp'],'otp_for'=>'register']);
         return['message' => 'Please check your mail for OTP'];
     }
 
     public function verifyMailOtp(Request $request)
     {
         $data = $request->all();
-        $mailOtp = \DB::table('otp_verifications')->where('userid',$data['email'])->where('for','register')->value('otp');
+        $mailOtp = \DB::table('otp_verifications')->where('userid',$data['email'])->where('otp_for','register')->value('otp');
         if (isset($mailOtp) && !empty($mailOtp) && $data['otp'] == $mailOtp) {
             \DB::table('otp_verifications')->where('userid',$data['email'])->update(['verified' => 'Y']);
             return['message' => 'Mail Verified Successfully'];
@@ -93,7 +93,7 @@ class HomeController extends Controller
     public function verifyMobileOtp(Request $request)
     {
         $data = $request->all();
-        $mailOtp = \DB::table('otp_verifications')->where('userid',$data['mobile'])->where('for','register')->value('otp');
+        $mailOtp = \DB::table('otp_verifications')->where('userid',$data['mobile'])->where('otp_for','register')->value('otp');
         if (isset($mailOtp) && !empty($mailOtp) && $data['otp'] == $mailOtp) {
             \DB::table('otp_verifications')->where('userid',$data['mobile'])->update(['verified' => 'Y']);
             return['message' => 'Mobile Verified Successfully'];
@@ -120,9 +120,9 @@ class HomeController extends Controller
             if ($user->email == $data['userid']) {
                 $data['otp'] = mt_rand(1000,9999);
                 $data['email'] = $user->email;
-                \DB::table('otp_verifications')->where('userid',$data['email'])->where('for','resetpwd')->delete();
+                \DB::table('otp_verifications')->where('userid',$data['email'])->where('otp_for','resetpwd')->delete();
                 Mail::to($data['email'])->send(new ForgetPasswordOtp($data));
-                \DB::table('otp_verifications')->insert(['userid'=>$data['email'],'otp'=>$data['otp'],'for'=>'resetpwd']);
+                \DB::table('otp_verifications')->insert(['userid'=>$data['email'],'otp'=>$data['otp'],'otp_for'=>'resetpwd']);
                 return['status' => true,'message' => 'Otp sent. Please check your mail', 'color' => 'green'];
             }elseif ($user->mobile == $data['userid']) {
                 $data['mobile'] = $user->mobile;
@@ -140,11 +140,11 @@ class HomeController extends Controller
     public function resetPassword(ResetPasswordRequest $request)
     {
         $data =$request->validated();
-        $otp = \DB::table('otp_verifications')->where('userid',$data['userid'])->where('for','resetpwd')->where('otp',$data['fpwdotp'])->first();
+        $otp = \DB::table('otp_verifications')->where('userid',$data['userid'])->where('otp_for','resetpwd')->where('otp',$data['fpwdotp'])->first();
         //print_r($otp);die;
         if (isset($otp->otp) && !empty($otp->otp)) {
             User::where('email',$data['userid'])->orWhere('mobile',$data['userid'])->update(['passcode' => bcrypt($data['reset_password'])]);
-            $otp = \DB::table('otp_verifications')->where('userid',$data['userid'])->where('for','resetpwd')->where('otp',$data['fpwdotp'])->delete();
+            $otp = \DB::table('otp_verifications')->where('userid',$data['userid'])->where('otp_for','resetpwd')->where('otp',$data['fpwdotp'])->delete();
             return['status' => true,'message' => 'Password Reset Successfully', 'color' => 'green'];
         }else{
             return['status' => false,'message' => 'Invalid OTP', 'color' => 'red'];
@@ -175,8 +175,8 @@ class HomeController extends Controller
             "PhoneNumber" => "+91".$data['mobile']   // Provide phone number with country code
         );
         if($sns->publish($args)){
-            \DB::table('otp_verifications')->where('userid',$data['mobile'])->where('for',$data['for'])->delete();
-            \DB::table('otp_verifications')->insert(['userid'=>$data['mobile'],'otp'=>$data['otp'],'for'=>$data['for']]);
+            \DB::table('otp_verifications')->where('userid',$data['mobile'])->where('otp_for',$data['for'])->delete();
+            \DB::table('otp_verifications')->insert(['userid'=>$data['mobile'],'otp'=>$data['otp'],'otp_for'=>$data['for']]);
             return['message' => 'Please check your message for OTP'];
         }else{
             return['message' => 'Something went wrong! Please try after sometime'];
