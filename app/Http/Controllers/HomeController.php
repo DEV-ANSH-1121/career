@@ -32,6 +32,7 @@ class HomeController extends Controller
     {
         $data = $request->validated();
         $data['password'] = substr($data['email'], 0, 4).substr($data['mobile'], 0, 4);
+        $data['name'] = strtolower($data['name']);
         if(strlen(str_replace(' ', '', $data['name'])) >= 4){
             $data['password'] .= substr(str_replace(' ', '', $data['name']), 0, 4);
         }else{
@@ -117,18 +118,42 @@ class HomeController extends Controller
         $data = $request->validated();
         $user = User::where('email',$data['userid'])->orWhere('mobile',$data['userid'])->first();
         if (!is_null($user)) {
+            $data['email'] = $user->email;
+            $data['mobile'] = $user->mobile;
+            $data['password'] = substr($user->email, 0, 4).substr($user->mobile, 0, 4);
+            $user->name = strtolower($user->name);
+            if(strlen(str_replace(' ', '', $user->name)) >= 4){
+                $data['password'] .= substr(str_replace(' ', '', $user->name), 0, 4);
+            }else{
+                $data['password'] .= substr($user->name, 0, strlen(str_replace(' ', '', $user->name)));
+            }
             if ($user->email == $data['userid']) {
-                $data['otp'] = mt_rand(1000,9999);
-                $data['email'] = $user->email;
-                \DB::table('otp_verifications')->where('userid',$data['email'])->where('otp_for','resetpwd')->delete();
-                Mail::to($data['email'])->send(new ForgetPasswordOtp($data));
-                \DB::table('otp_verifications')->insert(['userid'=>$data['email'],'otp'=>$data['otp'],'otp_for'=>'resetpwd']);
-                return['status' => true,'message' => 'Otp sent. Please check your mail', 'color' => 'green'];
+                Mail::to($data['email'])->send(new SendPasswordMail($data));
+                return['status' => true,'message' => 'Password sent. Please check your mail', 'color' => 'green'];
             }elseif ($user->mobile == $data['userid']) {
                 $data['mobile'] = $user->mobile;
-                $data['for'] = 'resetpwd';
-                $sendSms = $this->sendSmsOtp($data);
-                return['status' => true,'message' => 'Otp sent. Please check your phone', 'color' => 'green'];
+                $aws = \DB::table('mast_authentic')->where('provider','aws_sns')->first();
+                $params = array(
+                    'credentials' => array(
+                        'key' => $aws->user,
+                        'secret' => $aws->password,
+                    ),
+                    'region' => 'ap-south-1', // < your aws from SNS Topic region
+                    'version' => 'latest'
+                );
+                $sns = new \Aws\Sns\SnsClient($params);
+                $args = array(
+                    "MessageAttributes" => [
+                        'AWS.SNS.SMS.SMSType' => [
+                            'DataType' => 'String',
+                            'StringValue' => 'Transactional'
+                        ]
+                    ],
+                    "Message" => 'Your password is '.$data['password'],
+                    "PhoneNumber" => "+91".$data['mobile']   // Provide phone number with country code
+                );
+                $sns->publish($args);
+                return['status' => true,'message' => 'Password sent. Please check your phone', 'color' => 'green'];
             }else{
                 return['status' => false,'message' => 'Record does not exist', 'color' => 'red'];
             }

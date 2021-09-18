@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><span style="margin-right: 10px;"><i class="nav-icon fas fa-users"></i></span>Edit User</h1>
+            <h1><span style="margin-right: 10px;"><i class="nav-icon fas fa-users"></i></span>Update User</h1>
           </div>
           <div class="col-sm-6">
            <!--  <ol class="breadcrumb float-sm-right">
@@ -31,7 +31,7 @@
               <!-- /.card-header -->
               <div class="card-body pad80px" >
               <div class="row">
-                   <div class="col-sm-12 col-md-6 col-lg-6">
+                   <div class="col-sm-12 col-md-3 col-lg-3">
                    <div class="form-group">
                   
                   <select class="form-control select2" style="width: 100%;">
@@ -44,42 +44,29 @@
                     <option>Washington</option>
                   </select>
                 </div>
-               </div> 
-               <div class="col-sm-12 col-md-6 col-lg-6">
-                     <div class="form-group">
-                   
-                    <div class="input-group date" id="date" data-target-input="nearest">
-                        <input type="text" class="form-control datetimepicker-input" data-target="#date" placeholder="Date of Birth" />
-                        <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
-                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                        </div>
-                    </div>
-                </div>
-               </div> 
-              </div>
-                <div class="row">
-                    <div class="col-sm-12 col-md-4 col-lg-4">
+               </div>
+                <div class="col-sm-12 col-md-3 col-lg-3">
                    <div class="form-group">
                     
                     <input type="text" class="form-control" id="fulname" placeholder="Full Name">
                   </div>
              
               </div>
-                 <div class="col-sm-12 col-md-4 col-lg-4">
+                 <div class="col-sm-12 col-md-3 col-lg-3">
                   <div class="form-group">
                     
                     <input type="text" class="form-control" id="mobile" placeholder="Mobile">
                   </div>
                </div>
-               <div class="col-sm-12 col-md-4 col-lg-4">
+               <div class="col-sm-12 col-md-3 col-lg-3">
                   <div class="form-group">
                     
                     <input type="text" class="form-control" id="omobile" placeholder="Other Mobile">
                   </div>
-               </div>
-                </div>
+               </div>  
+              </div>
                  <div class="row">
-                    <div class="col-sm-12 col-md-4 col-lg-4">
+                    <div class="col-sm-12 col-md-3 col-lg-3">
                    <div class="form-group">
                      <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Country</option>
@@ -93,7 +80,7 @@
                   </div>
              
               </div>
-                 <div class="col-sm-12 col-md-4 col-lg-4">
+                 <div class="col-sm-12 col-md-3 col-lg-3">
                   <div class="form-group">
                      <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">State</option>
@@ -106,7 +93,7 @@
                   </select>
                   </div>
                </div>
-               <div class="col-sm-12 col-md-4 col-lg-4">
+               <div class="col-sm-12 col-md-3 col-lg-3">
                   <div class="form-group">
                      <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Distict</option>
@@ -119,14 +106,19 @@
                   </select>
                   </div>
                </div>
-                </div>
-                     <div class="row">
-                    <div class="col-sm-12 col-md-3 col-lg-3">
+                 <div class="col-sm-12 col-md-3 col-lg-3">
                    <div class="form-group">
-                     <input type="text" class="form-control" id="pin" placeholder="Pin Code">
+                       <select class="form-control select2" style="width: 100%;">
+                          <option selected="selected">Pin Code</option>
+                          <option class="iii"> 1235</option>
+                          <option>00001</option>
+                  </select>
                   </div>
              
               </div>
+                </div>
+                     <div class="row">
+                  
                  <div class="col-sm-12 col-md-6 col-lg-6">
                   <div class="form-group">
                      <input type="text" class="form-control" id="address" placeholder="Address..">
@@ -144,6 +136,17 @@
                   </select>
                   </div>
                </div>
+                    <div class="col-sm-12 col-md-3 col-lg-3">
+                     <div class="form-group">
+                   
+                    <div class="input-group date" id="date" data-target-input="nearest">
+                        <input type="text" class="form-control datetimepicker-input" data-target="#date" placeholder="Date of Birth" />
+                        <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
+                            <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                        </div>
+                    </div>
+                </div>
+               </div>
                 </div>
                   <div class="row">
                     <div class="col-sm-10 col-md-4 col-lg-4">
@@ -151,7 +154,7 @@
                     
                      <div class="custom-file">
                       <input type="file" class="custom-file-input" id="customFile">
-                      <label class="custom-file-label" for="customFile">Choose Photograph</label>
+                      <label class="custom-file-label" for="customFile">Photograph</label>
                     </div>
                   </div>
 
@@ -165,7 +168,7 @@
                    
                       <div class="custom-file">
                       <input type="file" class="custom-file-input" id="customFile">
-                      <label class="custom-file-label" for="customFile">Choose Resume</label>
+                      <label class="custom-file-label" for="customFile">Resume</label>
                     </div>
                   </div>
                </div>

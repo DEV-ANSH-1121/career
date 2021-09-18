@@ -18,20 +18,6 @@
                         <div class="form-group field">
                             <input type="text" class="form-control" id="userid" aria-describedby="emailHelp" placeholder="Enter email / Mobile" name="userid" value="">
                         </div>
-                        <div class="preotphidden" style="display:none;">
-                        <div class="form-group field">
-                            <input type="text" name="fpwdotp" id="fpwdotp" class="form-control fpwdotp" placeholder="Enter OTP here" value="">
-                        </div>
-                        <div class="form-group field fpwdotp_error" style="color: red;"></div>
-                        <div class="form-group mt-3 field">
-                            <input type="password" name="reset_password" id="reset_password" class="form-control" placeholder="Enter New Passsword">
-                        </div>
-                        <div class="form-group field reset_password_error" style="color: red;"></div>
-                        <div class="form-group mt-3 field">
-                            <input type="password" name="reset_password_confirmation" id="reset_password_confirmation" class="form-control" placeholder="Re-Enter New Passsword">
-                        </div>
-                        <div class="form-group field reset_password_confirmation_error" style="color: red;"></div>
-                        </div>
                         <br>
                         <button class="Verify fpwdbtn">Get OTP</button>
                     </div>
@@ -268,24 +254,14 @@
         $(".fpwdbtn").click(function(e){
             e.preventDefault();
             $('.userid_error').html('');
-            $('.fpwdotp_error').html('');
-            $('.reset_password_error').html('');
-            $('.reset_password_confirmation_error').html('');
             jQuery.ajax({
                 url : jQuery('.forgetPassForm').attr('action'),
                 method : jQuery('.forgetPassForm').attr('method'),
                 data : {
-                    'userid' : jQuery('#userid').val(),
-                    'fpwdotp' : jQuery('#fpwdotp').val(),
-                    'reset_password' : jQuery('#reset_password').val(),
-                    'reset_password_confirmation' : jQuery('#reset_password_confirmation').val(),
+                    'userid' : jQuery('#userid').val()
                 },
                 success : function(response){
                     if(response.status){
-                        jQuery('.forgetPassForm').attr('action',jQuery('#baseurl').val()+'/resetPassword');
-                        jQuery('.preotphidden').css('display','block');
-                        jQuery('.fpwdbtn').addClass('reset-password-button').html('Reset Password');
-                        jQuery('#userid').attr('disabled',true);
                         jQuery('.fpwdmsg').css('color',response.color).html(response.message);
                     }else{
                         jQuery('.fpwdmsg').css('color',response.color).html(response.message);

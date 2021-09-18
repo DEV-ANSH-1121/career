@@ -30,7 +30,6 @@
 <script src="{{url('postlogin/plugins/codemirror/mode/css/css.js')}}"></script>
 <script src="{{url('postlogin/plugins/codemirror/mode/xml/xml.js')}}"></script>
 <script src="{{url('postlogin/plugins/codemirror/mode/htmlmixed/htmlmixed.js')}}"></script>
-<script src="{{url('postlogin/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js')}}"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <!-- Tempusdominus Bootstrap 4 -->
@@ -193,4 +192,4 @@
     myDropzone.removeAllFiles(true)
   }
   // DropzoneJS Demo Code End
-  </script>
+</script>

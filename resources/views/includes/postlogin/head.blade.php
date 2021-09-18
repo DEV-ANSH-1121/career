@@ -32,9 +32,6 @@
   <link rel="stylesheet" href="{{url('postlogin/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- iCheck for checkboxes and radio inputs -->
   <link rel="stylesheet" href="{{url('postlogin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
-
-  <!-- iCheck for checkboxes and radio inputs -->
-  <link rel="stylesheet" href="{{url('postlogin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
   <!-- JQVMap -->
   <link rel="stylesheet" href="{{url('postlogin/plugins/jqvmap/jqvmap.min.css')}}">
   <!-- Bootstrap Color Picker -->

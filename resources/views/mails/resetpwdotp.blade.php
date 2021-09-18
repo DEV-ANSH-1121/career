@@ -86,9 +86,10 @@
        	    </header>
        	    
        	    <div class="otp_content">
-       	    	<p>Your OTP is : <em>{{$data['otp']}}</em></p>
-       	    	<p>Use this code to reset your password.</p>
-       	    	<p>Thanks & warm regards,</p>
+       	    	<p>Sign In credentials for <em>www.margdarshak.org</em></p>
+       	    	<p>UserID: <em>{{$data['email']}}</em></p>
+       	    	<p>Password: <em>{{$data['password']}}</em></p>
+       	    	<p>Thanks & warm regards</p>
        	    	<p>Team Margdarshak</p>
        	    </div>
        </div>
