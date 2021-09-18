@@ -27,7 +27,7 @@
   <link rel="stylesheet" href="{{url('postlogin/plugins/codemirror/codemirror.css')}}">
   <link rel="stylesheet" href="{{url('postlogin/plugins/codemirror/theme/monokai.css')}}">
   <!-- SimpleMDE -->
-  <link rel="stylesheet" href="{{url('postlogin/plugins/simplemde/simplemde.min.css')}}">
+  <!-- <link rel="stylesheet" href="{{url('postlogin/plugins/simplemde/simplemde.min.css')}}"> -->
   <!-- daterange picker -->
   <link rel="stylesheet" href="{{url('postlogin/plugins/daterangepicker/daterangepicker.css')}}">
   <!-- iCheck for checkboxes and radio inputs -->

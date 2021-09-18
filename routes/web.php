@@ -31,5 +31,6 @@ Route::post('/resetPassword', [HomeController::class, 'resetPassword'])->name('r
 
 Route::group(['as' => 'user.','middleware' => ['auth']], function () {
     Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
-    Route::get('/update-profile', [UserController::class, 'updateProfile'])->name('updateProfile');
+    Route::get('/update-profile', [UserController::class, 'getProfile'])->name('getProfile');
+    Route::post('/store-profile', [UserController::class, 'storeProfile'])->name('storeProfile');
 });

@@ -4,6 +4,7 @@
   	@include('includes.postlogin.head')
 </head>
 <body class="hold-transition sidebar-mini">
+	<input type="hidden" id="baseurl" value="{{url('/')}}">
 	<div class="wrapper">
 	  <!-- Preloader -->
 	  <div class="preloader flex-column justify-content-center align-items-center">
