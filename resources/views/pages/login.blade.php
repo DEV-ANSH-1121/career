@@ -19,7 +19,7 @@
                             <input type="text" class="form-control" id="userid" aria-describedby="emailHelp" placeholder="Enter email / Mobile" name="userid" value="">
                         </div>
                         <br>
-                        <button class="Verify fpwdbtn">Get OTP</button>
+                        <button class="Verify fpwdbtn">Submit</button>
                     </div>
                 </form>
                 <form class="resetPassForm" method="post" action="{{url('/resetPassword')}}" style="display: none;">
