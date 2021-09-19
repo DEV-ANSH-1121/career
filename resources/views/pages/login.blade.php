@@ -117,6 +117,11 @@
                             @error('email')
 							    <div class="col-8" style="color: red">{{ $message }}</div>
 							@enderror
+                            @if(Session::has('vemailmsg'))
+                                <div class="col-8" style="color: red">
+                                    {{ Session::get('vemailmsg') }}
+                                </div>
+                            @endif
                         </div>
                         <div class="row">
                             <div class="col-sm-12 col-md-5 p-2 field">
@@ -135,7 +140,11 @@
                                     <a class="Verify Verify_ verifymobileotp cursor-pointer" style="color : #fff">Verify</a>
                                 </div>
                             </div>
-                            <div class="col-8 mobile-msg" style="color:red"></div>
+                            <div class="col-8 mobile-msg" style="color:red">
+                                @if(Session::has('vmobilemsg'))
+                                    {{ Session::get('vmobilemsg') }}
+                                @endif
+                            </div>
                             @error('mobile')
 							    <div class="col-8" style="color: red">{{ $message }}</div>
 							@enderror

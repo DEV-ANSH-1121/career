@@ -1,4 +1,11 @@
 @extends('includes.postlogin.main')
+@section('head')
+<style>
+    li[aria-disabled='true'] {
+        display: none;
+    }
+</style>
+@endsection
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -87,10 +94,12 @@
                                         <div class="form-group">
                                             <select class="form-control select2 stateSelect" name="state" style="width: 100%;">
                                                 @if(!isset($user->state) || is_null($user->state))
-                                                <option class="iii" selected="" value="">Select State</option>
+                                                <option class="iii first-state" selected="" value="">Select State</option>
+                                                @else
+                                                <option class="iii first-state" value="">Select State</option>
                                                 @endif
                                                 @foreach($states as $state)
-                                                <option value="{{$state->stateID}}" @if($state->stateID == $user->state) selected @elseif(old('state') == $state->stateID) selected @endif>{{$state->state}}</option>
+                                                <option class="stateOption" data-country="{{$state->countryID}}" value="{{$state->stateID}}" @if($state->stateID == $user->state) selected @elseif(old('state') == $state->stateID) selected @endif>{{$state->state}}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -100,12 +109,14 @@
                                     </div>
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <div class="form-group">
-                                            <select class="form-control select2" name="district" style="width: 100%;">
+                                            <select class="form-control select2 districtselect" name="district" style="width: 100%;">
                                                 @if(!isset($user->district) || is_null($user->district))
                                                 <option class="iii" selected="" value="">Select District</option>
+                                                @else
+                                                <option class="iii first-district" value="">Select District</option>
                                                 @endif
                                                 @foreach($districts as $district)
-                                                <option value="{{$district->stateID}}" @if($district->districtID == $user->district) selected @elseif(old('district') == $district->districtID) selected @endif>{{$district->district}}</option>
+                                                <option class="districtOption" data-country="{{$district->countryID}}" data-state="{{$district->stateID}}" value="{{$district->stateID}}" @if($district->districtID == $user->district) selected @elseif(old('district') == $district->districtID) selected @endif>{{$district->district}}</option>
                                                 @endforeach
                                             </select>
                                             @error('district')
@@ -150,8 +161,8 @@
                                     </div>
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <div class="form-group">
-                                            <div class="input-group date" id="date" data-target-input="nearest">
-                                                <input type="text" class="form-control datetimepicker-input" data-target="#date" placeholder="Date of Birth" name="dob"  @if(isset($user->dob)) value="{{$user->dob}}" @else {{old('dob')}} @endif />
+                                            <div class="input-group date" id="dob" data-target-input="nearest">
+                                                <input id="dobinput" type="text" class="form-control datetimepicker-input" data-target="#date" placeholder="Date of Birth" name="dob"  @if(isset($user->dob)) value="{{$user->dob}}" @else {{old('dob')}} @endif />
                                                 <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
@@ -175,7 +186,11 @@
                                         @enderror
                                     </div>
                                     <div class="col-sm-1">
-                                        <img src="https://margdarshak.org/public/uploads/user_img/RP.jpg" style="width: 60px;border-radius: 50%;margin-bottom: 10px;">
+                                        @if(isset(auth()->user()->pic) && !empty(auth()->user()->pic))
+                                            <img src="{{asset(auth()->user()->pic)}}" class="img-circle elevation-2" alt="User Image" style="width: 60px;border-radius: 50%;margin-bottom: 10px;">
+                                        @else
+                                            <img src="https://margdarshak.org/public/uploads/user_img/RP.jpg" style="width: 60px;border-radius: 50%;margin-bottom: 10px;">
+                                        @endif
                                     </div>
                                     <div class="col-sm-10 col-md-4 col-lg-4">
                                         <div class="form-group">
@@ -216,6 +231,52 @@
 @endsection
 @section('script')
 <script type="text/javascript">
-    $(".datetimepicker-input").datepicker('setDate', new Date());
+
+    $(document).ready(function(){
+        //Date picker
+        $('#dob').datetimepicker({
+            defaultDate: $('#dobinput').val();
+            format: 'L'
+        });
+
+        $(".countrySelect").select2()
+        .on("select2:select", function (e) {
+                var selctcountryselect = $('.countrySelect').find(':selected').val();
+                $('.stateSelect').val('');
+                $('.stateSelect').trigger('change');
+                $('.districtselect').val('');
+                $('.districtselect').trigger('change');
+                $(".stateOption").each(function(){
+                    if($(this).data('country') != selctcountryselect){
+                        $(this).prop('disabled',true);
+                    }else{
+                        $(this).prop('disabled',false);
+                    }
+                });
+                console.log('Selected Country is - '+selctcountryselect);
+        });
+
+        $(".stateSelect").select2()
+        .on("select2:select", function (e) {
+                var selctstateselect = $('.stateSelect').find(':selected').val();
+                $('.districtselect').val('');
+                $('.districtselect').trigger('change');
+                $(".districtOption").each(function(){
+                    if($(this).data('state') != selctstateselect){
+                        $(this).prop('disabled',true);
+                    }else{
+                        $(this).prop('disabled',false);
+                    }
+                });
+                console.log('Selected State is - '+selctstateselect);
+        });
+
+        $(".districtselect").select2()
+        .on("select2:select", function (e) {
+                var selctdistrictselect = $('.districtselect').find(':selected').data('state');
+                console.log('Selected District is - '+selctdistrictselect);
+        });
+    });
+        
 </script>
 @endsection

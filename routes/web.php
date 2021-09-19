@@ -16,7 +16,7 @@ use App\Http\Controllers\UserController;
 */
 
 
-Route::get('/sendSMS', [HomeController::class, 'sendSMS'])->name('sendSMS');
+Route::get('/pinTableUpdate', [UserController::class, 'pinTableUpdate'])->name('pinTableUpdate');
 Route::get('/', [HomeController::class, 'index'])->name('homePage');
 Route::get('/login', [HomeController::class, 'loginPage'])->name('loginPage');
 Route::post('/login', [HomeController::class, 'login'])->name('login');
@@ -30,8 +30,17 @@ Route::post('/resetPassword', [HomeController::class, 'resetPassword'])->name('r
 
 
 Route::group(['as' => 'user.','middleware' => ['auth']], function () {
-    Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+    Route::group(['middleware' => ['profileUpdate']], function () {
+
+        Route::group(['middleware' => ['skillTest','hrInterview']], function () {
+            Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+            Route::get('/call-logs', [UserController::class, 'callLogs'])->name('counsellorCall');
+        });
+        
+        Route::get('/skill-test', [UserController::class, 'skillTest'])->name('skillTest');
+        Route::get('/hr-interview', [UserController::class, 'hrInterview'])->name('hrInterview');
+    });
+    
     Route::get('/update-profile', [UserController::class, 'getProfile'])->name('getProfile');
-    Route::post('/store-profile', [UserController::class, 'storeProfile'])->name('storeProfile');
-    Route::get('/call-logs', [UserController::class, 'callLogs'])->name('counsellorCall');
+    Route::post('/store-profile', [UserController::class, 'storeProfile'])->name('storeProfile');        
 });

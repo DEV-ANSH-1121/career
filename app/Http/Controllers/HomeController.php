@@ -31,6 +31,22 @@ class HomeController extends Controller
     public function register(UserCreateReqeust $request)
     {
         $data = $request->validated();
+
+        $mailOtp = \DB::table('otp_verifications')->where('userid',$data['email'])->first();
+        $mobileOtp = \DB::table('otp_verifications')->where('userid',$data['mobile'])->first();
+        if (isset($mailOtp->verified) && $mailOtp->verified == 'Y') {
+            $data['vemail'] = $mailOtp->verified;
+        }else{
+            \Session::flash('vemailmsg', 'Please verify your email');
+            return redirect()->back()->withInput();
+        }
+        if (isset($mobileOtp->verified) && $mobileOtp->verified == 'Y') {
+            $data['vmobile'] = $mobileOtp->verified;
+        }else{
+            \Session::flash('vmobilemsg', 'Please verify your mobile');
+            return redirect()->back()->withInput();
+        }
+
         $data['password'] = substr($data['email'], 0, 4).substr($data['mobile'], 0, 4);
         $data['name'] = strtolower($data['name']);
         if(strlen(str_replace(' ', '', $data['name'])) >= 4){
@@ -42,21 +58,10 @@ class HomeController extends Controller
         $data['edate'] = now();
         $data['passcode'] = bcrypt($data['password']);
 
-        $mailOtp = \DB::table('otp_verifications')->where('userid',$data['email'])->first();
-        $mobileOtp = \DB::table('otp_verifications')->where('userid',$data['mobile'])->first();
-        if (isset($mailOtp->verified) && !empty($mailOtp->verified)) {
-            $data['vemail'] = $mailOtp->verified;
-        }else{
-            $data['vemail'] = 'N';
-        }
-        if (isset($mobileOtp->verified) && !empty($mobileOtp->verified)) {
-            $data['vmobile'] = $mobileOtp->verified;
-        }else{
-            $data['vmobile'] = 'N';
-        }
-        \DB::table('otp_verifications')->where('userid',$data['mobile'])->orWhere('userid',$data['email'])->where('otp_for','register')->delete();
+        
         $data['name'] = strtoupper($data['name']);
         $user = User::create($data);
+        \DB::table('otp_verifications')->where('userid',$data['mobile'])->orWhere('userid',$data['email'])->where('otp_for','register')->delete();
         Mail::to($data['email'])->send(new SendPasswordMail($data));
         \Session::flash('message', 'Registered Successfully. Please check your mail for password.');
         return redirect()->route('loginPage');
