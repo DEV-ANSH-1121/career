@@ -38,6 +38,9 @@ Route::group(['as' => 'user.','middleware' => ['auth']], function () {
         });
         
         Route::get('/skill-test', [UserController::class, 'skillTest'])->name('skillTest');
+        Route::post('/skill/submitSingleAnswer', [UserController::class, 'submitSingleAnswer'])->name('submitSingleAnswer');
+        Route::get('/skill/finalSubmit', [UserController::class, 'finalSubmit'])->name('finalSubmit');
+        Route::get('/skill/skillResult', [UserController::class, 'skillResult'])->name('skillResult');
         Route::get('/hr-interview', [UserController::class, 'hrInterview'])->name('hrInterview');
     });
     

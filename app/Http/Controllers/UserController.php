@@ -8,6 +8,10 @@ use App\Models\Country;
 use App\Models\State;
 use App\Models\District;
 use App\Models\Pincode;
+use App\Models\SkillEvaluator;
+use App\Models\SkillMcq;
+use App\Models\SkillResult;
+use App\Models\SkillTest;
 use App\Http\Requests\UpdateProfileRequest;
 
 class UserController extends Controller
@@ -63,9 +67,50 @@ class UserController extends Controller
         return view('pages.admin.callReports');
     }
 
-    public function skillTest()
+    public function skillTest(Request $request)
     {
-        return view('pages.admin.skillTest');
+        $data['skillResult'] = SkillResult::updateOrCreate(
+            ['userID' => auth()->user()->userID, 'skillsID' => 2],
+            ['loginIP' => $request->ip(), 'edate' => now()]
+        );
+        $data['skill'] = SkillEvaluator::where('skillsID',2)->select(['total_question','total_time'])->first();
+        $data['skillTest'] = SkillTest::where('resultID',$data['skillResult']->resultID)->pluck('answer','mcqID')->toArray();
+        $quesID = array_keys($data['skillTest']);
+        if(!empty($data['skillTest'])){
+            $ques_order = implode(',', $quesID);
+            $data['questions'] = SkillMcq::whereIn('mcqID', $quesID)
+                ->select(['mcqID','question','option1','option2','option3','option4'])
+                ->orderByRaw("FIELD(mcqID, $ques_order)")
+                ->get();
+        }else{
+            $data['questions'] = SkillMcq::where('skillsID',2)->select(['mcqID','question','option1','option2','option3','option4'])->take($data['skill']->total_question)->inRandomOrder()->orderBy()->get();
+            foreach($data['questions'] as $key => $question){
+                SkillTest::insert([
+                    'resultID' => $data['skillResult']->resultID,
+                    'mcq_order' => $key + 1,
+                    'mcqID' => $question->mcqID,
+                    'testime' => 0
+                ]);
+            }
+        }
+            
+        return view('pages.admin.skillTest',['data' => $data]);
+    }
+
+    public function submitSingleAnswer(Request $request)
+    {
+        $resultID = SkillResult::where('userID',auth()->user()->userID)->first();
+        $skillTest = SkillTest::where('resultID',$resultID->resultID)->where('mcqID',$request->mcqID)->update(['answer' => $request->answer]);
+    }
+
+    public function finalSubmit()
+    {
+        $resultID = SkillResult::where('userID',auth()->user()->userID)->update(['finished' => 'Y']);
+    }
+
+    public function skillResult()
+    {
+        return view('pages.admin.skillResult');
     }
 
     public function hrInterview()

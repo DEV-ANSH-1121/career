@@ -18,5 +18,7 @@ class VerifyCsrfToken extends Middleware
         'verifyMobileOtp',
         'getOtpForgetPwd',
         'resetPassword',
+        '/skill/submitSingleAnswer',
+        '/skill/finalSubmit',
     ];
 }
