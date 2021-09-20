@@ -162,7 +162,7 @@
                                     <div class="col-sm-12 col-md-3 col-lg-3">
                                         <div class="form-group">
                                             <div class="input-group date" id="dob" data-target-input="nearest">
-                                                <input id="dobinput" type="text" class="form-control datetimepicker-input" data-target="#date" placeholder="Date of Birth" name="dob"  @if(isset($user->dob)) value="{{$user->dob}}" @else {{old('dob')}} @endif />
+                                                <input id="dobinput" type="text" class="form-control datetimepicker-input" data-target="#date" placeholder="Date of Birth" name="dob"  @if(isset($user->dob)) value="{{$user->dob}}" @elseif(old('dob') != '') {{old('dob')}} @else value="" @endif />
                                                 <div class="input-group-append" data-target="#date" data-toggle="datetimepicker">
                                                     <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                 </div>
@@ -233,9 +233,11 @@
 <script type="text/javascript">
 
     $(document).ready(function(){
+        var dob = $('#dobinput').val();
+        
         //Date picker
         $('#dob').datetimepicker({
-            defaultDate: $('#dobinput').val(),
+            defaultDate: dob,
             format: 'L'
         });
 
