@@ -32,10 +32,9 @@
                                             </div>
                                             <div class="col-sm-4  text-right">
                                                 <div class="lefttime">
-                                                    <p>Time Left:</p>
-                                                    <div id="hours"></div>
-                                                    <div id="minutes"></div>
-                                                    <div id="seconds"></div>
+                                                    <p>Time Left:
+                                                        <span id="timer"></span> mins
+                                                    </p>
                                                 </div>
                                             </div>
                                         </div>
@@ -51,10 +50,10 @@
                                             <div class="col-md-12 question_{{($key + 1)}}" id="question_{{($key + 1)}}">
                                                 <p class="question_text"><span>{{($key + 1)}} . </span>{{strip_tags(html_entity_decode($question->question))}}</p>
                                                 <ul class="question_option">
-                                                    <li><input type="radio" name="{{'question_'.$question->mcqID}}" value="A" class="c answer_option"   onchange="optionselect({{$key + 1}}, {{$question->mcqID}}, 'A')" @if($data['skillTest'][$question->mcqID] == 'A') checked @endif><span>A.</span>{{strip_tags(html_entity_decode($question->option1))}}</li>
-                                                    <li><input type="radio" name="{{'question_'.$question->mcqID}}" value="B" class="c answer_option"  onchange="optionselect({{$key + 1}}, {{$question->mcqID}}, 'B')" @if($data['skillTest'][$question->mcqID] == 'B') checked @endif><span>B.</span>{{strip_tags(html_entity_decode($question->option2))}}</li>
-                                                    <li><input type="radio" name="{{'question_'.$question->mcqID}}" value="C" class="c answer_option"  onchange="optionselect({{$key + 1}}, {{$question->mcqID}}, 'C')" @if($data['skillTest'][$question->mcqID] == 'C') checked @endif><span>C.</span>{{strip_tags(html_entity_decode($question->option3))}}</li>
-                                                    <li><input type="radio" name="{{'question_'.$question->mcqID}}" value="D" class="c answer_option"  onchange="optionselect({{$key + 1}}, {{$question->mcqID}}, 'D')" @if($data['skillTest'][$question->mcqID] == 'D') checked @endif><span>D.</span>{{strip_tags(html_entity_decode($question->option4))}}</li>
+                                                    <li><input type="radio" name="{{'question_'.$question->mcqID}}" value="A" class="c answer_option"   onchange="optionselect({{$key + 1}}, {{$question->mcqID}}, 'A')" @if($data['preTest'][$question->mcqID] == 'A') checked @endif><span>A.</span>{{strip_tags(html_entity_decode($question->option1))}}</li>
+                                                    <li><input type="radio" name="{{'question_'.$question->mcqID}}" value="B" class="c answer_option"  onchange="optionselect({{$key + 1}}, {{$question->mcqID}}, 'B')" @if($data['preTest'][$question->mcqID] == 'B') checked @endif><span>B.</span>{{strip_tags(html_entity_decode($question->option2))}}</li>
+                                                    <li><input type="radio" name="{{'question_'.$question->mcqID}}" value="C" class="c answer_option"  onchange="optionselect({{$key + 1}}, {{$question->mcqID}}, 'C')" @if($data['preTest'][$question->mcqID] == 'C') checked @endif><span>C.</span>{{strip_tags(html_entity_decode($question->option3))}}</li>
+                                                    <li><input type="radio" name="{{'question_'.$question->mcqID}}" value="D" class="c answer_option"  onchange="optionselect({{$key + 1}}, {{$question->mcqID}}, 'D')" @if($data['preTest'][$question->mcqID] == 'D') checked @endif><span>D.</span>{{strip_tags(html_entity_decode($question->option4))}}</li>
                                                 </ul>
                                                 <p class="text-left pl-3 pb-5"><a class="skip_btn" onclick="optionreset({{$key + 1}}, {{$question->mcqID}})">Skip</a></p>
                                                 <input type="text" name="" id="qus_923" value="1" style="opacity:0; filter:alpha(opacity=0);">
@@ -69,8 +68,8 @@
                                             <tbody>
                                                 <tr style="display: flex; flex-wrap: wrap;">
                                                     @php $q = 1; @endphp
-                                                    @foreach($data['skillTest'] as $qno => $answer)
-                                                    <td id="q{{$q}}" class="ans" @if($answer != '') style="background : green" @endif><a  onclick="optionreset({{$q}}, ''">{{$q}}</a></td>
+                                                    @foreach($data['preTest'] as $qno => $answer)
+                                                    <td id="q_{{$qno}}" class="ans" @if($answer != '') style="background : #0c84ff" @endif><a  onclick="optionreset({{$q}}, ''">{{$q}}</a></td>
                                                     @php $q += 1; @endphp
                                                     @endforeach
                                                 </tr>
@@ -95,22 +94,47 @@
     </div>
 </div>
 <!-- /.content-wrapper -->
-
+<input type="hidden" class="ttft" value="{{$data['skill']->total_time  * 60}}">
+<input type="hidden" class="tl" value="{{($data['skill']->total_time  * 60) - ($data['time_used'])}}">
+<input type="hidden" class="stfla" value="{{$data['skill']->total_time  * 60}}">
 @endsection
 @section('script')
 <script type="text/javascript">
+    var totalTime = jQuery('.ttft').val();
+    var updateCountDown = function() {
+        var totalTime = parseInt(jQuery('.ttft').val());
+        var timeLeft = parseInt(jQuery('.tl').val());
+        var timePassed = parseInt(totalTime - timeLeft);
+        if (timePassed != totalTime) {
+            timeLeft -= 1;
+            jQuery('.tl').val(timeLeft);
+            var timer = new Date(timeLeft * 1000).toISOString().substr(14, 5);
+            jQuery('#timer').html(timer);
+        }else{
+            window.location.replace(jQuery('#baseurl').val() + '/skill/skillResult');
+        }
+    };
+
+    // Schedule the update to happen once every second
+    setInterval(updateCountDown, 1000);
+
     function optionselect(qno,qId,option){
         var aTag = $('.question_'+ (qno+1));
         $('html,body').animate({scrollTop: aTag.offset().top},'fast');
+        var lastAnsTime = parseInt(jQuery('.stfla').val());
+        var timeLeft = parseInt(jQuery('.tl').val());
+        jQuery('.stfla').val(timeLeft);
+        var timeTaken = parseInt(lastAnsTime - timeLeft);
         jQuery.ajax({
             url : jQuery('#baseurl').val() + '/skill/submitSingleAnswer',
             method : 'post',
             data : {
                 mcqID : qId,
-                answer : option
-            },
+                answer : option,
+                testime : timeTaken
+             },
             success : function(response){
-
+                $('#q_'+qId).css('background','#0c84ff');
             }
         })
     }
@@ -123,15 +147,23 @@
         }
     }
 
-    function finalSubmit(){
+    function finalSubmit(finished='Y'){
+        var total = parseInt(jQuery('.ttft').val());
+        var timeLeft = parseInt(jQuery('.tl').val());
+        jQuery('.stfla').val(timeLeft);
+        var timeTaken = parseInt(total - timeLeft);
         jQuery.ajax({
-            url : jQuery('#baseurl').val() + '/skill/finalSubmit',
+            url : jQuery('#baseurl').val() + '/skill/finalSubmit?time='+timeTaken+'&&finished='+finished,
             method : 'get',
             success : function(response){
-                window.location.replace(jQuery('#baseurl').val() + '/skill/skillResult')
+                //window.location.replace(jQuery('#baseurl').val() + '/skill/skillResult')
             }
         });
     }
+
+    window.onbeforeunload = function() {
+        finalSubmit('N')
+    };
     
 </script>
 @endsection

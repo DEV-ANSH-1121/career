@@ -74,9 +74,15 @@ class UserController extends Controller
             ['loginIP' => $request->ip(), 'edate' => now()]
         );
         $data['skill'] = SkillEvaluator::where('skillsID',2)->select(['total_question','total_time'])->first();
-        $data['skillTest'] = SkillTest::where('resultID',$data['skillResult']->resultID)->pluck('answer','mcqID')->toArray();
-        $quesID = array_keys($data['skillTest']);
+        $data['skillTest'] = SkillTest::where('resultID',$data['skillResult']->resultID)->select(['answer','mcqID','mcq_order','testime'])->get()->toArray();
+        $data['preTest'] = [];
+        $data['time_used'] = $data['skillResult']->time_sec;
         if(!empty($data['skillTest'])){
+            foreach($data['skillTest'] as $key => $value){
+                $data['preTest'][$value['mcqID']] = $value['answer'];
+                $data['time_used'] += $value['testime'];
+            }
+            $quesID = array_keys($data['preTest']);
             $ques_order = implode(',', $quesID);
             $data['questions'] = SkillMcq::whereIn('mcqID', $quesID)
                 ->select(['mcqID','question','option1','option2','option3','option4'])
@@ -100,12 +106,12 @@ class UserController extends Controller
     public function submitSingleAnswer(Request $request)
     {
         $resultID = SkillResult::where('userID',auth()->user()->userID)->first();
-        $skillTest = SkillTest::where('resultID',$resultID->resultID)->where('mcqID',$request->mcqID)->update(['answer' => $request->answer]);
+        $skillTest = SkillTest::where('resultID',$resultID->resultID)->where('mcqID',$request->mcqID)->update(['answer' => $request->answer,'testime' =>$request->testime]);
     }
 
-    public function finalSubmit()
+    public function finalSubmit(Request $request)
     {
-        $resultID = SkillResult::where('userID',auth()->user()->userID)->update(['finished' => 'Y']);
+        $resultID = SkillResult::where('userID',auth()->user()->userID)->update(['finished' => $request->finished,'time_sec' => $request->time]);
     }
 
     public function skillResult()
