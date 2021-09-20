@@ -74,7 +74,7 @@ class HomeController extends Controller
         \DB::table('otp_verifications')->where('userid',$data['email'])->delete();
         Mail::to($data['email'])->send(new SendOTPAWSMail($data));
         \DB::table('otp_verifications')->insert(['userid'=>$data['email'],'otp'=>$data['otp'],'otp_for'=>'register']);
-        return['message' => 'Please check your mail for OTP'];
+        return['message' => 'Please check your mail for OTP','color' => 'green'];
     }
 
     public function verifyMailOtp(Request $request)
@@ -83,9 +83,9 @@ class HomeController extends Controller
         $mailOtp = \DB::table('otp_verifications')->where('userid',$data['email'])->where('otp_for','register')->value('otp');
         if (isset($mailOtp) && !empty($mailOtp) && $data['otp'] == $mailOtp) {
             \DB::table('otp_verifications')->where('userid',$data['email'])->update(['verified' => 'Y']);
-            return['message' => 'Mail Verified Successfully'];
+            return['message' => 'Mail Verified Successfully','color' => 'green'];
         }else{
-            return['message' => 'Incorrect OTP'];
+            return['message' => 'Incorrect OTP','color' => 'red'];
         }
     }
 
@@ -102,9 +102,9 @@ class HomeController extends Controller
         $mailOtp = \DB::table('otp_verifications')->where('userid',$data['mobile'])->where('otp_for','register')->value('otp');
         if (isset($mailOtp) && !empty($mailOtp) && $data['otp'] == $mailOtp) {
             \DB::table('otp_verifications')->where('userid',$data['mobile'])->update(['verified' => 'Y']);
-            return['message' => 'Mobile Verified Successfully'];
+            return['message' => 'Mobile Verified Successfully','color' => 'green'];
         }else{
-            return['message' => 'Incorrect OTP'];
+            return['message' => 'Incorrect OTP','color' => 'red'];
         }
     }
 
@@ -207,9 +207,9 @@ class HomeController extends Controller
         if($sns->publish($args)){
             \DB::table('otp_verifications')->where('userid',$data['mobile'])->where('otp_for',$data['for'])->delete();
             \DB::table('otp_verifications')->insert(['userid'=>$data['mobile'],'otp'=>$data['otp'],'otp_for'=>$data['for']]);
-            return['message' => 'Please check your message for OTP'];
+            return['message' => 'Please check your message for OTP','color' => 'green'];
         }else{
-            return['message' => 'Something went wrong! Please try after sometime'];
+            return['message' => 'Something went wrong! Please try after sometime','color' => 'red'];
         }
     }
 }

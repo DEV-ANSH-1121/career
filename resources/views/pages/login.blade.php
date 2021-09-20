@@ -328,6 +328,8 @@
         });
 
 		jQuery('.sendemailotp').click(function(){
+            jQuery('.email-msg').css('color','green').html('Sending OTP...');
+            jQuery(this).prop('disabled',true);
 			jQuery.ajax({
 				url : jQuery('#baseurl').val()+'/sendMailOtp',
 				method : 'post',
@@ -335,7 +337,8 @@
 					'email' : jQuery('#email').val()
 				},
 				success : function(response){
-					jQuery('.email-msg').html(response.message);
+					jQuery('.email-msg').css('color',response.color).html(response.message);
+                    jQuery(this).prop('disabled',false);
 				}
 			});
 		});
@@ -350,12 +353,14 @@
 					'otp' : otp
 				},
 				success : function(response){
-					jQuery('.email-msg').html(response.message);
+					jQuery('.email-msg').css('color',response.color).html(response.message);
 				}
 			});
 		});
 
 		jQuery('.sendmobileotp').click(function(){
+            jQuery('.mobile-msg').css('color','green').html('Sending OTP...');
+            jQuery(this).prop('disabled',true);
 			jQuery.ajax({
 				url : jQuery('#baseurl').val()+'/sendMobileOtp',
 				method : 'post',
@@ -363,7 +368,8 @@
 					'mobile' : jQuery('#mobile').val()
 				},
 				success : function(response){
-					jQuery('.mobile-msg').html(response.message);
+					jQuery('.mobile-msg').css('color',response.color).html(response.message);
+                    jQuery(this).prop('disabled',false);
 				}
 			});
 		});
@@ -378,7 +384,7 @@
 					'otp' : otp
 				},
 				success : function(response){
-					jQuery('.mobile-msg').html(response.message);
+					jQuery('.mobile-msg').css('color',response.color).html(response.message);
 				}
 			});
 		});
