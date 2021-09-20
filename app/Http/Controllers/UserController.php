@@ -115,7 +115,34 @@ class UserController extends Controller
 
     public function skillResult()
     {
-        return view('pages.admin.skillResult');
+        $data['skillEvaluator'] = SkillEvaluator::where('skillsID',2)->select(['marks_correct','marks_wrong','marks_total'])->first();
+        $data['skillResult'] = SkillResult::where(['userID' => auth()->user()->userID, 'skillsID' => 2])->first();
+        $data['skillTest'] = SkillTest::where('resultID',$data['skillResult']->resultID)->pluck('answer','mcqID')->toArray();
+        $quesID = array_keys($data['skillTest']);
+        $ques_order = implode(',', $quesID);
+        $data['skillMcq'] = SkillMcq::whereIn('mcqID', $quesID)
+                ->orderByRaw("FIELD(mcqID, $ques_order)")
+                ->pluck('correct','mcqID')
+                ->toArray();
+        //print_r($data);die;
+        $data['correct'] = 0;
+        $data['inCorrect'] = 0;
+        $data['notAttempt'] = 0;
+        foreach($data['skillTest'] as $key => $value){
+            if ($value == $data['skillMcq'][$key]) {
+                $data['correct'] += 1;
+            }elseif(!empty($value) || !is_null($value)){
+                $data['inCorrect'] += 1;
+            }else{
+                $data['notAttempt'] += 1;
+            }
+
+        }
+        $data['correctMarks'] = $data['correct'] * $data['skillEvaluator']->marks_correct;
+        $data['inCorrectMarks'] = $data['inCorrect'] * $data['skillEvaluator']->marks_wrong;
+        $data['marks_obtained'] = $data['correctMarks'] - $data['inCorrectMarks'];
+        $data['percentage'] = ($data['marks_obtained'] * 100) / $data['skillEvaluator']->marks_total;
+        return view('pages.admin.skillResult',['data' => $data]);
     }
 
     public function hrInterview()

@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><span><img src="images/counselling.png"  style="margin-right: 10px;width: 30px;" alt="counselling"></span>Skill Test Results</h1>
+            <h1><span><img src="{{url('postlogin/images/counselling.png')}}"  style="margin-right: 10px;width: 30px;" alt="counselling"></span>Skill Test Results</h1>
           </div>
           <div class="col-sm-6">
            <!--  <ol class="breadcrumb float-sm-right">
@@ -33,7 +33,7 @@
              <div class="card-body">
               <div class="row">
                    <div class="col-12">
-                       <h3 class="progressreport"><img src="images/exam.png">Skill <span style="margin-left: 5px;">Test name</span></h3>
+                       <h3 class="progressreport"><img src="{{url('postlogin/images/exam.png')}}">Skill <span style="margin-left: 5px;">Test name</span></h3>
                    </div>
                 </div>
               <div class="table-responsive">
@@ -52,13 +52,13 @@
                     </thead>
                     <tbody>
                       <tr>
-                        <td>2021-09-04 00:00:00</td>
-                        <td>15min ,50 sec.</td>
-                        <td>20</td>
-                        <td>50</td>
-                        <td>20</td>
-                        <td>20</td>
-                        <td>30 %</td>
+                        <td>{{$data['skillResult']->edate}}</td>
+                        <td>{{gmdate("H:i:s", $data['skillResult']->testime)}}</td>
+                        <td>{{$data['correct']}}</td>
+                        <td>{{$data['inCorrect']}}</td>
+                        <td>{{$data['skillEvaluator']->marks_total}}</td>
+                        <td>{{$data['marks_obtained']}}</td>
+                        <td>{{$data['percentage']}} %</td>
                       </tr>
                       
                     </tbody>
@@ -89,7 +89,7 @@
              <div class="card-body">
               <div class="row">
                    <div class="col-12">
-                       <h3 class="progressreport"><img src="images/test.png">Answer Sheet</h3>
+                       <h3 class="progressreport"><img src="{{url('postlogin/images/test.png')}}">Answer Sheet</h3>
                    </div>
                 </div>
               <div class="table-responsive">
