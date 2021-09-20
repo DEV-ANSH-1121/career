@@ -80,7 +80,6 @@ class UserController extends Controller
         if(!empty($data['skillTest'])){
             foreach($data['skillTest'] as $key => $value){
                 $data['preTest'][$value['mcqID']] = $value['answer'];
-                $data['time_used'] += $value['testime'];
             }
             $quesID = array_keys($data['preTest']);
             $ques_order = implode(',', $quesID);

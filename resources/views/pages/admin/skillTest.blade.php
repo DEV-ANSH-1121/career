@@ -121,9 +121,8 @@
     function optionselect(qno,qId,option){
         var aTag = $('.question_'+ (qno+1));
         $('html,body').animate({scrollTop: aTag.offset().top},'fast');
-        var lastAnsTime = parseInt(jQuery('.stfla').val());
+        var lastAnsTime = parseInt(jQuery('.ttft').val());
         var timeLeft = parseInt(jQuery('.tl').val());
-        jQuery('.stfla').val(timeLeft);
         var timeTaken = parseInt(lastAnsTime - timeLeft);
         jQuery.ajax({
             url : jQuery('#baseurl').val() + '/skill/submitSingleAnswer',
@@ -150,7 +149,19 @@
     function finalSubmit(finished='Y'){
         var total = parseInt(jQuery('.ttft').val());
         var timeLeft = parseInt(jQuery('.tl').val());
-        jQuery('.stfla').val(timeLeft);
+        var timeTaken = parseInt(total - timeLeft);
+        jQuery.ajax({
+            url : jQuery('#baseurl').val() + '/skill/finalSubmit?time='+timeTaken+'&&finished='+finished,
+            method : 'get',
+            success : function(response){
+                window.location.replace(jQuery('#baseurl').val() + '/skill/skillResult')
+            }
+        });
+    }
+
+    function windowClosed(finished='N'){
+        var total = parseInt(jQuery('.ttft').val());
+        var timeLeft = parseInt(jQuery('.tl').val());
         var timeTaken = parseInt(total - timeLeft);
         jQuery.ajax({
             url : jQuery('#baseurl').val() + '/skill/finalSubmit?time='+timeTaken+'&&finished='+finished,
@@ -162,7 +173,7 @@
     }
 
     window.onbeforeunload = function() {
-        finalSubmit('N')
+        windowClosed('N')
     };
     
 </script>
