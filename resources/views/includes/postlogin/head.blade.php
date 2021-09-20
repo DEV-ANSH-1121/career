@@ -19,7 +19,7 @@
 
   <!-- Theme style -->
   <link rel="stylesheet" href="{{url('postlogin/dist/css/adminlte.min.css')}}">
-  <link rel="stylesheet" href="{{url('postlogin/dist/css/style.css')}}">
+  <link rel="stylesheet" href="{{url('postlogin/dist/css/style.css?v=1')}}">
    <link rel="stylesheet" href="{{url('postlogin/plugins/select2/css/select2.min.css')}}">
 
   <!-- overlayScrollbars -->

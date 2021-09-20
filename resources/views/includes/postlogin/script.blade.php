@@ -52,7 +52,7 @@
 <script src="{{url('postlogin/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{url('postlogin/dist/js/demo.js')}}"></script>
-<script src="{{url('postlogin/dist/js/script.js')}}"></script>
+<script src="{{url('postlogin/dist/js/script.js?v=1')}}"></script>
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
