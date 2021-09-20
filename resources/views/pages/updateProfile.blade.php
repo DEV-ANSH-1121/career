@@ -177,8 +177,8 @@
                                     <div class="col-sm-10 col-md-4 col-lg-4">
                                         <div class="form-group">
                                             <div class="custom-file">
-                                                <input type="file" class="custom-file-input" id="customFile" name="pic">
-                                                <label class="custom-file-label" for="customFile">Photograph</label>
+                                                <input type="file" class="custom-file-input" id="avatar" name="pic">
+                                                <label class="custom-file-label" for="avatar">Photograph</label>
                                             </div>
                                         </div>
                                         @error('pic')
@@ -187,9 +187,9 @@
                                     </div>
                                     <div class="col-sm-1">
                                         @if(isset(auth()->user()->pic) && !empty(auth()->user()->pic))
-                                            <img src="{{asset(auth()->user()->pic)}}" class="img-circle elevation-2" alt="User Image" style="width: 60px;border-radius: 50%;margin-bottom: 10px;">
+                                            <img src="{{asset(auth()->user()->pic)}}" class="img-circle elevation-2" alt="User Image" style="width: 60px;border-radius: 50%;margin-bottom: 10px;" id="imgpreview">
                                         @else
-                                            <img src="https://margdarshak.org/public/uploads/user_img/RP.jpg" style="width: 60px;border-radius: 50%;margin-bottom: 10px;">
+                                            <img src="https://margdarshak.org/public/uploads/user_img/RP.jpg" style="width: 60px;border-radius: 50%;margin-bottom: 10px;" id="imgpreview">
                                         @endif
                                     </div>
                                     <div class="col-sm-10 col-md-4 col-lg-4">
@@ -235,7 +235,7 @@
     $(document).ready(function(){
         //Date picker
         $('#dob').datetimepicker({
-            defaultDate: $('#dobinput').val();
+            defaultDate: $('#dobinput').val(),
             format: 'L'
         });
 
@@ -276,6 +276,18 @@
                 var selctdistrictselect = $('.districtselect').find(':selected').data('state');
                 console.log('Selected District is - '+selctdistrictselect);
         });
+
+        var loadFile = function(event) {
+            var output = document.getElementById('imgpreview');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src) // free memory
+            }
+        };
+        $('#avatar').change(function(event){
+            uploadedsrc = URL.createObjectURL(event.target.files[0]);
+            $('#imgpreview').attr('src',uploadedsrc);
+        })
     });
         
 </script>
