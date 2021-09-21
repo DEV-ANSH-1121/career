@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\State;
+use App\Models\District;
+use App\Models\Country;
 
 class User extends Authenticatable
 {
@@ -74,5 +77,35 @@ class User extends Authenticatable
     public function getAuthPassword()
     {
         return $this->passcode;
+    }
+
+    /**
+     * Get all of the state of this country
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function userState()
+    {
+        return $this->belongsTo(State::class, 'state', 'stateID');
+    }
+
+    // /**
+    //  * Get all of the district for this country
+    //  *
+    //  * @return \Illuminate\Database\Eloquent\Relations\HasOne
+    //  */
+    public function userCountry()
+    {
+        return $this->belongsTo(District::class, 'country', 'countryID');
+    }
+
+    // /**
+    //  * Get all of the district for this country
+    //  *
+    //  * @return \Illuminate\Database\Eloquent\Relations\HasOne
+    //  */
+    public function userDistrict()
+    {
+        return $this->belongsTo(District::class, 'district', 'districtID');
     }
 }

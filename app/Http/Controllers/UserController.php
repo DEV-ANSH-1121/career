@@ -12,6 +12,7 @@ use App\Models\SkillEvaluator;
 use App\Models\SkillMcq;
 use App\Models\SkillResult;
 use App\Models\SkillTest;
+use App\Models\UserVariable;
 use App\Http\Requests\UpdateProfileRequest;
 
 class UserController extends Controller
@@ -29,7 +30,13 @@ class UserController extends Controller
 
     public function hrm()
     {
-        return view('pages.admin.hrm');
+        $data['userVariable'] = UserVariable::where('userID',auth()->user()->userID)->first();
+        $data['hrmList'] = [];
+        if(isset($data['userVariable']->userID)){
+            $data['hrmList'] = User::where('usertype','S')->take($data['userVariable']->limit_hrm)->get();
+        }
+        
+        return view('pages.admin.hrm',['data' => $data]);
     }
 
     public function report()

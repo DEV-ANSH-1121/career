@@ -149,10 +149,10 @@
 
                      <div>
                        <button data-toggle="modal" data-target="#modalLoginForm" class="button_add"><span><i class="fas fa-user-plus" ></i></span>Add</button>
-                        <a href="lead.php"><button class="button_add"><span><img src="{{url('postlogin/images/leads.png')}}" style="width:20px; margin-right: 10px;" alt="lead"></span>Lead</button></a>
-                       <a href="crm.php"><button class="button_add"><span><img src="images/hrm_.png" style="width:20px; margin-right: 10px;" alt="hrm"></span>CRM</button></a>
-                    <a href="hrm.php"><button class="button_add"><span><img src="images/hrm_.png" style="width:20px; margin-right: 10px;" alt="hrm"></span>HRM</button></a>
-                   <a href="report-dashboard.php"><button class="button_add"><span><img src="{{url('postlogin/images/report_.png')}}" style="width:20px; margin-right: 10px;" alt="report"></span>Report</button></a>
+                        <a href=""><button class="button_add"><span><img src="{{url('postlogin/images/leads.png')}}" style="width:20px; margin-right: 10px;" alt="lead"></span>Lead</button></a>
+                       <a href="{{url('crm')}}"><button class="button_add"><span><img src="{{url('images/hrm_.png')}}" style="width:20px; margin-right: 10px;" alt="hrm"></span>CRM</button></a>
+                    <a href="{{url('hrm')}}"><button class="button_add"><span><img src="{{url('postlogin/images/hrm_.png')}}" style="width:20px; margin-right: 10px;" alt="hrm"></span>HRM</button></a>
+                   <a href="{{url('report')}}"><button class="button_add"><span><img src="{{url('postlogin/images/report_.png')}}" style="width:20px; margin-right: 10px;" alt="report"></span>Report</button></a>
                    
                     </div>
                      <div class="drop_">

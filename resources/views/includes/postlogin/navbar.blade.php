@@ -55,7 +55,7 @@
                       </p>
                     </a>
                     </li>-->
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a href="{{route('user.hrInterview')}}" class="nav-link">
                             <i class="nav-icon fas fa-book-reader"></i>
                             <p>
@@ -70,7 +70,7 @@
                                 Skill MCQ Test
                             </p>
                         </a>
-                    </li>
+                    </li> -->
                     <!-- <li class="nav-item">
                     <a href="crm.php" class="nav-link">
                       <i class="nav-icon fas fa-pencil-ruler"></i>

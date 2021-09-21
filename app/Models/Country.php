@@ -22,18 +22,18 @@ class Country extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    // public function states()
-    // {
-    //     return $this->hasMany(State::class, 'country', 'countryID');
-    // }
+    public function states()
+    {
+        return $this->hasMany(State::class, 'country', 'countryID');
+    }
 
     // /**
     //  * Get all of the district for this country
     //  *
     //  * @return \Illuminate\Database\Eloquent\Relations\HasMany
     //  */
-    // public function districts()
-    // {
-    //     return $this->hasMany(District::class, 'country', 'countryID');
-    // }
+    public function districts()
+    {
+        return $this->hasMany(District::class, 'country', 'countryID');
+    }
 }
