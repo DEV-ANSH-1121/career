@@ -32,7 +32,7 @@ Route::post('/resetPassword', [HomeController::class, 'resetPassword'])->name('r
 Route::group(['as' => 'user.','middleware' => ['auth']], function () {
     Route::group(['middleware' => ['profileUpdate']], function () {
 
-        Route::group(['middleware' => ['skillTest','hrInterview']], function () {
+        Route::group(['middleware' => ['skillTest'/*,'hrInterview'*/]], function () {
             Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
             Route::get('/call-logs', [UserController::class, 'callLogs'])->name('counsellorCall');
         });

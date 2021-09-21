@@ -121,8 +121,9 @@
     function optionselect(qno,qId,option){
         var aTag = $('.question_'+ (qno+1));
         $('html,body').animate({scrollTop: aTag.offset().top},'fast');
-        var lastAnsTime = parseInt(jQuery('.ttft').val());
+        var lastAnsTime = parseInt(jQuery('.stfla').val());
         var timeLeft = parseInt(jQuery('.tl').val());
+        jQuery('.stfla').val(timeLeft)
         var timeTaken = parseInt(lastAnsTime - timeLeft);
         jQuery.ajax({
             url : jQuery('#baseurl').val() + '/skill/submitSingleAnswer',
