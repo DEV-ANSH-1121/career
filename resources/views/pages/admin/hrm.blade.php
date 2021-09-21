@@ -180,12 +180,9 @@
                                             <div class="status_">
                                                 <select class="form-control select2" style="width: 100%;">
                                                     <option selected="selected">Status</option>
-                                                    <option>Alaska</option>
-                                                    <option>California</option>
-                                                    <option>Delaware</option>
-                                                    <option>Tennessee</option>
-                                                    <option>Texas</option>
-                                                    <option>Washington</option>
+                                                    @foreach(\App\Models\MastStatus::get() as $key => $value)
+                                                    <option value="{{$value->statusID}}">{{$value->status}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </th>
@@ -286,9 +283,9 @@
                                         </td>
                                         <td >
                                             <ul class="preson_detail">
-                                                <li>margdrashak</li>
-                                                <li>****ma@mail.com</li>
-                                                <li>gurgaon</li>
+                                                <li></li>
+                                                <li></li>
+                                                <li></li>
                                             </ul>
                                         </td>
                                         <td >

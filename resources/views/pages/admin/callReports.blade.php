@@ -82,16 +82,16 @@
                                                                     
                                                                     </select> -->
                                                                 <button type="hidden"  class="list hidee" ></button>
-                                                                <a href="{{route('user.counsellorCall')}}" target="_blank"><button class="list contactbyme itembox1"><i class="fas fa-mobile-alt"></i>Call</button></a> 
-                                                                <a href="{{route('user.counsellorEmail')}}" target="_blank"><button class="list contactbyme itembox1" ><i class="fas fa-at"></i>Email</button></a> 
-                                                                <a href="{{route('user.counsellorSms')}}" target="_blank"><button class="list contactbyme itembox1"><i class="fas fa-comment-alt"></i>SMS</button></a>
-                                                                <a href="{{route('user.counsellorWhatsapp')}}" target="_blank"><button class="list itembox1 contactbyme" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
-                                                                <a href="{{route('user.counsellorVisit')}}" target="_blank">  <button class="list contactbyme itembox1"><i class="fas fa-walking"></i>Visit</button></a>
-                                                                <a href="{{route('user.clientCall')}}" target="_blank"><button class="list contactbyclient itembox1" ><i class="fas fa-mobile-alt"></i>Call</button></a>
-                                                                <a href="{{route('user.clientEmail')}}" target="_blank"> <button class="list contactbyclient itembox1" ><i class="fas fa-at"></i>Email</button></a>
-                                                                <a href="{{route('user.clientSms')}}" target="_blank"><button class="list contactbyclient itembox1" ><i class="fas fa-comment-alt"></i>SMS</button></a>
-                                                                <a href="{{route('user.clientWhatsapp')}}" target="_blank"><button class="list contactbyclient itembox1" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
-                                                                <a href="{{route('user.clientVisit')}}" target="_blank"> <button class="list contactbyclient itembox1" ><i class="fas fa-walking"></i>Visit</button></a>
+                                                                <a href="{{route('user.counsellorCall')}}"><button class="list contactbyme itembox1"><i class="fas fa-mobile-alt"></i>Call</button></a> 
+                                                                <a href="{{route('user.counsellorEmail')}}"><button class="list contactbyme itembox1" ><i class="fas fa-at"></i>Email</button></a> 
+                                                                <a href="{{route('user.counsellorSms')}}"><button class="list contactbyme itembox1"><i class="fas fa-comment-alt"></i>SMS</button></a>
+                                                                <a href="{{route('user.counsellorWhatsapp')}}"><button class="list itembox1 contactbyme" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
+                                                                <a href="{{route('user.counsellorVisit')}}">  <button class="list contactbyme itembox1"><i class="fas fa-walking"></i>Visit</button></a>
+                                                                <a href="{{route('user.clientCall')}}"><button class="list contactbyclient itembox1" ><i class="fas fa-mobile-alt"></i>Call</button></a>
+                                                                <a href="{{route('user.clientEmail')}}"> <button class="list contactbyclient itembox1" ><i class="fas fa-at"></i>Email</button></a>
+                                                                <a href="{{route('user.clientSms')}}"><button class="list contactbyclient itembox1" ><i class="fas fa-comment-alt"></i>SMS</button></a>
+                                                                <a href="{{route('user.clientWhatsapp')}}"><button class="list contactbyclient itembox1" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
+                                                                <a href="{{route('user.clientVisit')}}"> <button class="list contactbyclient itembox1" ><i class="fas fa-walking"></i>Visit</button></a>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -135,8 +135,9 @@
                                         <div class="col-md-4">
                                             <select class="form-control " style="width: 100%;">
                                                 <option selected="selected">Status</option>
-                                                <option>1</option>
-                                                <option>2</option>
+                                                @foreach(\App\Models\MastStatus::get() as $key => $value)
+                                                <option value="{{$value->statusID}}">{{$value->status}}</option>
+                                                @endforeach
                                             </select>
                                         </div>
                                         <div class="col-md-4">
