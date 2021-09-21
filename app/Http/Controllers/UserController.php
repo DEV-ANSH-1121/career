@@ -112,6 +112,31 @@ class UserController extends Controller
         return view('pages.admin.visitLogs');
     }
 
+    public function clientCallLogs()
+    {
+        return view('pages.admin.clientCallReports');
+    }
+
+    public function clientEmailLogs()
+    {
+        return view('pages.admin.clientEmailLogs');
+    }
+
+    public function clientSmsLogs()
+    {
+        return view('pages.admin.clientSmsLogs');
+    }
+
+    public function clientWhatsappLogs()
+    {
+        return view('pages.admin.clientWhatsappLogs');
+    }
+
+    public function clientVisitLogs()
+    {
+        return view('pages.admin.clientVisitLogs');
+    }
+
     public function skillTest(Request $request)
     {
         $data['skillResult'] = SkillResult::updateOrCreate(

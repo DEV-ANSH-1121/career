@@ -203,4 +203,34 @@
   // // DropzoneJS Demo Code End
 
 </script>
+<script>
+      $(document).ready(function(){
+         $('.itembox').hide();
+        $('.list').click(function(e) {
+          var value = $(this).attr('data-filter');
+
+          if (value !== 'SelectContact') {
+           $('.itembox').not('.'+value).hide(1000);
+            $('.itembox').filter('.'+value).show(1000);
+          }
+          else{
+            
+          }
+        })
+      })
+    </script>
+    <script>
+      $(document).ready(function(){
+         $('.contactbyme').show(1000);
+          $('.contactbyclient').hide(1000);
+        $('.list2').click(function(e) {
+          $('.contactbyclient').show(1000);
+           $('.contactbyme').hide(1000);
+        })
+         $('.list1').click(function(e) {
+          $('.contactbyclient').hide(1000);
+           $('.contactbyme').show(1000);
+        })
+      })
+    </script>
 @endif

@@ -42,6 +42,11 @@ Route::group(['as' => 'user.','middleware' => ['auth']], function () {
             Route::get('/sms-logs', [UserController::class, 'smsLogs'])->name('counsellorSms');
             Route::get('/whatsapp-logs', [UserController::class, 'whatsappLogs'])->name('counsellorWhatsapp');
             Route::get('/visit-logs', [UserController::class, 'visitLogs'])->name('counsellorVisit');
+            Route::get('/client-call-logs', [UserController::class, 'clientCallLogs'])->name('clientCall');
+            Route::get('/client-email-logs', [UserController::class, 'clientEmailLogs'])->name('clientEmail');
+            Route::get('/client-sms-logs', [UserController::class, 'clientSmsLogs'])->name('clientSms');
+            Route::get('/client-whatsapp-logs', [UserController::class, 'clientWhatsappLogs'])->name('clientWhatsapp');
+            Route::get('/client-visit-logs', [UserController::class, 'clientVisitLogs'])->name('clientVisit');
         });
         Route::group(['middleware' => ['skillResult']], function () {
             Route::get('/skill-test', [UserController::class, 'skillTest'])->name('skillTest');

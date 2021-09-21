@@ -206,15 +206,15 @@
                                                                     </select> -->
                                                                 <button type="hidden"  class="list hidee" ></button>
                                                                 <a href="{{route('user.counsellorCall')}}" target="_blank"><button class="list contactbyme itembox1"><i class="fas fa-mobile-alt"></i>Call</button></a> 
-                                                                <a href="email_report_by_me.php" target="_blank"><button class="list contactbyme itembox1" ><i class="fas fa-at"></i>Email</button></a> 
-                                                                <a href="sms_report_by_me.php" target="_blank"><button class="list contactbyme itembox1"><i class="fas fa-comment-alt"></i>SMS</button></a>
-                                                                <a href="whatapp_report_by_me.php" target="_blank"><button class="list itembox1 contactbyme" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
-                                                                <a href="visit_report_by_me.php" target="_blank">  <button class="list contactbyme itembox1"><i class="fas fa-walking"></i>Visit</button></a>
-                                                                <a href="call_report_by_client.php" target="_blank"><button class="list contactbyclient itembox1" ><i class="fas fa-mobile-alt"></i>Call</button></a>
-                                                                <a href="email_report_by_client.php" target="_blank"> <button class="list contactbyclient itembox1" ><i class="fas fa-at"></i>Email</button></a>
-                                                                <a href="sms_report_by_client.php" target="_blank"><button class="list contactbyclient itembox1" ><i class="fas fa-comment-alt"></i>SMS</button></a>
-                                                                <a href="whatapp_report_by_client.php" target="_blank"><button class="list contactbyclient itembox1" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
-                                                                <a href="visit_report_by_client.php" target="_blank"> <button class="list contactbyclient itembox1" ><i class="fas fa-walking"></i>Visit</button></a>
+                                                                <a href="{{route('user.counsellorEmail')}}" target="_blank"><button class="list contactbyme itembox1" ><i class="fas fa-at"></i>Email</button></a> 
+                                                                <a href="{{route('user.counsellorSms')}}" target="_blank"><button class="list contactbyme itembox1"><i class="fas fa-comment-alt"></i>SMS</button></a>
+                                                                <a href="{{route('user.counsellorWhatsapp')}}" target="_blank"><button class="list itembox1 contactbyme" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
+                                                                <a href="{{route('user.counsellorVisit')}}" target="_blank">  <button class="list contactbyme itembox1"><i class="fas fa-walking"></i>Visit</button></a>
+                                                                <a href="{{route('user.clientCall')}}" target="_blank"><button class="list contactbyclient itembox1" ><i class="fas fa-mobile-alt"></i>Call</button></a>
+                                                                <a href="{{route('user.clientEmail')}}" target="_blank"> <button class="list contactbyclient itembox1" ><i class="fas fa-at"></i>Email</button></a>
+                                                                <a href="{{route('user.clientSms')}}" target="_blank"><button class="list contactbyclient itembox1" ><i class="fas fa-comment-alt"></i>SMS</button></a>
+                                                                <a href="{{route('user.clientWhatsapp')}}" target="_blank"><button class="list contactbyclient itembox1" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
+                                                                <a href="{{route('user.clientVisit')}}" target="_blank"> <button class="list contactbyclient itembox1" ><i class="fas fa-walking"></i>Visit</button></a>
                                                             </div>
                                                         </div>
                                                     </div>
