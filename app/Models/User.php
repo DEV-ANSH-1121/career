@@ -10,6 +10,8 @@ use Laravel\Sanctum\HasApiTokens;
 use App\Models\State;
 use App\Models\District;
 use App\Models\Country;
+use App\Models\SkillResult;
+use App\Models\HrResult;
 
 class User extends Authenticatable
 {
@@ -108,4 +110,6 @@ class User extends Authenticatable
     {
         return $this->belongsTo(District::class, 'district', 'districtID');
     }
+
+    
 }

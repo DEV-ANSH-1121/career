@@ -12,6 +12,7 @@ use App\Models\SkillEvaluator;
 use App\Models\SkillMcq;
 use App\Models\SkillResult;
 use App\Models\SkillTest;
+use App\Models\HrResult;
 use App\Models\UserVariable;
 use App\Http\Requests\UpdateProfileRequest;
 
@@ -31,9 +32,11 @@ class UserController extends Controller
     public function hrm()
     {
         $data['userVariable'] = UserVariable::where('userID',auth()->user()->userID)->first();
+        $data['skillResult'] = SkillResult::where('userID',auth()->user()->userID)->first();
+        $data['hrResult'] = HrResult::where('userID',auth()->user()->userID)->first();
         $data['hrmList'] = [];
         if(isset($data['userVariable']->userID)){
-            $data['hrmList'] = User::where('usertype','S')->take($data['userVariable']->limit_hrm)->get();
+            $data['hrmList'] = User::where('usertype','C')->take($data['userVariable']->limit_hrm)->get();
         }
         
         return view('pages.admin.hrm',['data' => $data]);
@@ -87,6 +90,26 @@ class UserController extends Controller
     public function callLogs()
     {
         return view('pages.admin.callReports');
+    }
+
+    public function emailLogs()
+    {
+        return view('pages.admin.emailLogs');
+    }
+
+    public function smsLogs()
+    {
+        return view('pages.admin.smsLogs');
+    }
+
+    public function whatsappLogs()
+    {
+        return view('pages.admin.whatsappLogs');
+    }
+
+    public function visitLogs()
+    {
+        return view('pages.admin.visitLogs');
     }
 
     public function skillTest(Request $request)

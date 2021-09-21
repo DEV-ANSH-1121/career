@@ -224,11 +224,11 @@
                                                                     
                                                                     </select> -->
                                                                 <button type="hidden"  class="list hidee" ></button>
-                                                                <a href="call_reportby_me.php" target="_blank"><button class="list contactbyme itembox1"><i class="fas fa-mobile-alt"></i>Call</button></a> 
-                                                                <a href="email_report_by_me.php" target="_blank"><button class="list contactbyme itembox1" ><i class="fas fa-at"></i>Email</button></a> 
-                                                                <a href="sms_report_by_me.php" target="_blank"><button class="list contactbyme itembox1"><i class="fas fa-comment-alt"></i>SMS</button></a>
-                                                                <a href="whatapp_report_by_me.php" target="_blank"><button class="list itembox1 contactbyme" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
-                                                                <a href="visit_report_by_me.php" target="_blank">  <button class="list contactbyme itembox1"><i class="fas fa-walking"></i>Visit</button></a>
+                                                                <a href="{{route('user.counsellorCall')}}" target="_blank"><button class="list contactbyme itembox1"><i class="fas fa-mobile-alt"></i>Call</button></a> 
+                                                                <a href="{{route('user.counsellorEmail')}}" target="_blank"><button class="list contactbyme itembox1" ><i class="fas fa-at"></i>Email</button></a> 
+                                                                <a href="{{route('user.counsellorSms')}}" target="_blank"><button class="list contactbyme itembox1"><i class="fas fa-comment-alt"></i>SMS</button></a>
+                                                                <a href="{{route('user.counsellorWhatsapp')}}" target="_blank"><button class="list itembox1 contactbyme" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
+                                                                <a href="{{route('user.counsellorVisit')}}" target="_blank">  <button class="list contactbyme itembox1"><i class="fas fa-walking"></i>Visit</button></a>
                                                                 <a href="call_report_by_client.php" target="_blank"><button class="list contactbyclient itembox1" ><i class="fas fa-mobile-alt"></i>Call</button></a>
                                                                 <a href="email_report_by_client.php" target="_blank"> <button class="list contactbyclient itembox1" ><i class="fas fa-at"></i>Email</button></a>
                                                                 <a href="sms_report_by_client.php" target="_blank"><button class="list contactbyclient itembox1" ><i class="fas fa-comment-alt"></i>SMS</button></a>
@@ -318,7 +318,20 @@
                                         </td>
                                         <td >
                                             <ul class="preson_detail">
-                                                <li>Skills</li>
+                                                <li>
+                                                    Skills : @if(isset($data['skillResult']->finished) && $data['skillResult']->finished == 'Y')
+                                                        <span><i class="fas fa-check"></i></span>   
+                                                    @else
+                                                        <span><i class="fas fa-times"></i></span>
+                                                    @endif
+                                                </li>
+                                                <li>
+                                                    Interview : @if(isset($data['hrResult']->finished) && $data['hrResult']->finished == 'Y')
+                                                        <span><i class="fas fa-check"></i></span>   
+                                                    @else
+                                                        <span><i class="fas fa-times"></i></span>
+                                                    @endif
+                                                </li>
                                                 <li>Persentation</li>
                                                 <li>Documentation</li>
                                             </ul>

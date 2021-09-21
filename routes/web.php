@@ -38,6 +38,10 @@ Route::group(['as' => 'user.','middleware' => ['auth']], function () {
             Route::get('/hrm', [UserController::class, 'hrm'])->name('hrm');
             Route::get('/report', [UserController::class, 'report'])->name('report');
             Route::get('/call-logs', [UserController::class, 'callLogs'])->name('counsellorCall');
+            Route::get('/email-logs', [UserController::class, 'emailLogs'])->name('counsellorEmail');
+            Route::get('/sms-logs', [UserController::class, 'smsLogs'])->name('counsellorSms');
+            Route::get('/whatsapp-logs', [UserController::class, 'whatsappLogs'])->name('counsellorWhatsapp');
+            Route::get('/visit-logs', [UserController::class, 'visitLogs'])->name('counsellorVisit');
         });
         Route::group(['middleware' => ['skillResult']], function () {
             Route::get('/skill-test', [UserController::class, 'skillTest'])->name('skillTest');
