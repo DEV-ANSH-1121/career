@@ -54,7 +54,7 @@
 <script src="{{url('postlogin/dist/js/demo.js')}}"></script>
 <script src="{{url('postlogin/dist/js/script.js?v=1')}}"></script>
 
-<script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
 @yield('script')
 @if(Route::current()->getName() != 'user.skillTest')
