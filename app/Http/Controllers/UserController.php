@@ -22,6 +22,21 @@ class UserController extends Controller
         return view('pages.dashboard',['user' => $user]);
     }
 
+    public function lead()
+    {
+        return view('pages.admin.lead');
+    }
+
+    public function hrm()
+    {
+        return view('pages.admin.hrm');
+    }
+
+    public function report()
+    {
+        return view('pages.admin.report');
+    }
+
     public function getProfile()
     {
         $user = auth()->user();

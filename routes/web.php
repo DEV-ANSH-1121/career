@@ -34,6 +34,9 @@ Route::group(['as' => 'user.','middleware' => ['auth']], function () {
 
         Route::group(['middleware' => ['skillTest'/*,'hrInterview'*/]], function () {
             Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
+            Route::get('/lead', [UserController::class, 'lead'])->name('lead');
+            Route::get('/hrm', [UserController::class, 'hrm'])->name('hrm');
+            Route::get('/report', [UserController::class, 'report'])->name('report');
             Route::get('/call-logs', [UserController::class, 'callLogs'])->name('counsellorCall');
         });
         Route::group(['middleware' => ['skillResult']], function () {

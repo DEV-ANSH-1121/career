@@ -17,7 +17,7 @@
                 @endif
             </div>
             <div class="info">
-                <a href="#" class="d-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}} &nbsp;&nbsp;<i class="fas fa-ellipsis-v"></i></a>
+                <a href="#" class="d-block" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{auth()->user()->name}} &nbsp;&nbsp;<i class="fas fa-caret-down"></i></a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                     <a class="dropdown-item edit" href="edit-profile.php"><i class="nav-icon fas fa-edit"></i><span>Edit Profile</span></a>
                     <a class="dropdown-item edit" href="#"><i class="nav-icon fas fa-key"></i><span>Password</span></a>

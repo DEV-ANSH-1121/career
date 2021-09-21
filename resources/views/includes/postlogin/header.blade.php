@@ -15,7 +15,11 @@
     <ul class="navbar-nav ml-auto">
       <!-- Navbar Search -->
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="support-complaint.php" class=" supor"><i class="fas fa-hand-holding-water"></i> Support</a>
+        <a href="support-complaint.php" style="line-height: 40px;"><i class="fas fa-hand-holding-water"></i> Support</a>
+
+      </li>
+       <li class="nav-item d-none d-sm-inline-block">
+        <a href="support-complaint.php" class=" nav-link">Logout <i class="fas fa-sign-out-alt"></i></a>
 
       </li>
        <!-- Notifications Dropdown Menu -->
