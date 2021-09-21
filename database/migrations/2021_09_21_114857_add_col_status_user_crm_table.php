@@ -14,9 +14,9 @@ class AddColStatusUserCrmTable extends Migration
     public function up()
     {
         Schema::table('user_crm', function (Blueprint $table) {
-            $table->tinyInteger('status')->nullable()->change();
+            $table->smallInteger('status')->nullable()->change();
             $table->foreign('status')->references('statusID')->on('mast_status');
-            $table->tinyInteger('contact')->nullable()->change();
+            $table->smallInteger('contact')->nullable()->change();
             $table->foreign('contact')->references('contactID')->on('mast_contact');
         });
     }
