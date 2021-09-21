@@ -110,34 +110,41 @@ class UserController extends Controller
 
     public function finalSubmit(Request $request)
     {
+        //print_r($request->all());
         $resultID = SkillResult::where('userID',auth()->user()->userID)->update(['finished' => $request->finished,'time_sec' => $request->time]);
     }
 
     public function skillResult()
     {
-        $data['skillEvaluator'] = SkillEvaluator::where('skillsID',2)->select(['marks_correct','marks_wrong','marks_total'])->first();
+        $data['skillEvaluator'] = SkillEvaluator::where('skillsID',2)->select(['marks_correct','marks_wrong','marks_total','total_question'])->first();
         $data['skillResult'] = SkillResult::where(['userID' => auth()->user()->userID, 'skillsID' => 2])->first();
         $data['skillTest'] = SkillTest::where('resultID',$data['skillResult']->resultID)->pluck('answer','mcqID')->toArray();
+        $data['answersheet'] = SkillTest::where('resultID',$data['skillResult']->resultID)->get()->toArray();
         $quesID = array_keys($data['skillTest']);
         $ques_order = implode(',', $quesID);
         $data['skillMcq'] = SkillMcq::whereIn('mcqID', $quesID)
                 ->orderByRaw("FIELD(mcqID, $ques_order)")
                 ->pluck('correct','mcqID')
                 ->toArray();
-        //print_r($data);die;
+        
         $data['correct'] = 0;
         $data['inCorrect'] = 0;
         $data['notAttempt'] = 0;
+        $i = 0;
         foreach($data['skillTest'] as $key => $value){
             if ($value == $data['skillMcq'][$key]) {
                 $data['correct'] += 1;
+                $data['answersheet'][$i]['answer'] = 'Y';
             }elseif(!empty($value) || !is_null($value)){
                 $data['inCorrect'] += 1;
+                $data['answersheet'][$i]['answer'] = 'N';
             }else{
                 $data['notAttempt'] += 1;
+                $data['answersheet'][$i]['answer'] = 'U';
             }
-
+            $i++;
         }
+        //print_r($data['answersheet']);die;
         $data['correctMarks'] = $data['correct'] * $data['skillEvaluator']->marks_correct;
         $data['inCorrectMarks'] = $data['inCorrect'] * $data['skillEvaluator']->marks_wrong;
         $data['marks_obtained'] = $data['correctMarks'] - $data['inCorrectMarks'];

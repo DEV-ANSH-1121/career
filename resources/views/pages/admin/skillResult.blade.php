@@ -98,76 +98,35 @@
                     <thead>
                       <tr>
                         <th scope="col">Questions</th>
-                         <td>1</td>
-                         <td>2</td>
-                         <td>3</td>
-                         <td>4</td>
-                         <td>5</td>
-                         <td>6</td>
-                         <td>7</td>
-                         <td>8</td>
-                         <td>9</td>
-                         <td>10</td>
-                         <td>11</td>
-                         <td>12</td>
-                         <td>13</td>
-                         <td>14</td>
-                         <td>15</td>
-                         <td>16</td>
-                         <td>17</td>
-                         <td>18</td>
-                         <td>19</td>
-                         <td>20</td>
-
+                        @for($i =  1; $i <= $data['skillEvaluator']->total_question; $i++)
+                         <td>{{$i}}</td>
+                         @endfor
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
                         <th scope="row">Answers</th>
-                        <td><span><i class="fas fa-check"></i></span></td>
-                        <td><span><i class="fas fa-times"></i></span></td>
-                        <td><span><i class="fas fa-check"></i></span></td>
-                        <td><span><i class="fas fa-times"></i></span></td>
-                        <td><span><i class="fas fa-check"></i></span></td>
-                        <td><span><i class="fas fa-times"></i></span></td>
-                        <td><span><i class="fas fa-check"></i></span></td>
-                        <td><span><i class="fas fa-times"></i></span></td>
-                        <td><span><i class="fas fa-check"></i></span></td>
-                        <td><span><i class="fas fa-times"></i></span></td>
-                        <td><span><i class="fas fa-check"></i></span></td>
-                        <td><span><i class="fas fa-times"></i></span></td>
-                        <td><span><i class="fas fa-check"></i></span></td>
-                        <td><span><i class="fas fa-times"></i></span></td>
-                        <td><span><i class="fas fa-check"></i></span></td>
-                        <td><span><i class="fas fa-times"></i></span></td>
-                        <td><span><i class="fas fa-check"></i></span></td>
-                        <td><span><i class="fas fa-times"></i></span></td>
-                        <td><span><i class="fas fa-check"></i></span></td>
-                        <td><span><i class="fas fa-times"></i></span></td>
-                        
+                        @foreach($data['answersheet'] as $q=>$a)
+                            @if($a['answer'] == 'Y')
+                                <td><span><i class="fas fa-check"></i></span></td>
+                            @elseif($a['answer'] == 'N')
+                                <td><span><i class="fas fa-times"></i></span></td>
+                            @else
+                                <td><span><i class="fas fa-times"></i></span></td>
+                            @endif
+                        @endforeach
                       </tr>
                       <tr>
                         <th scope="row">Time (in Seconds)</th>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
-                        <td>0</td>
+                        @foreach($data['answersheet'] as $q=>$a)
+                            <td>
+                                @if(isset($a['testime']) && !empty($a['testime']))
+                                    {{$a['testime']}}
+                                @else
+                                    __
+                                @endif
+                            </td>
+                        @endforeach
                       </tr>
                       
                     </tbody>

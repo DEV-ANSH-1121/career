@@ -65,6 +65,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'profileUpdate' => \App\Http\Middleware\ProfileUpdate::class,
         'skillTest' => \App\Http\Middleware\SkillTest::class,
+        'skillResult' => \App\Http\Middleware\SkillResult::class,
         'hrInterview' => \App\Http\Middleware\HrInterview::class,
     ];
 }

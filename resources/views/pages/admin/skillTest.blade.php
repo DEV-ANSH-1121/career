@@ -75,7 +75,7 @@
                                                 </tr>
                                             </tbody>
                                         </table>
-                                        <button type="button" class="Verify " onclick="finalSubmit()">Submit</button>
+                                        <button type="button" class="Verify " onclick="finalSubmit('Y')">Submit</button>
                                     </div>
                                 </div>
                             </div>
@@ -111,7 +111,7 @@
             var timer = new Date(timeLeft * 1000).toISOString().substr(14, 5);
             jQuery('#timer').html(timer);
         }else{
-            window.location.replace(jQuery('#baseurl').val() + '/skill/skillResult');
+            //finalSubmit('Y');
         }
     };
 

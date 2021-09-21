@@ -36,8 +36,9 @@ Route::group(['as' => 'user.','middleware' => ['auth']], function () {
             Route::get('/dashboard', [UserController::class, 'dashboard'])->name('dashboard');
             Route::get('/call-logs', [UserController::class, 'callLogs'])->name('counsellorCall');
         });
-        
-        Route::get('/skill-test', [UserController::class, 'skillTest'])->name('skillTest');
+        Route::group(['middleware' => ['skillResult']], function () {
+            Route::get('/skill-test', [UserController::class, 'skillTest'])->name('skillTest');
+        });
         Route::post('/skill/submitSingleAnswer', [UserController::class, 'submitSingleAnswer'])->name('submitSingleAnswer');
         Route::get('/skill/finalSubmit', [UserController::class, 'finalSubmit'])->name('finalSubmit');
         Route::get('/skill/skillResult', [UserController::class, 'skillResult'])->name('skillResult');
