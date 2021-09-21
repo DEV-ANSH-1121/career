@@ -111,7 +111,7 @@
             var timer = new Date(timeLeft * 1000).toISOString().substr(14, 5);
             jQuery('#timer').html(timer);
         }else{
-            //finalSubmit('Y');
+            finalSubmit('Y');
         }
     };
 
@@ -154,7 +154,9 @@
             url : jQuery('#baseurl').val() + '/skill/finalSubmit?time='+timeTaken+'&&finished='+finished,
             method : 'get',
             success : function(response){
-                window.location.replace(jQuery('#baseurl').val() + '/skill/skillResult')
+                if(response.status){
+                    window.location.replace(jQuery('#baseurl').val() + '/skill/skillResult')
+                }
             }
         });
     }

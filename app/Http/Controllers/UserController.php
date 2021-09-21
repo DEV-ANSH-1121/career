@@ -111,7 +111,15 @@ class UserController extends Controller
     public function finalSubmit(Request $request)
     {
         //print_r($request->all());
-        $resultID = SkillResult::where('userID',auth()->user()->userID)->update(['finished' => $request->finished,'time_sec' => $request->time]);
+        $data['time_sec'] = $request->time;
+        if($request->finished == 'Y'){
+            $data['finished'] = 'Y';
+        }else{
+            $data['finished'] = 'N';
+        }
+        $data['time_sec'] = $request->time;
+        $resultID = SkillResult::where('userID',auth()->user()->userID)->update($data);
+        return ['status' => true];
     }
 
     public function skillResult()
@@ -127,6 +135,7 @@ class UserController extends Controller
                 ->pluck('correct','mcqID')
                 ->toArray();
         
+        $data['attemted'] = 0;
         $data['correct'] = 0;
         $data['inCorrect'] = 0;
         $data['notAttempt'] = 0;
@@ -135,9 +144,11 @@ class UserController extends Controller
             if ($value == $data['skillMcq'][$key]) {
                 $data['correct'] += 1;
                 $data['answersheet'][$i]['answer'] = 'Y';
+                $data['attemted'] = $data['attemted'] + 1;
             }elseif(!empty($value) || !is_null($value)){
                 $data['inCorrect'] += 1;
                 $data['answersheet'][$i]['answer'] = 'N';
+                $data['attemted'] = $data['attemted'] + 1;
             }else{
                 $data['notAttempt'] += 1;
                 $data['answersheet'][$i]['answer'] = 'U';
@@ -149,6 +160,12 @@ class UserController extends Controller
         $data['inCorrectMarks'] = $data['inCorrect'] * $data['skillEvaluator']->marks_wrong;
         $data['marks_obtained'] = $data['correctMarks'] - $data['inCorrectMarks'];
         $data['percentage'] = ($data['marks_obtained'] * 100) / $data['skillEvaluator']->marks_total;
+        SkillResult::where('userID',auth()->user()->userID)->update([
+            'ques_attempted' => $data['attemted'],
+            'correct_ans' => $data['correct'],
+            'marks' => $data['marks_obtained'],
+            'finished' => 'Y'
+        ]);
         return view('pages.admin.skillResult',['data' => $data]);
     }
 
