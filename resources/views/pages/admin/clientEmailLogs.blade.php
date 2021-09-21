@@ -101,7 +101,7 @@
                                             </div>
                                         </div>
                                         <!-----End popup--->
-                                        <button type="button" class="Verify"  data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-mobile-alt"></i></button>
+                                        <button type="button" class="Verify"  data-toggle="modal" data-target="#exampleModalCenter">Back</button>
                                     </div>
                                     <div class="col-md-6">
                                         <!-- <a href="upload-assignment.php"><button class="float-right uploadassignment"><i class="fas fa-file-upload"></i>Upload Assignment</button></a> -->
@@ -109,7 +109,7 @@
                                 </div>
                                 <form class="study_lesson">
                                     <!-----------BY Mail--------->
-                                    <div class="row px-5 itembox bymail">
+                                    <div class="row px-5 bymail">
                                         <div class="col-sm-2">
                                             <div class="input-group mb-3">
                                                 <select class="form-control " style="width: 100%;">
@@ -186,7 +186,7 @@
                                 </form>
                                 <div class="row justify-content-center">
                                     <div class="col-md-6">
-                                        <h3 class="progressreport text-center"><i class="far fa-file"></i>Call Email Report Dashboard</h3>
+                                        <h3 class="progressreport text-center"><i class="far fa-file"></i>Client Email Report Dashboard</h3>
                                     </div>
                                     <div class="col-md-4">
                                         <a href="allreport.php"><button class="Verify">All Report</button></a>

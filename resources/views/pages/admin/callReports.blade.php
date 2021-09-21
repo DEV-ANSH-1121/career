@@ -101,7 +101,7 @@
                                             </div>
                                         </div>
                                         <!-----End popup--->
-                                        <button type="button" class="Verify float-right"  data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-mobile-alt"></i></button>
+                                        <button type="button" class="Verify float-right"  data-toggle="modal" data-target="#exampleModalCenter">Back</button>
                                         <p class="py-2">Cloud Telephony Validity  <span><b>12/08/2021</b></span></p>
                                     </div>
                                     <div class="col-md-6">
@@ -110,7 +110,7 @@
                                 </div>
                                 <form class="study_lesson">
                                     <!-----BY Contact------->
-                                    <div class="row px-5 itembox contact justify-content-center">
+                                    <div class="row px-5 contact justify-content-center">
                                         <div class="col-md-3">
                                         </div>
                                         <div class="col-sm-3 ">

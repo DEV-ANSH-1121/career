@@ -101,7 +101,7 @@
                                             </div>
                                         </div>
                                         <!-----End popup--->
-                                        <button type="button" class="Verify"  data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-mobile-alt"></i></button>
+                                        <button type="button" class="Verify"  data-toggle="modal" data-target="#exampleModalCenter">Back</button>
                                         <p class="py-2">Balance sms <span>0</span></p>
                                     </div>
                                     <div class="col-md-6">
@@ -110,7 +110,7 @@
                                 </div>
                                 <form class="study_lesson">
                                     <!-----------BY SMS--------->
-                                    <div class="row px-5 itembox bysms justify-content-center">
+                                    <div class="row px-5 bysms justify-content-center">
                                         <div class="col-md-3">
                                             <div class="input-group mb-3">
                                                 <select class="form-control " style="width: 100%;">

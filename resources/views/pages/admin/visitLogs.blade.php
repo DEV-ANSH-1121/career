@@ -101,7 +101,7 @@
                                             </div>
                                         </div>
                                         <!-----End popup--->
-                                        <button type="button" class="Verify"  data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-mobile-alt"></i></button>
+                                        <button type="button" class="Verify"  data-toggle="modal" data-target="#exampleModalCenter">Back</button>
                                     </div>
                                     <div class="col-md-6">
                                         <!-- <a href="upload-assignment.php"><button class="float-right uploadassignment"><i class="fas fa-file-upload"></i>Upload Assignment</button></a> -->
@@ -109,7 +109,7 @@
                                 </div>
                                 <form class="study_lesson">
                                     <!-----------BY VISIT--------->
-                                    <div class="row px-5 itembox byvisit justify-content-center">
+                                    <div class="row px-5 byvisit justify-content-center">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <!-- <label>Follow Up Date and time:</label> -->
