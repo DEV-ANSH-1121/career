@@ -156,8 +156,10 @@
                                 <!-- /.col -->
                             </div>
                             <table id="example2" class="table table-responsive-sm  table-bordered table-hover" style="position:relative;">
-                                <thead>
-                                    <tr>
+                   
+                  <thead>
+
+                 <tr>
                                         <th class="sorting"><span class="ok_icon"><i class="fas fa-check-double"></i></span>S.No.</th>
                                         <th class="sorting"><span class="ok_icon"><i class="fas fa-user-graduate"></i></span> Counsellor</th>
                                         <th class="sorting"><span><img src="{{url('postlogin/images/referr.png')}}"  style="margin-right: 10px;width: 20px;" alt="referred"></span>Referred by</th>
@@ -190,168 +192,162 @@
                                 </thead>
                                 <tbody>
                                     @foreach($data['hrmList'] as $key => $student)
-                                    <tr>
-                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Select Contact Mode</h5> -->
-                                                        <button type="hidden" style="display:none;" class="list1 hidee"  data-filter="c_button"></button>
-                                                        <button class="list1" data-filter="contactbyme"><i class="fas fa-long-arrow-alt-up"></i>Contact by me</button>
-                                                        <button class="list2" data-filter="contactbyclient"><i class="fas fa-long-arrow-alt-down"></i>Contact by client</button>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="container">
-                                                            <div class="select_mode">
-                                                                <!-- <select class="form-control select2" style="width: 50%;">
-                                                                    <option selected="selected">Select Contact Mode</option>
-                                                                    <option>Contact mode</option>
-                                                                    <option>Email by me</option>
-                                                                    <option>Call by me</option>
-                                                                    <option>SMS by me</option>
-                                                                    <option>WhatsApp by me</option>
-                                                                    <option>Visit by me</option>
-                                                                    <option>Email by client</option>
-                                                                    <option>Call by client</option>
-                                                                    <option>SMS/WhatsApp by client</option>
-                                                                    <option>Visit by client</option>
-                                                                    
-                                                                    </select> -->
-                                                                <button type="hidden"  class="list hidee" ></button>
-                                                                <a href="{{route('user.counsellorCall')}}"><button class="list contactbyme itembox1"><i class="fas fa-mobile-alt"></i>Call</button></a> 
-                                                                <a href="{{route('user.counsellorEmail')}}"><button class="list contactbyme itembox1" ><i class="fas fa-at"></i>Email</button></a> 
-                                                                <a href="{{route('user.counsellorSms')}}"><button class="list contactbyme itembox1"><i class="fas fa-comment-alt"></i>SMS</button></a>
-                                                                <a href="{{route('user.counsellorWhatsapp')}}"><button class="list itembox1 contactbyme" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
-                                                                <a href="{{route('user.counsellorVisit')}}">  <button class="list contactbyme itembox1"><i class="fas fa-walking"></i>Visit</button></a>
-                                                                <a href="{{route('user.clientCall')}}"><button class="list contactbyclient itembox1" ><i class="fas fa-mobile-alt"></i>Call</button></a>
-                                                                <a href="{{route('user.clientEmail')}}"> <button class="list contactbyclient itembox1" ><i class="fas fa-at"></i>Email</button></a>
-                                                                <a href="{{route('user.clientSms')}}"><button class="list contactbyclient itembox1" ><i class="fas fa-comment-alt"></i>SMS</button></a>
-                                                                <a href="{{route('user.clientWhatsapp')}}"><button class="list contactbyclient itembox1" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
-                                                                <a href="{{route('user.clientVisit')}}"> <button class="list contactbyclient itembox1" ><i class="fas fa-walking"></i>Visit</button></a>
+                                        <tr>
+                                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <!-- <h5 class="modal-title" id="exampleModalLongTitle">Select Contact Mode</h5> -->
+                                                            <button type="hidden" style="display:none;" class="list1 hidee"  data-filter="c_button"></button>
+                                                            <button class="list1" data-filter="contactbyme"><i class="fas fa-long-arrow-alt-up"></i>Contact by me</button>
+                                                            <button class="list2" data-filter="contactbyclient"><i class="fas fa-long-arrow-alt-down"></i>Contact by client</button>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="container">
+                                                                <div class="select_mode">
+                                                                    <button type="hidden"  class="list hidee" ></button>
+                                                                    <a href="{{route('user.counsellorCall')}}"><button class="list contactbyme itembox1"><i class="fas fa-mobile-alt"></i>Call</button></a> 
+                                                                    <a href="{{route('user.counsellorEmail')}}"><button class="list contactbyme itembox1" ><i class="fas fa-at"></i>Email</button></a> 
+                                                                    <a href="{{route('user.counsellorSms')}}"><button class="list contactbyme itembox1"><i class="fas fa-comment-alt"></i>SMS</button></a>
+                                                                    <a href="{{route('user.counsellorWhatsapp')}}"><button class="list itembox1 contactbyme" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
+                                                                    <a href="{{route('user.counsellorVisit')}}">  <button class="list contactbyme itembox1"><i class="fas fa-walking"></i>Visit</button></a>
+                                                                    <a href="{{route('user.clientCall')}}"><button class="list contactbyclient itembox1" ><i class="fas fa-mobile-alt"></i>Call</button></a>
+                                                                    <a href="{{route('user.clientEmail')}}"> <button class="list contactbyclient itembox1" ><i class="fas fa-at"></i>Email</button></a>
+                                                                    <a href="{{route('user.clientSms')}}"><button class="list contactbyclient itembox1" ><i class="fas fa-comment-alt"></i>SMS</button></a>
+                                                                    <a href="{{route('user.clientWhatsapp')}}"><button class="list contactbyclient itembox1" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
+                                                                    <a href="{{route('user.clientVisit')}}"> <button class="list contactbyclient itembox1" ><i class="fas fa-walking"></i>Visit</button></a>
+                                                                </div>
+                                                                <form class="form">
+                                                                </form>
                                                             </div>
-                                                            <form class="form">
-                                                            </form>
+                                                        </div>
+                                                        <!-- <div class="modal-footer">
+                                                            </div> -->
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <td>
+                                                <div class="s_number">
+                                                    <div class="top_">
+                                                        <p>{{$key + 1}}.</p>
+                                                        <div class="image image_">
+                                                            @if(isset($student->pic) && !empty($student->pic))
+                                                            <img src="{{asset($student->pic)}}" class="img-circle elevation-2"  alt="User Image">
+                                                            @else
+                                                            <img src="https://margdarshak.org/public/uploads/user_img/RP.jpg" class="img-circle elevation-2"  alt="User Image">
+                                                            @endif
                                                         </div>
                                                     </div>
-                                                    <!-- <div class="modal-footer">
-                                                        </div> -->
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <td>
-                                            <div class="s_number">
-                                                <div class="top_">
-                                                    <p>{{$key + 1}}.</p>
-                                                    <div class="image image_">
-                                                        @if(isset($student->pic) && !empty($student->pic))
-                                                        <img src="{{asset($student->pic)}}" class="img-circle elevation-2"  alt="User Image">
-                                                        @else
-                                                        <img src="https://margdarshak.org/public/uploads/user_img/RP.jpg" class="img-circle elevation-2"  alt="User Image">
-                                                        @endif
-                                                    </div>
-                                                </div>
-                                                <div class="bottom_">
-                                                    <span class="span_icon">
-                                                    <a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-mobile-alt"></i></a>
-                                                    </span>
-                                                    <div>
+                                                    <div class="bottom_">
                                                         <span class="span_icon">
-                                                            <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="nav-icon fas fa-ellipsis-h"></i></a>
-                                                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                                                <a class="dropdown-item" href="#">Action</a>
-                                                                <a class="dropdown-item" href="#">Another action</a>
-                                                                <a class="dropdown-item" href="#">Something else here</a>
-                                                            </div>
+                                                        <a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-mobile-alt"></i></a>
                                                         </span>
+                                                        <div>
+                                                            <span class="span_icon">
+                                                                <a href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="nav-icon fas fa-ellipsis-h"></i></a>
+                                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                                    <a class="dropdown-item" href="#">Action</a>
+                                                                    <a class="dropdown-item" href="#">Another action</a>
+                                                                    <a class="dropdown-item" href="#">Something else here</a>
+                                                                </div>
+                                                            </span>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td style="" >
-                                            <div class="student_detail user-panel">
-                                                <div class="profile_img">
-                                                    <ul class="preson_detail">
-                                                        <li>{{$student->name}}</li>
-                                                        <li>{{substr_replace($student->email, "****", 0, 4)}}</li>
-                                                        <li>{{substr_replace($student->mobile, "****", 0, 4)}}</li>
-                                                    </ul>
+                                            </td>
+                                            <td  style="width:20%">
+                                                <div class="student_detail user-panel">
+                                                    <div class="profile_img">
+                                                        <ul class="preson_detail">
+                                                            <li>{{$student->name}}</li>
+                                                            <li>{{substr_replace($student->email, "****", 0, 4)}}</li>
+                                                            <li>{{substr_replace($student->mobile, "****", 0, 4)}}</li>
+                                                        </ul>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </td>
-                                        <td >
-                                            <ul class="preson_detail">
-                                                <li></li>
-                                                <li></li>
-                                                <li></li>
-                                            </ul>
-                                        </td>
-                                        <td >
-                                            <ul class="preson_detail">
-                                                <li>
+                                            </td>
+                                            <td >
+                                                <ul class="preson_detail">
+                                                    <li> NA </li>
+                                                    <li> NA </li>
+                                                    <li> NA </li>
+                                                </ul>
+                                            </td>
+                                            <td >
+                                                <ul class="preson_detail">
                                                     @if(isset($student->country) && !empty($student->country))
-                                                    {{$student->userCountry->country}}
+                                                    <li>
+                                                        {{$student->userCountry->country}}
+                                                    </li>
+                                                    @else
+                                                    <li> NA </li>
                                                     @endif
-                                                </li>
-                                                <li>
                                                     @if(isset($student->state) && !empty($student->state))
-                                                    {{$student->userState->state}}
+                                                    <li>
+                                                        {{$student->userState->state}}
+                                                    </li>
+                                                    @else
+                                                    <li> NA </li>
                                                     @endif
-                                                </li>
-                                                <li>
                                                     @if(isset($student->district) && !empty($student->district))
-                                                    {{$student->userDistrict->district}}
+                                                    <li>
+                                                        {{$student->userDistrict->district}}
+                                                    </li>
+                                                    @else
+                                                    <li> NA </li>
                                                     @endif
-                                                </li>
-                                                <li>
                                                     @if(isset($student->pincode) && !empty($student->pincode))
-                                                    {{$student->pincode}}
-                                                    @endif
-                                                </li>
-                                            </ul>
-                                            </ul>
-                                        </td>
-                                        <td >
-                                            <ul class="preson_detail">
-                                                <li>
-                                                    Skills : @if(isset($data['skillResult']->finished) && $data['skillResult']->finished == 'Y')
-                                                        <span><i class="fas fa-check"></i></span>   
+                                                    <li>
+                                                        {{$student->pincode}}
+                                                    </li>
                                                     @else
-                                                        <span><i class="fas fa-times"></i></span>
+                                                    <li> NA </li>
                                                     @endif
-                                                </li>
-                                                <li>
-                                                    Interview : @if(isset($data['hrResult']->finished) && $data['hrResult']->finished == 'Y')
-                                                        <span><i class="fas fa-check"></i></span>   
-                                                    @else
-                                                        <span><i class="fas fa-times"></i></span>
-                                                    @endif
-                                                </li>
-                                                <li>Persentation</li>
-                                                <li>Documentation</li>
-                                            </ul>
-                                        </td>
-                                        <td >
-                                            <ul class="preson_detail">
-                                                <li>29/06/2021</li>
-                                                <li>Delay 5 days</li>
-                                                <li>Logs 10</li>
-                                            </ul>
-                                        </td>
-                                        <td >
-                                            <ul class="preson_detail">
-                                                <li>Completed</li>
-                                                <li>Call by me</li>
-                                            </ul>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                                <tfoot>
-                                </tfoot>
-                            </table>
+                                                </ul>
+                                            </td>
+                                            <td >
+                                                <ul class="preson_detail">
+                                                    <li>
+                                                        Skills : @if(isset($data['skillResult']->finished) && $data['skillResult']->finished == 'Y')
+                                                            <span><i class="fas fa-check"></i></span>   
+                                                        @else
+                                                            <span><i class="fas fa-times"></i></span>
+                                                        @endif
+                                                    </li>
+                                                    <li>
+                                                        Interview : @if(isset($data['hrResult']->finished) && $data['hrResult']->finished == 'Y')
+                                                            <span><i class="fas fa-check"></i></span>   
+                                                        @else
+                                                            <span><i class="fas fa-times"></i></span>
+                                                        @endif
+                                                    </li>
+                                                    <li>Persentation</li>
+                                                    <li>Documentation</li>
+                                                </ul>
+                                            </td>
+                                            <td >
+                                                <ul class="preson_detail">
+                                                    <li>29/06/2021</li>
+                                                    <li>Delay 5 days</li>
+                                                    <li>Logs 10</li>
+                                                </ul>
+                                            </td>
+                                            <td >
+                                                <ul class="preson_detail">
+                                                    <li>Completed</li>
+                                                    <li>Call by me</li>
+                                                </ul>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                  </tbody>
+                  <tfoot>
+                 
+                  </tfoot>
+                </table>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -367,4 +363,20 @@
     <!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
+@endsection
+@section('script')
+<script>
+  $(function () {
+   
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 @endsection

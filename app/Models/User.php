@@ -98,7 +98,7 @@ class User extends Authenticatable
     //  */
     public function userCountry()
     {
-        return $this->belongsTo(District::class, 'country', 'countryID');
+        return $this->belongsTo(Country::class, 'country', 'countryID');
     }
 
     // /**

@@ -1981,3 +1981,6 @@ display: none;
 .attitude_content li{
 margin: 5px;
 }
+table{
+	font-size: 13px;
+}

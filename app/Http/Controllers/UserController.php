@@ -137,6 +137,11 @@ class UserController extends Controller
         return view('pages.admin.clientVisitLogs');
     }
 
+    public function masterTable()
+    {
+        return view('pages.admin.masterTable');
+    }
+
     public function skillTest(Request $request)
     {
         $data['skillResult'] = SkillResult::updateOrCreate(
