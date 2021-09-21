@@ -158,13 +158,13 @@
                                 </form>
                                 <div class="row justify-content-center">
                                     <div class="col-md-6">
-                                        <h3 class="progressreport text-center"><i class="far fa-file"></i>Client Call Report Dashboard</h3>
+                                        <h3 class="progressreport text-center"><i class="far fa-file"></i>Client Call Report</h3>
                                     </div>
                                     <div class="col-md-4">
                                         <a href="allreport.php"><button class="Verify">All Report</button></a>
                                     </div>
                                 </div>
-                                <table id="callbyme" class="table table-bordered table-hover">
+                                <table id="callbyclient" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th class="sorting after_">
@@ -293,4 +293,20 @@
     </div>
 </div>
 <!-- /.content-wrapper -->
+@endsection
+@section('script')
+<script>
+  $(function () {
+   
+    $('#callbyclient').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 @endsection

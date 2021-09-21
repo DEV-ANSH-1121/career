@@ -133,6 +133,25 @@
                                             </div>
                                         </div>
                                         <div class="col-md-4">
+                                            <div class="form-group">
+                                                <input type="text" class="form-control" id="" placeholder="Subject">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <!-- <label>Message</label> -->
+                                                <textarea class="form-control" rows="3" placeholder="Remarks ..." ></textarea>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <div class="custom-file">
+                                                    <input type="file" class="custom-file-input" id="customFile" placeholder="Location File">
+                                                    <label class="custom-file-label" for="customFile">Location File</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
                                             <!-- <label>Status</label> -->
                                             <select class="form-control mb-2" style="width: 100%;">
                                                 <option selected="selected">Status</option>
@@ -141,10 +160,15 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-md-12">
+                                        <div class="col-md-4">
                                             <div class="form-group">
-                                                <!-- <label>Message</label> -->
-                                                <textarea class="form-control" rows="3" placeholder="Remarks ..." ></textarea>
+                                                <!-- <label>Follow Up Date and time:</label> -->
+                                                <div class="input-group date" id="followupdate" data-target-input="nearest" pla>
+                                                    <input type="text" class="form-control datetimepicker-input" data-target="#followupdate" placeholder="Follow Up Date"/>
+                                                    <div class="input-group-append" data-target="#followupdate" data-toggle="datetimepicker">
+                                                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div class="col-md-12">
@@ -155,7 +179,7 @@
                                 </form>
                                 <div class="row justify-content-center">
                                     <div class="col-md-6">
-                                        <h3 class="progressreport text-center"><i class="far fa-file"></i>Visit Report Dashboard</h3>
+                                        <h3 class="progressreport text-center"><i class="far fa-file"></i>Visit Report</h3>
                                     </div>
                                     <div class="col-md-4">
                                         <a href="allreport.php"><button class="Verify">All Report</button></a>
@@ -166,22 +190,27 @@
                                         <tr>
                                             <th><span style="margin-right:5px;"><i class="nav-icon fas fa-history"></i></span>Start time</th>
                                             <th><span style="margin-right:5px;"><i class="nav-icon far fa-clock"></i></span>End time</th>
+                                            <th><span style="margin-right:5px;"><i class="fas fa-clipboard-check"></i></span>Subject</th>
                                             <th><span style="margin-right:5px;"><i class="fas fa-clipboard-check"></i></span>Remarks</th>
+                                            <th><span style="margin-right:5px;"><i class="fas fa-clipboard-check"></i></span>Location</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
                                             <td>Date/Time</td>
+                                            <td>Date/Time</td><td>Date/Time</td>
                                             <td>Date/Time</td>
                                             <td><a href="#" class="tablelink"><i class="fas fa-check"></i></a></td>
                                         </tr>
                                         <tr>
                                             <td>Date/Time</td>
+                                            <td>Date/Time</td><td>Date/Time</td>
                                             <td>Date/Time</td>
                                             <td><a href="#" class="tablelink"><i class="fas fa-check"></i></a></td>
                                         </tr>
                                         <tr>
                                             <td>Date/Time</td>
+                                            <td>Date/Time</td><td>Date/Time</td>
                                             <td>Date/Time</td>
                                             <td><a href="#" class="tablelink"><i class="fas fa-check"></i></a></td>
                                         </tr>
@@ -203,4 +232,20 @@
     </div>
 </div>
 <!-- /.content-wrapper -->
+@endsection
+@section('script')
+<script>
+  $(function () {
+   
+    $('#visitbyme').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 @endsection

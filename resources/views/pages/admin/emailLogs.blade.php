@@ -187,7 +187,7 @@
                                 </form>
                                 <div class="row justify-content-center">
                                     <div class="col-md-6">
-                                        <h3 class="progressreport text-center"><i class="far fa-file"></i>Email Report Dashboard</h3>
+                                        <h3 class="progressreport text-center"><i class="far fa-file"></i>Email Report</h3>
                                     </div>
                                     <div class="col-md-4">
                                         <a href="allreport.php"><button class="Verify">All Report</button></a>
@@ -261,6 +261,16 @@
       mode: "htmlmixed",
       theme: "monokai"
     });
-  })
+   
+    $('#emailbyme').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
 </script>
 @endsection

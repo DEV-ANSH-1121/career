@@ -158,13 +158,13 @@
                                 </form>
                                 <div class="row justify-content-center">
                                     <div class="col-md-6">
-                                        <h3 class="progressreport text-center"><i class="far fa-file"></i>Client WhatApp Report Dashboard</h3>
+                                        <h3 class="progressreport text-center"><i class="far fa-file"></i>Client WhatApp Report</h3>
                                     </div>
                                     <div class="col-md-4">
                                         <a href="allreport.php"><button class="Verify">All Report</button></a>
                                     </div>
                                 </div>
-                                <table id="whatappbyme" class="table table-bordered table-hover">
+                                <table id="whatsappbyclient" class="table table-bordered table-hover">
                                     <thead>
                                         <tr>
                                             <th><span style="margin-right:5px;"><i class="nav-icon fas fa-history"></i></span>Date/Time</th>
@@ -210,4 +210,20 @@
     </div>
 </div>
 <!-- /.content-wrapper -->
+@endsection
+@section('script')
+<script>
+  $(function () {
+    $('#summernotewh').summernote();
+    $('#whatsappbyclient').DataTable({
+      "paging": true,
+      "lengthChange": true,
+      "searching": true,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+      "responsive": true,
+    });
+  });
+</script>
 @endsection
