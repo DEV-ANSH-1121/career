@@ -212,7 +212,6 @@ class UserController extends Controller
                 ->orderByRaw("FIELD(mcqID, $ques_order)")
                 ->get();
         }else{
-            return ['s'=>'else'];
             $data['questions'] = SkillMcq::where('skillsID',2)->select(['mcqID','question','option1','option2','option3','option4'])->take($data['skill']->total_question)->inRandomOrder()->get();
             foreach($data['questions'] as $key => $question){
                 SkillTest::insert([
