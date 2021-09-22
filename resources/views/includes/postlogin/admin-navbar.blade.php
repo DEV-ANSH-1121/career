@@ -84,7 +84,30 @@
             </ul>
           </li>
   
-  
+             <li class="nav-item">
+                        <a href="{{route('user.emailTemplate')}}" class="nav-link">
+                            <i class="nav-icon fas fa-book-reader"></i>
+                            <p>
+                                Email Template
+                            </p>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="{{route('user.smsTemplate')}}" class="nav-link">
+                            <i class="nav-icon fas fa-book-reader"></i>
+                            <p>
+                                SMS Template
+                            </p>
+                        </a>
+                    </li>
+                     <li class="nav-item">
+                        <a href="{{route('user.hrQuestion')}}" class="nav-link">
+                            <i class="nav-icon fas fa-book-reader"></i>
+                            <p>
+                                HR Question
+                            </p>
+                        </a>
+                    </li>
             <li class="nav-item">
                         <a href="{{route('user.masterTable')}}" class="nav-link">
                             <i class="nav-icon fas fa-book-reader"></i>

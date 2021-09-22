@@ -206,6 +206,18 @@ class UserController extends Controller
     {
         return view('pages.counsellor.teacherSchedule');
     }
+    public function emailTemplate()
+    {
+        return view('pages.counsellor.emailTemplate');
+    }
+     public function smsTemplate()
+    {
+        return view('pages.counsellor.smsTemplate');
+    }
+    public function hrQuestion()
+    {
+        return view('pages.counsellor.hrQuestion');
+    }
 
 
     public function skillTest(Request $request)
