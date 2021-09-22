@@ -118,7 +118,6 @@
                                           </textarea>
                                             </div>
                                         </div>
-                                        </div>
                                         <div class="col-sm-12">
                                             <div class="form-group">
                                                 <!-- <label>Message</label> -->
@@ -164,7 +163,6 @@
                                         <tr>
                                             <th><span style="margin-right:5px;"><i class="nav-icon fas fa-history"></i></span>Date/Time</th>
                                             <th><span style="margin-right:5px;"><i class="nav-icon fas fa-history"></i></span>Message</th>
-                                            <th><span style="margin-right:5px;"><i class="nav-icon fas fa-user-tie"></i></span>Opened</th>
                                             <th><span style="margin-right:5px;"><i class="fas fa-clipboard-check"></i></span>Remarks</th>
                                             <th><span style="margin-right:5px;"><i class="fas fa-eye"></i>  </span>View</th>
                                         </tr>
@@ -175,20 +173,17 @@
                                             <td><a href="#" class="tablelink"><i class="fas fa-check"></i></a></td>
                                             <td>Remark</td>
                                             <td><a href="#" class="tablelink"><i class="fas fa-eye"></i></a></td>
-                                            <td><a href="#" class="tablelink"><i class="fas fa-eye"></i></a></td>
                                         </tr>
                                         <tr>
                                             <td>Date/Time</td>
                                             <td><a href="#" class="tablelink"><i class="fas fa-times"></i></a></td>
                                             <td>Remark</td>
                                             <td><a href="#" class="tablelink"><i class="fas fa-eye"></i></a></td>
-                                            <td><a href="#" class="tablelink"><i class="fas fa-eye"></i></a></td>
                                         </tr>
                                         <tr>
                                             <td>Date/Time</td>
                                             <td><a href="#" class="tablelink"><i class="fas fa-check"></i></a></td>
                                             <td>Remark</td>
-                                            <td><a href="#" class="tablelink"><i class="fas fa-eye"></i></a></td>
                                             <td><a href="#" class="tablelink"><i class="fas fa-eye"></i></a></td>
                                         </tr>
                                     </tbody>
