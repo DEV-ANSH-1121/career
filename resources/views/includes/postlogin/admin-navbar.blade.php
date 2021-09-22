@@ -93,6 +93,15 @@
                             </p>
                         </a>
                     </li>
+
+                    <li class="nav-item">
+                        <a href="{{route('user.studySchedule')}}" class="nav-link">
+                            <i class="nav-icon fas fa-book-reader"></i>
+                            <p>
+                                Study Schedule
+                            </p>
+                        </a>
+                    </li>
           
         </ul>
       </nav>

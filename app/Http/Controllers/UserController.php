@@ -14,6 +14,7 @@ use App\Models\SkillResult;
 use App\Models\SkillTest;
 use App\Models\HrResult;
 use App\Models\UserVariable;
+use App\Models\UserCrm;
 use App\Http\Requests\UpdateProfileRequest;
 
 class UserController extends Controller
@@ -125,6 +126,20 @@ class UserController extends Controller
             $data['student'] = User::where('userID',$id)->first();
         }
         return view('pages.counsellor.visitLogs',['data' =>$data]);
+    }
+
+    public function storeVisitLogs(Request $request)
+    {
+        $data = $request->all();
+        // $dir = mt_rand(10,99).auth()->user()->userID.mt_rand(10,99);
+        // if(isset($data('attach'))){
+        //     $extension = $request->file('attach')->extension();
+        //     $file = $data['attach']->storeAs($dir,'visitlog'.'.'.$extension, ['disk' => 'public']);
+        //     $path = 'storage/' . $file;
+        //     $data['attach'] = $path;
+        // }
+        UserCrm::create($data);
+        return redirect()->route('user.counsellorVisit',['id' => $data['userID']]);
     }
 
     public function clientCallLogs($id='')
