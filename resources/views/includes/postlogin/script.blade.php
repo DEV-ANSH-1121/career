@@ -113,9 +113,18 @@
     $('#reservationdatetime1').datetimepicker({ icons: { time: 'far fa-clock' } });
     $('#reservationdatetime2').datetimepicker({ icons: { time: 'far fa-clock' } });
     $('#reservationdatetime3').datetimepicker({ icons: { time: 'far fa-clock' } });
-    $('#reservationdatetime4').datetimepicker({ icons: { time: 'far fa-clock' } });
-    $('#reservationdatetime4end').datetimepicker({ icons: { time: 'far fa-clock' } });
-    $('#followupdate').datetimepicker({ icons: { time: 'far fa-clock' } });
+    $('#reservationdatetime4').datetimepicker({
+      format:'YYYY-MM-DD HH:mm:ss', 
+      icons: { time: 'far fa-clock' } 
+    });
+    $('#reservationdatetime4end').datetimepicker({
+      format:'YYYY-MM-DD HH:mm:ss', 
+      icons: { time: 'far fa-clock' } 
+    });
+    $('#followupdate').datetimepicker({
+      format:'YYYY-MM-DD HH:mm:ss', 
+      icons: { time: 'far fa-clock' } 
+    });
     $('#reservationdatetime5').datetimepicker({ icons: { time: 'far fa-clock' } });
     $('#reservationdatetime6').datetimepicker({ icons: { time: 'far fa-clock' } });
     $('#reservationdatetime7').datetimepicker({ icons: { time: 'far fa-clock' } });
