@@ -200,6 +200,7 @@ class UserController extends Controller
         $data['preTest'] = [];
         $data['time_used'] = $data['skillResult']->time_sec;
         if(!empty($data['skillTest']) && isset($data['skillTest']->resultID)){
+            return ['s'=>'if'];
             $data['skillTest'] = SkillTest::where('resultID',$data['skillResult']->resultID)->select(['answer','mcqID','mcq_order','testime'])->get()->toArray();
             foreach($data['skillTest'] as $key => $value){
                 $data['preTest'][$value['mcqID']] = $value['answer'];
@@ -211,6 +212,7 @@ class UserController extends Controller
                 ->orderByRaw("FIELD(mcqID, $ques_order)")
                 ->get();
         }else{
+            return ['s'=>'else'];
             $data['questions'] = SkillMcq::where('skillsID',2)->select(['mcqID','question','option1','option2','option3','option4'])->take($data['skill']->total_question)->inRandomOrder()->get();
             foreach($data['questions'] as $key => $question){
                 SkillTest::insert([
