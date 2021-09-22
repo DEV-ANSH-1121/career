@@ -131,7 +131,7 @@ class UserController extends Controller
     public function storeVisitLogs(Request $request)
     {
         $data = $request->all();
-        // $dir = mt_rand(10,99).auth()->user()->userID.mt_rand(10,99);
+        $dir = mt_rand(10,99).auth()->user()->userID.mt_rand(10,99);
         // if(isset($data('attach'))){
         //     $extension = $request->file('attach')->extension();
         //     $file = $data['attach']->storeAs($dir,'visitlog'.'.'.$extension, ['disk' => 'public']);
