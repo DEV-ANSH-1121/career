@@ -55,17 +55,17 @@
 <script src="{{url('postlogin/dist/js/script.js?v=1')}}"></script>
 
 
-<script src="{{url('plugins/chart.js/Chart.min.js')}}"></script>
-<script src="{{url('dist/js/pages/dashboard3.js')}}"></script>
-<script src="{{url('dist/js/pages/dashboard2.js')}}"></script>
+<script src="{{url('postlogin/plugins/chart.js/Chart.min.js')}}"></script>
+<script src="{{url('postlogin/dist/js/pages/dashboard3.js')}}"></script>
+<script src="{{url('postlogin/dist/js/pages/dashboard2.js')}}"></script>
 
 <!-- jQuery Mapael -->
-<script src="plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-<script src="plugins/raphael/raphael.min.js"></script>
-<script src="plugins/jquery-mapael/jquery.mapael.min.js"></script>
-<script src="plugins/jquery-mapael/maps/usa_states.min.js"></script>
+<script src="{{url('postlogin/plugins/jquery-mousewheel/jquery.mousewheel.js')}}"></script>
+<script src="{{url('postlogin/plugins/raphael/raphael.min.js')}}"></script>
+<script src="{{url('postlogin/plugins/jquery-mapael/jquery.mapael.min.js')}}"></script>
+<script src="{{url('postlogin/plugins/jquery-mapael/maps/usa_states.min.js')}}"></script>
 <!-- ChartJS -->
-<script src="plugins/chart.js/Chart.min.js"></script>
+<script src="{{url('postlogin/plugins/chart.js/Chart.min.js')}}"></script>
 <!---3d chart--->
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
@@ -79,7 +79,7 @@
 <script src="https://code.highcharts.com/modules/funnel3d.js"></script>
 <script src="https://code.highcharts.com/modules/pyramid3d.js"></script>
 
-<script src="{{url('dist/js/chart-3d.js')}}"></script>
+<script src="{{url('postlogin/dist/js/chart-3d.js')}}"></script>
 
 <script src="http://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js"></script>
 
