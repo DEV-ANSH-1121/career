@@ -830,7 +830,76 @@
                 </table>
               </div>
               <!----contest type end--->
-              
+              <div class="card-body master" id="contestt">
+                  <div class="row">
+                   <div class="col-md-12">
+                       <h3 class="progressreport text-center"><i class="far fa-file"></i>Contest</h3>
+                       
+                   </div>
+                </div>
+                <form class="study_lesson">
+                      <div class="row justify-content-center">
+                       
+                         <div class="col-md-4">
+                               <div class="form-group">
+                                <select class="form-control select2" style="width: 100%;">
+                                <option selected="selected">Contest Type</option>
+                                <option>Alaska</option>
+                                <option>California</option>
+                                <option>Delaware</option>
+                                <option>Tennessee</option>
+                                <option>Texas</option>
+                                <option>Washington</option>
+                              </select>
+                              </div>
+                         </div>
+                         <div class="col-md-4">
+                               <div class="form-group">
+                                <input type="text" class="form-control" id="" placeholder="Contest">
+                              </div>
+                         </div>
+                         
+                     <div class="col-md-4">
+                        <button class="check ">Submit<span><i class="fas fa-arrow-right"></i></span></button>
+                     </div>
+                 
+                </div>
+              </form>
+              <table id="mastertable9" class="table table-bordered table-hover">
+                         <thead>
+                  <tr>
+                    <th>S.No</th>
+                    <th><span style="margin-right:5px;"></span>Contest Type</th>
+                    <th><span style="margin-right:5px;"></span>Contest</th>
+                  </tr>
+                  </thead>
+                   <tbody>
+                           <tr>
+                               <td>
+                                    <div class="s_number">
+                       
+                                         <div class="bottom_">
+                                           <span class="span_icon">
+                                              <p>1.</p>
+                                            <a href="#" data-toggle="dropdown" class="dot" aria-haspopup="true" aria-expanded="false"><i class="nav-icon fas fa-ellipsis-h"></i>&nbsp;<i class="fas fa-chevron-down"></i></a>
+                                           <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                <a class="dropdown-item dro" href="#">Edit<i class="nav-icon fas fa-edit"></i></a>
+                                                
+                                                
+                                              </div>
+                                          </span>
+                                          <div>
+                                          </div>
+                                      </div>
+                                  </div>
+                               </td>
+                               <td></td>
+                               <td></td>
+                           </tr>
+                   </tbody>
+              </table>
+              </div>
+
         </div>
                </div>
           
