@@ -141,6 +141,10 @@ class UserController extends Controller
     {
         return view('pages.counsellor.masterTable');
     }
+     public function studySchedule()
+    {
+        return view('pages.counsellor.studySchedule');
+    }
 
     public function skillTest(Request $request)
     {
