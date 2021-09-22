@@ -135,7 +135,7 @@
              <div class="card-body">
               <div class="row">
                    <div class="col-12">
-                       <h3 class="progressreport"><img src="images/exam.png">Test Results</h3>
+                       <h3 class="progressreport"><img src="{{url('postlogin/images/exam.png')}}">Test Results</h3>
                    </div>
                 </div>
               <div class="table-responsive">
@@ -193,7 +193,7 @@
              <div class="card-body">
               <div class="row">
                    <div class="col-12">
-                       <h3 class="progressreport"><img src="images/test.png">Your Answer Sheet</h3>
+                       <h3 class="progressreport"><img src="{{url('postlogin/images/test.png')}}">Your Answer Sheet</h3>
                    </div>
                 </div>
               <div class="table-responsive">
@@ -307,7 +307,7 @@
              <div class="card-body">
               <div class="row">
                    <div class="col-12">
-                       <h3 class="progressreport"><img src="images/exam.png">All Test Results</h3>
+                       <h3 class="progressreport"><img src="{{url('postlogin/images/exam.png')}}">All Test Results</h3>
                    </div>
                 </div>
                  <div class="row">
