@@ -44,7 +44,7 @@
                      <div class="col-md-6">
                        <div class="form-group">
                           <label><i class="nav-icon fas fa-chalkboard-teacher"></i>Weightage</label>
-                          <select class="form-control select2bs4" style="width: 100%;">
+                          <select class="form-control select2" style="width: 100%;">
                             <option selected="selected">Select Weightage</option>
                             <option>Easy</option>
                             <option>Normal</option>
@@ -57,7 +57,7 @@
                      <div class="col-md-6">
                            <div class="form-group">
                           <label><i class="nav-icon fas fa-book-reader"></i>Course</label>
-                          <select class="form-control select2bs4" style="width: 100%;">
+                          <select class="form-control select2" style="width: 100%;">
                             <option selected="selected">Select Course</option>
                             <option>Easy</option>
                             <option>Normal</option>
@@ -70,7 +70,7 @@
                        <div class="col-md-6">
                            <div class="form-group">
                           <label><i class="nav-icon fas fa-book-open"></i>Subject</label>
-                          <select class="form-control select2bs4" style="width: 100%;">
+                          <select class="form-control select2" style="width: 100%;">
                             <option selected="selected">Select Subject</option>
                             <option>Easy</option>
                             <option>Normal</option>
@@ -83,7 +83,7 @@
                      <div class="col-md-6">
                             <div class="form-group">
                             <label><i class="nav-icon fas fa-book"></i>Lesson</label>
-                            <select class="select2bs4" multiple="multiple" data-placeholder="Select a State"
+                            <select class="select2" multiple="multiple" data-placeholder="Select a State"
                                     style="width: 100%;">
                               <option>Lesson</option>
                               <option>Alaska</option>
@@ -320,7 +320,7 @@
     $('.select2').select2()
 
     //Initialize Select2 Elements
-    $('.select2bs4').select2({
+    $('.select2').select2({
       theme: 'bootstrap4'
     })
 
