@@ -14,4 +14,17 @@ class SkillTest extends Model
     public $timestamps = false;
 
     protected $table = 'skills_test';
+
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var string[]
+     */
+    protected $fillable = [
+        'resultID',
+        'mcq_order',
+        'mcqID',
+        'testime',
+        'answer',
+    ];
 }

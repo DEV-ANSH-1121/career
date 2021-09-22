@@ -223,6 +223,7 @@ class UserController extends Controller
                 ]);
             }
             $data['skillTest'] = SkillTest::where('resultID',$data['skillResult']->resultID)->select(['answer','mcqID','mcq_order','testime'])->get()->toArray();
+            return ['s'=>$data['skillTest']];
         }
             
         return view('pages.counsellor.skillTest',['data' => $data]);
