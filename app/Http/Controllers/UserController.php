@@ -200,7 +200,6 @@ class UserController extends Controller
         $data['preTest'] = [];
         $data['time_used'] = $data['skillResult']->time_sec;
         if(!empty($data['skillTest']) && isset($data['skillTest']->resultID)){
-            return ['s'=>'if'];
             $data['skillTest'] = SkillTest::where('resultID',$data['skillResult']->resultID)->select(['answer','mcqID','mcq_order','testime'])->get()->toArray();
             foreach($data['skillTest'] as $key => $value){
                 $data['preTest'][$value['mcqID']] = $value['answer'];
@@ -222,7 +221,6 @@ class UserController extends Controller
                 ]);
             }
             $data['skillTest'] = SkillTest::where('resultID',$data['skillResult']->resultID)->select(['answer','mcqID','mcq_order','testime'])->get()->toArray();
-            return ['s'=>$data['skill']];
         }
             
         return view('pages.counsellor.skillTest',['data' => $data]);
