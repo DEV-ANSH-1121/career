@@ -52,56 +52,9 @@
                                     </div>
                                     <div class="col-md-2">
                                         <!--- popup---->
-                                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <!-- <h5 class="modal-title" id="exampleModalLongTitle">Select Contact Mode</h5> -->
-                                                        <button type="hidden" style="display:none;" class="list1 hidee"  data-filter="c_button"></button>
-                                                        <button class="list1" data-filter="contactbyme"><i class="fas fa-long-arrow-alt-up"></i>Contact by me</button>
-                                                        <button class="list2" data-filter="contactbyclient"><i class="fas fa-long-arrow-alt-down"></i>Contact by client</button>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="container">
-                                                            <div class="select_mode">
-                                                                <!-- <select class="form-control select2" style="width: 50%;">
-                                                                    <option selected="selected">Select Contact Mode</option>
-                                                                    <option>Contact mode</option>
-                                                                    <option>Email by me</option>
-                                                                    <option>Call by me</option>
-                                                                    <option>SMS by me</option>
-                                                                    <option>WhatsApp by me</option>
-                                                                    <option>Visit by me</option>
-                                                                    <option>Email by client</option>
-                                                                    <option>Call by client</option>
-                                                                    <option>SMS/WhatsApp by client</option>
-                                                                    <option>Visit by client</option>
-                                                                    
-                                                                    </select> -->
-                                                                <button type="hidden"  class="list hidee" ></button>
-                                                                <a href="{{route('user.counsellorCall')}}"><button class="list contactbyme itembox1"><i class="fas fa-mobile-alt"></i>Call</button></a> 
-                                                                <a href="{{route('user.counsellorEmail')}}"><button class="list contactbyme itembox1" ><i class="fas fa-at"></i>Email</button></a> 
-                                                                <a href="{{route('user.counsellorSms')}}"><button class="list contactbyme itembox1"><i class="fas fa-comment-alt"></i>SMS</button></a>
-                                                                <a href="{{route('user.counsellorWhatsapp')}}"><button class="list itembox1 contactbyme" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
-                                                                <a href="{{route('user.counsellorVisit')}}">  <button class="list contactbyme itembox1"><i class="fas fa-walking"></i>Visit</button></a>
-                                                                <a href="{{route('user.clientCall')}}"><button class="list contactbyclient itembox1" ><i class="fas fa-mobile-alt"></i>Call</button></a>
-                                                                <a href="{{route('user.clientEmail')}}"> <button class="list contactbyclient itembox1" ><i class="fas fa-at"></i>Email</button></a>
-                                                                <a href="{{route('user.clientSms')}}"><button class="list contactbyclient itembox1" ><i class="fas fa-comment-alt"></i>SMS</button></a>
-                                                                <a href="{{route('user.clientWhatsapp')}}"><button class="list contactbyclient itembox1" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
-                                                                <a href="{{route('user.clientVisit')}}"> <button class="list contactbyclient itembox1" ><i class="fas fa-walking"></i>Visit</button></a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <!-- <div class="modal-footer">
-                                                        </div> -->
-                                                </div>
-                                            </div>
-                                        </div>
+                                        @include('pages.counsellor.includes.contact-button')
                                         <!-----End popup--->
-                                        <button type="button" class="Verify"  data-toggle="modal" data-target="#exampleModalCenter">Back</button>
+                                        <button type="button" class="Verify float-right contact-ini"  data-toggle="modal" data-target="#exampleModalCenter" data-stid="{{$data['student']->userID}}">Back</button>
                                     </div>
                                     <div class="col-md-6">
                                         <!-- <a href="upload-assignment.php"><button class="float-right uploadassignment"><i class="fas fa-file-upload"></i>Upload Assignment</button></a> -->

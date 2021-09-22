@@ -87,54 +87,84 @@ class UserController extends Controller
         return redirect()->route('user.dashboard');
     }
 
-    public function callLogs()
+    public function callLogs($id='')
     {
-        return view('pages.counsellor.callReports');
+        if(!empty($id)){
+            $data['student'] = User::where('userID',$id)->first();
+        }
+        return view('pages.counsellor.callReports',['data' =>$data]);
     }
 
-    public function emailLogs()
+    public function emailLogs($id='')
     {
-        return view('pages.counsellor.emailLogs');
+        if(!empty($id)){
+            $data['student'] = User::where('userID',$id)->first();
+        }
+        return view('pages.counsellor.emailLogs',['data' =>$data]);
     }
 
-    public function smsLogs()
+    public function smsLogs($id='')
     {
-        return view('pages.counsellor.smsLogs');
+        if(!empty($id)){
+            $data['student'] = User::where('userID',$id)->first();
+        }
+        return view('pages.counsellor.smsLogs',['data' =>$data]);
     }
 
-    public function whatsappLogs()
+    public function whatsappLogs($id='')
     {
-        return view('pages.counsellor.whatsappLogs');
+        if(!empty($id)){
+            $data['student'] = User::where('userID',$id)->first();
+        }
+        return view('pages.counsellor.whatsappLogs',['data' =>$data]);
     }
 
-    public function visitLogs()
+    public function visitLogs($id='')
     {
-        return view('pages.counsellor.visitLogs');
+        if(!empty($id)){
+            $data['student'] = User::where('userID',$id)->first();
+        }
+        return view('pages.counsellor.visitLogs',['data' =>$data]);
     }
 
-    public function clientCallLogs()
+    public function clientCallLogs($id='')
     {
-        return view('pages.counsellor.clientCallReports');
+        if(!empty($id)){
+            $data['student'] = User::where('userID',$id)->first();
+        }
+        return view('pages.counsellor.clientCallReports',['data' =>$data]);
     }
 
-    public function clientEmailLogs()
+    public function clientEmailLogs($id='')
     {
-        return view('pages.counsellor.clientEmailLogs');
+        if(!empty($id)){
+            $data['student'] = User::where('userID',$id)->first();
+        }
+        return view('pages.counsellor.clientEmailLogs',['data' =>$data]);
     }
 
-    public function clientSmsLogs()
+    public function clientSmsLogs($id='')
     {
-        return view('pages.counsellor.clientSmsLogs');
+        if(!empty($id)){
+            $data['student'] = User::where('userID',$id)->first();
+        }
+        return view('pages.counsellor.clientSmsLogs',['data' =>$data]);
     }
 
-    public function clientWhatsappLogs()
+    public function clientWhatsappLogs($id='')
     {
-        return view('pages.counsellor.clientWhatsappLogs');
+        if(!empty($id)){
+            $data['student'] = User::where('userID',$id)->first();
+        }
+        return view('pages.counsellor.clientWhatsappLogs',['data' =>$data]);
     }
 
-    public function clientVisitLogs()
+    public function clientVisitLogs($id='')
     {
-        return view('pages.counsellor.clientVisitLogs');
+        if(!empty($id)){
+            $data['student'] = User::where('userID',$id)->first();
+        }
+        return view('pages.counsellor.clientVisitLogs',['data' =>$data]);
     }
 
     public function masterTable()

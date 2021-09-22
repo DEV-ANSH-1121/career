@@ -228,11 +228,18 @@
         $('.list2').click(function(e) {
           $('.contactbyclient').show(1000);
            $('.contactbyme').hide(1000);
-        })
+        });
          $('.list1').click(function(e) {
           $('.contactbyclient').hide(1000);
            $('.contactbyme').show(1000);
+        });
+         $('.contact-ini').click(function(){
+            var stid = $(this).data('stid');
+            $('.contact-modal-anchor').each(function(){
+                $(this).attr('href',$(this).data('href')+'/'+stid);
+            });
+            
         })
-      })
+      });
     </script>
 @endif
