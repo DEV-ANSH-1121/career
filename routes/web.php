@@ -54,6 +54,7 @@ Route::group(['as' => 'user.','middleware' => ['auth']], function () {
             Route::get('/study-dashboard', [UserController::class, 'studyDashboard'])->name('studyDashboard');
              Route::get('/study-test', [UserController::class, 'studyTest'])->name('studyTest');
              Route::get('/career-dashboard', [UserController::class, 'careerDashboard'])->name('careerDashboard');
+             Route::get('/teacher-schedule', [UserController::class, 'teacherSchedule'])->name('teacherSchedule');
 
            
         });
