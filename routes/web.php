@@ -43,7 +43,7 @@ Route::group(['as' => 'user.','middleware' => ['auth']], function () {
             Route::get('/sms-logs/{id?}', [UserController::class, 'smsLogs'])->name('counsellorSms');
             Route::get('/whatsapp-logs/{id?}', [UserController::class, 'whatsappLogs'])->name('counsellorWhatsapp');
             Route::get('/visit-logs/{id?}', [UserController::class, 'visitLogs'])->name('counsellorVisit');
-            //Route::post('/store-visit-logs', [UserController::class, 'storeVisitLogs'])->name('counsellorStoreVisit');
+            Route::post('/store-visit-logs', [UserController::class, 'storeVisitLogs'])->name('counsellorStoreVisit');
             Route::get('/client-call-logs/{id?}', [UserController::class, 'clientCallLogs'])->name('clientCall');
             Route::get('/client-email-logs/{id?}', [UserController::class, 'clientEmailLogs'])->name('clientEmail');
             Route::get('/client-sms-logs/{id?}', [UserController::class, 'clientSmsLogs'])->name('clientSms');

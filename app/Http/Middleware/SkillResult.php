@@ -17,9 +17,12 @@ class SkillResult
     public function handle(Request $request, Closure $next)
     {
         $skillResult = \DB::table('skills_result')->where('userID',auth()->user()->userID)->first();
-        if(isset($skillResult->userID) && $skillResult->finished == 'Y'){
-            return redirect()->route('user.skillResult');
+        if (auth()->user()->usertype != 'A') {
+            if(isset($skillResult->userID) && $skillResult->finished == 'Y'){
+                return redirect()->route('user.skillResult');
+            }
         }
+            
         return $next($request);
     }
 }

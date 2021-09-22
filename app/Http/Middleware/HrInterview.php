@@ -17,8 +17,10 @@ class HrInterview
     public function handle(Request $request, Closure $next)
     {
         $skillResult = \DB::table('hr_result')->where('userID',auth()->user()->userID)->first();
-        if(!isset($skillResult->userID)){
-            return redirect()->route('user.hrInterview');
+        if (auth()->user()->usertype != 'A') {
+            if(!isset($skillResult->userID)){
+                return redirect()->route('user.hrInterview');
+            }
         }
         return $next($request);
     }

@@ -131,13 +131,13 @@ class UserController extends Controller
     public function storeVisitLogs(Request $request)
     {
         $data = $request->all();
-        // $dir = mt_rand(10,99).auth()->user()->userID.mt_rand(10,99);
-        // if(isset($data('attach'))){
-        //     $extension = $request->file('attach')->extension();
-        //     $file = $data['attach']->storeAs($dir,'visitlog'.'.'.$extension, ['disk' => 'public']);
-        //     $path = 'storage/' . $file;
-        //     $data['attach'] = $path;
-        // }
+        $dir = mt_rand(10,99).auth()->user()->userID.mt_rand(10,99);
+        if(isset($data('attach'))){
+            $extension = $request->file('attach')->extension();
+            $file = $data['attach']->storeAs($dir,'visitlog'.'.'.$extension, ['disk' => 'public']);
+            $path = 'storage/' . $file;
+            $data['attach'] = $path;
+        }
         UserCrm::create($data);
         return redirect()->route('user.counsellorVisit',['id' => $data['userID']]);
     }
