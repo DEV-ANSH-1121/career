@@ -193,7 +193,7 @@
                                 <tbody>
                                     @foreach($data['hrmList'] as $key => $student)
                                         <tr>
-                                            @include('pages.counsellor.includes.contact-buttony')
+                                            @include('pages.counsellor.includes.contact-button')
                                             <td>
                                                 <div class="s_number">
                                                     <div class="top_">
