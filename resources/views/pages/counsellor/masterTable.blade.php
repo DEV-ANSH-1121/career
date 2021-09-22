@@ -8,7 +8,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1><span><img src="images/counselling.png"  style="margin-right: 10px;width: 30px;" alt="counselling"></span>Master Table</h1>
+            <h1><span><img src="{{asset('images/counselling.png')}}"  style="margin-right: 10px;width: 30px;" alt="counselling"></span>Master Table</h1>
           </div>
           <div class="col-sm-6">
            <!--  <ol class="breadcrumb float-sm-right">
