@@ -51,8 +51,7 @@ Route::group(['as' => 'user.','middleware' => ['auth']], function () {
             Route::get('/master-table', [UserController::class, 'masterTable'])->name('masterTable');
             Route::get('/study-schedule', [UserController::class, 'studySchedule'])->name('studySchedule');
             Route::get('/study-dashboard', [UserController::class, 'studyDashboard'])->name('studyDashboard');
-            Route::get('/study-test', [UserController::class, 'studyTest'])->name('studyTest');
-            Route::get('/career-dashboard', [UserController::class, 'careerDashboard'])->name('careerDashboard');
+           
         });
         Route::group(['middleware' => ['skillResult']], function () {
             Route::get('/skill-test', [UserController::class, 'skillTest'])->name('skillTest');
