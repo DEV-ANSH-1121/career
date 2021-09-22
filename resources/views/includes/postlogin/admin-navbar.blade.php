@@ -106,7 +106,7 @@
                         <a href="{{route('user.teacherSchedule')}}" class="nav-link">
                             <i class="nav-icon fas fa-book-reader"></i>
                             <p>
-                                Study Schedule
+                                Teacher Schedule
                             </p>
                         </a>
                     </li>

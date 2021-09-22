@@ -130,7 +130,7 @@
                             <div class="row">
                    <div class="col-md-3">
                       <div class="form-group">
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select course</option>
                     <option>BCA</option>
                     <option>MCA</option>
@@ -141,7 +141,7 @@
                    <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select subject</option>
                     <option>Math</option>
                     <option>English</option>
@@ -325,7 +325,7 @@
                             <div class="row">
                    <div class="col-md-3">
                       <div class="form-group">
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select course</option>
                     <option>BCA</option>
                     <option>MCA</option>
@@ -336,7 +336,7 @@
                    <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select subject</option>
                     <option>Math</option>
                     <option>English</option>
@@ -347,7 +347,7 @@
                        <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select unit</option>
                     <option>Math</option>
                     <option>English</option>
@@ -358,7 +358,7 @@
                      <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select language</option>
                     <option>Math</option>
                     <option>English</option>
@@ -524,7 +524,7 @@
                             <div class="row">
                    <div class="col-md-3">
                       <div class="form-group">
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select course</option>
                     <option>BCA</option>
                     <option>MCA</option>
@@ -535,7 +535,7 @@
                    <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select subject</option>
                     <option>Math</option>
                     <option>English</option>
@@ -546,7 +546,7 @@
                        <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select unit</option>
                     <option>Math</option>
                     <option>English</option>
@@ -557,7 +557,7 @@
                      <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select language</option>
                     <option>Math</option>
                     <option>English</option>
@@ -759,7 +759,7 @@
                             <div class="row">
                    <div class="col-md-4">
                       <div class="form-group">
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select course</option>
                     <option>BCA</option>
                     <option>MCA</option>
@@ -770,7 +770,7 @@
                    <div class="col-md-4">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select subject</option>
                     <option>Math</option>
                     <option>English</option>
@@ -932,7 +932,7 @@
                             <div class="row">
                    <div class="col-md-4">
                       <div class="form-group">
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select course</option>
                     <option>BCA</option>
                     <option>MCA</option>
@@ -943,7 +943,7 @@
                    <div class="col-md-4">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select subject</option>
                     <option>Math</option>
                     <option>English</option>
@@ -1105,7 +1105,7 @@
                             <div class="row">
                          <div class="col-md-6 mx-lg-auto">
                             <div class="form-group">
-                        <select class="form-control select2bs4" style="width: 100%;">
+                        <select class="form-control select2" style="width: 100%;">
                           <option selected="selected">Select Skill</option>
                           <option>BCA</option>
                           <option>MCA</option>
@@ -1474,7 +1474,7 @@
                             <div class="row">
                    <div class="col-md-3">
                       <div class="form-group">
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select course</option>
                     <option>BCA</option>
                     <option>MCA</option>
@@ -1485,7 +1485,7 @@
                    <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select subject</option>
                     <option>Math</option>
                     <option>English</option>
@@ -1496,7 +1496,7 @@
                      <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select unit</option>
                     <option>Math</option>
                     <option>English</option>
@@ -1507,7 +1507,7 @@
                      <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select language</option>
                     <option>Math</option>
                     <option>English</option>
@@ -1732,7 +1732,7 @@
                    </div>
                    <div class="col-md-3">
                       <div class="form-group">
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select course</option>
                     <option>BCA</option>
                     <option>MCA</option>
@@ -1743,7 +1743,7 @@
                    <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select subject</option>
                     <option>Math</option>
                     <option>English</option>
@@ -1754,7 +1754,7 @@
                      <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select unit</option>
                     <option>Math</option>
                     <option>English</option>
@@ -1765,7 +1765,7 @@
                      <div class="col-md-3">
                       <div class="form-group">
                  
-                  <select class="form-control select2bs4" style="width: 100%;">
+                  <select class="form-control select2" style="width: 100%;">
                     <option selected="selected">Select language</option>
                     <option>Math</option>
                     <option>English</option>
@@ -1942,7 +1942,7 @@
    $('#detail_1').summernote()
    
     //Initialize Select2 Elements
-    $('.select2bs4').select2({
+    $('.select2').select2({
       theme: 'bootstrap4'
     })
 
