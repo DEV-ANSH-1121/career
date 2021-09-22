@@ -199,7 +199,7 @@ class UserController extends Controller
         $data['skillTest'] = SkillTest::where('resultID',$data['skillResult']->resultID)->first();
         $data['preTest'] = [];
         $data['time_used'] = $data['skillResult']->time_sec;
-        if(isset($data['skillTest']->resultID)){
+        if(!empty($data['skillTest']) && isset($data['skillTest']->resultID)){
             $data['skillTest'] = SkillTest::where('resultID',$data['skillResult']->resultID)->select(['answer','mcqID','mcq_order','testime'])->get()->toArray();
             foreach($data['skillTest'] as $key => $value){
                 $data['preTest'][$value['mcqID']] = $value['answer'];
