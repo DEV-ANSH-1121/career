@@ -44,9 +44,9 @@
                                     <div class="col-md-10">
                                         <div class=" totaltime_">
                                             <ul>
-                                                <li><i class="fas fa-user"></i><span class="houre">FUll Name</span></li>
-                                                <li><i class="fas fa-envelope"></i><span class="houre">****a@gmail.com</span></li>
-                                                <li><i class="fas fa-phone-square"></i><span class="houre">****920010</span></li>
+                                                <li><i class="fas fa-user"></i><span class="houre">{{$data['student']->name}}</span></li>
+                                                <li><i class="fas fa-envelope"></i><span class="houre">{{substr_replace($data['student']->email, "****", 0, 4)}}</span></li>
+                                                <li><i class="fas fa-phone-square"></i><span class="houre">{{substr_replace($data['student']->mobile, "****", 0, 4)}}</span></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -60,8 +60,11 @@
                                         <!-- <a href="upload-assignment.php"><button class="float-right uploadassignment"><i class="fas fa-file-upload"></i>Upload Assignment</button></a> -->
                                     </div>
                                 </div>
-                                <form class="study_lesson" method="post" action="{{route(user.counsellorStoreVisit)}}" enctype="multipart/form-data">
+                                <form class="study_lesson" method="post" action="{{route('user.counsellorStoreVisit')}}" enctype="multipart/form-data">
                                     {{csrf_field()}}
+                                    <input type="hidden" name="userID" value="{{$data['student']->userID}}">
+                                    <input type="hidden" name="euser" value="{{auth()->user()->userID}}">
+                                    <input type="hidden" name="edate" value="{{now()}}">
                                     <!-----------BY VISIT--------->
                                     <div class="row px-5 byvisit justify-content-center">
                                         <div class="col-md-4">
@@ -126,7 +129,7 @@
                                             </div>
                                         </div>
                                         <div class="col-md-12">
-                                            <button type="button" class="btn btn-primary submit_">Submit</button>
+                                            <button type="submit" class="btn btn-primary submit_">Submit</button>
                                         </div>
                                     </div>
                                     <!----------BY VISIT END------>
@@ -150,24 +153,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
+                                        @foreach($data['visitLogs'] as $key => $visitLog)
                                         <tr>
-                                            <td>Date/Time</td>
-                                            <td>Date/Time</td><td>Date/Time</td>
-                                            <td>Date/Time</td>
-                                            <td><a href="#" class="tablelink"><i class="fas fa-check"></i></a></td>
+                                            <td>{{$visitLog['date_start']}}</td>
+                                            <td>{{$visitLog['date_end']}}</td>
+                                            <td>{{$visitLog['subject']}}</td>
+                                            <td>{{$visitLog['remarks']}}</td>
+                                            <td><a href="{{asset($visitLog['attach'])}}" class="tablelink"><i class="fas fa-map-marker"></i></a></td>
                                         </tr>
-                                        <tr>
-                                            <td>Date/Time</td>
-                                            <td>Date/Time</td><td>Date/Time</td>
-                                            <td>Date/Time</td>
-                                            <td><a href="#" class="tablelink"><i class="fas fa-check"></i></a></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Date/Time</td>
-                                            <td>Date/Time</td><td>Date/Time</td>
-                                            <td>Date/Time</td>
-                                            <td><a href="#" class="tablelink"><i class="fas fa-check"></i></a></td>
-                                        </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

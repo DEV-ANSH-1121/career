@@ -122,22 +122,22 @@ class UserController extends Controller
 
     public function visitLogs($id='')
     {
-        if(!empty($id)){
-            $data['student'] = User::where('userID',$id)->first();
-        }
+        $data['student'] = User::where('userID',$id)->first();
+        $data['visitLogs'] = UserCrm::where('userID',$id)->where('euser',auth()->user()->userID)->get();
         return view('pages.counsellor.visitLogs',['data' =>$data]);
     }
 
     public function storeVisitLogs(Request $request)
     {
         $data = $request->all();
+        $data['euser'] = auth()->user()->userID;
         $dir = mt_rand(10,99).auth()->user()->userID.mt_rand(10,99);
-        // if(isset($data('attach'))){
-        //     $extension = $request->file('attach')->extension();
-        //     $file = $data['attach']->storeAs($dir,'visitlog'.'.'.$extension, ['disk' => 'public']);
-        //     $path = 'storage/' . $file;
-        //     $data['attach'] = $path;
-        // }
+        if($request->hasFile('attach')){
+            $extension = $request->file('attach')->extension();
+            $file = $data['attach']->storeAs($dir,'visitlog'.'.'.$extension, ['disk' => 'public']);
+            $path = 'storage/' . $file;
+            $data['attach'] = $path;
+        }
         UserCrm::create($data);
         return redirect()->route('user.counsellorVisit',['id' => $data['userID']]);
     }
