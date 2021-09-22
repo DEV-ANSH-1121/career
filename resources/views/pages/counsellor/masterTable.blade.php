@@ -35,7 +35,8 @@
                    </div>
                    <div class="col-md-3">
                         <select class="form-control select2" style="width: 100%;">
-                                  <option selected="selected">Location</option>
+                                  <option selected="selected">Master table</option>
+                            <option value="aut">Authontic</option>
                                   <option>Country</option>
                                   <option>State</option>
                                   <option>District</option>
