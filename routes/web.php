@@ -49,6 +49,7 @@ Route::group(['as' => 'user.','middleware' => ['auth']], function () {
             Route::get('/client-whatsapp-logs', [UserController::class, 'clientWhatsappLogs'])->name('clientWhatsapp');
             Route::get('/client-visit-logs', [UserController::class, 'clientVisitLogs'])->name('clientVisit');
             Route::get('/master-table', [UserController::class, 'masterTable'])->name('masterTable');
+            Route::get('/study-schedule', [UserController::class, 'studySchedule'])->name('studySchedule');
         });
         Route::group(['middleware' => ['skillResult']], function () {
             Route::get('/skill-test', [UserController::class, 'skillTest'])->name('skillTest');
