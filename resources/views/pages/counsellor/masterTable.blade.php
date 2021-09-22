@@ -34,20 +34,14 @@
                        
                    </div>
                    <div class="col-md-3">
-                         <select class="form-control select5" id="mastertable_t" style="width: 100%;">
-                            <option selected="selected">Master table</option>
-                            <option value="aut">Authontic</option>
-                            <option value="cont">Contact</option>
-                             <option value="count">Country</option>
-                             <option value="state">State</option>
-                             <option value="dist">District</option>
-                             <option value="linkk">Link group</option>
-                             <option value="linkk2">Links</option>
-                             <option value="pin_0">PIN code</option>
-                             <option value="buy_0">Buy</option>
-                             <option value="contesttype">Contest Type</option>
-                             <option value="contestt">Contest</option>
-                          </select>
+                        <select class="form-control select2" style="width: 100%;">
+                                  <option selected="selected">Location</option>
+                                  <option>Country</option>
+                                  <option>State</option>
+                                  <option>District</option>
+                                  <option>Pin Code</option>
+                                  
+                                </select>
                    </div>
                 </div>
                 </div>
@@ -81,8 +75,8 @@
 <script>
   $(function () {
     //Initialize Select2 Elements
-    $('.select5').select2()
-      $('.select5').on('select2:select',function(e){
+    $('.select2').select2()
+      $('.select2').on('select2:select',function(e){
         function savedata(){
    console.log('hill');
  }
