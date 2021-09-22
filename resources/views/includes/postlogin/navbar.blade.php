@@ -55,14 +55,7 @@
                       </p>
                     </a>
                     </li>-->
-                    <li class="nav-item">
-                        <a href="{{route('user.masterTable')}}" class="nav-link">
-                            <i class="nav-icon fas fa-book-reader"></i>
-                            <p>
-                                Master Table
-                            </p>
-                        </a>
-                    </li>
+                    
                     <!-- <li class="nav-item">
                         <a href="{{route('user.hrInterview')}}" class="nav-link">
                             <i class="nav-icon fas fa-book-reader"></i>

@@ -13,7 +13,11 @@
 	  <!-- Navbar -->
 	 
 	 	@include('includes.postlogin.header')
+	 	@if(auth()->user()->usertype == 'A')
+	 	@include('includes.postlogin.admin-navbar')
+	 	@else
 	  	@include('includes.postlogin.navbar')
+	  	@endif
 	  	@yield('content')
 	  	@include('includes.postlogin.footer')
 

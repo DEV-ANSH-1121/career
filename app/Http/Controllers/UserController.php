@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function lead()
     {
-        return view('pages.admin.lead');
+        return view('pages.counsellor.lead');
     }
 
     public function hrm()
@@ -39,12 +39,12 @@ class UserController extends Controller
             $data['hrmList'] = User::where('usertype','C')->take($data['userVariable']->limit_hrm)->get();
         }
         
-        return view('pages.admin.hrm',['data' => $data]);
+        return view('pages.counsellor.hrm',['data' => $data]);
     }
 
     public function report()
     {
-        return view('pages.admin.report');
+        return view('pages.counsellor.report');
     }
 
     public function getProfile()
@@ -89,57 +89,57 @@ class UserController extends Controller
 
     public function callLogs()
     {
-        return view('pages.admin.callReports');
+        return view('pages.counsellor.callReports');
     }
 
     public function emailLogs()
     {
-        return view('pages.admin.emailLogs');
+        return view('pages.counsellor.emailLogs');
     }
 
     public function smsLogs()
     {
-        return view('pages.admin.smsLogs');
+        return view('pages.counsellor.smsLogs');
     }
 
     public function whatsappLogs()
     {
-        return view('pages.admin.whatsappLogs');
+        return view('pages.counsellor.whatsappLogs');
     }
 
     public function visitLogs()
     {
-        return view('pages.admin.visitLogs');
+        return view('pages.counsellor.visitLogs');
     }
 
     public function clientCallLogs()
     {
-        return view('pages.admin.clientCallReports');
+        return view('pages.counsellor.clientCallReports');
     }
 
     public function clientEmailLogs()
     {
-        return view('pages.admin.clientEmailLogs');
+        return view('pages.counsellor.clientEmailLogs');
     }
 
     public function clientSmsLogs()
     {
-        return view('pages.admin.clientSmsLogs');
+        return view('pages.counsellor.clientSmsLogs');
     }
 
     public function clientWhatsappLogs()
     {
-        return view('pages.admin.clientWhatsappLogs');
+        return view('pages.counsellor.clientWhatsappLogs');
     }
 
     public function clientVisitLogs()
     {
-        return view('pages.admin.clientVisitLogs');
+        return view('pages.counsellor.clientVisitLogs');
     }
 
     public function masterTable()
     {
-        return view('pages.admin.masterTable');
+        return view('pages.counsellor.masterTable');
     }
 
     public function skillTest(Request $request)
@@ -174,7 +174,7 @@ class UserController extends Controller
             }
         }
             
-        return view('pages.admin.skillTest',['data' => $data]);
+        return view('pages.counsellor.skillTest',['data' => $data]);
     }
 
     public function submitSingleAnswer(Request $request)
@@ -241,12 +241,12 @@ class UserController extends Controller
             'marks' => $data['marks_obtained'],
             'finished' => 'Y'
         ]);
-        return view('pages.admin.skillResult',['data' => $data]);
+        return view('pages.counsellor.skillResult',['data' => $data]);
     }
 
     public function hrInterview()
     {
-        return view('pages.admin.hrInterview');
+        return view('pages.counsellor.hrInterview');
     }
 
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,5 +60,10 @@ Route::group(['as' => 'user.','middleware' => ['auth']], function () {
     });
     
     Route::get('/update-profile', [UserController::class, 'getProfile'])->name('getProfile');
-    Route::post('/store-profile', [UserController::class, 'storeProfile'])->name('storeProfile');        
+    Route::post('/store-profile', [UserController::class, 'storeProfile'])->name('storeProfile');
+
+
+    Route::group(['as' => 'admin.','middleware' => ['adminAuth']], function () {   
+        Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('dashboard');
+    });
 });

@@ -111,7 +111,11 @@ class HomeController extends Controller
     public function login(LoginRequest $request)
     {
         if (\Auth::attempt(['email' => $request->loginemail,'password' => $request->password])) {
-            return redirect()->route('user.dashboard');
+            if(auth()->user()->usertype == 'A'){
+                return redirect()->route('user.admin.dashboard');
+            }else{
+                return redirect()->route('user.dashboard');
+            }
         }else{
             \Session::flash('loginError', 'Your password is incorrect');
             return redirect()->route('loginPage');

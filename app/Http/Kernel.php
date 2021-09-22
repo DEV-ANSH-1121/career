@@ -67,5 +67,6 @@ class Kernel extends HttpKernel
         'skillTest' => \App\Http\Middleware\SkillTest::class,
         'skillResult' => \App\Http\Middleware\SkillResult::class,
         'hrInterview' => \App\Http\Middleware\HrInterview::class,
+        'adminAuth' => \App\Http\Middleware\AdminAuth::class,
     ];
 }
