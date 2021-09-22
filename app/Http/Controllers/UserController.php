@@ -149,7 +149,11 @@ class UserController extends Controller
     {
         return view('pages.counsellor.studyDashboard');
     }
- 
+     public function studyTest()
+    {
+        return view('pages.counsellor.studyTest');
+    }
+
 
     public function skillTest(Request $request)
     {
