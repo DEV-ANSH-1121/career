@@ -60,14 +60,15 @@
                                         <!-- <a href="upload-assignment.php"><button class="float-right uploadassignment"><i class="fas fa-file-upload"></i>Upload Assignment</button></a> -->
                                     </div>
                                 </div>
-                                <form class="study_lesson">
+                                <form class="study_lesson" method="post" action="{{route(user.counsellorStoreVisit)}}" enctype="multipart/form-data">
+                                    {{csrf_field()}}
                                     <!-----------BY VISIT--------->
                                     <div class="row px-5 byvisit justify-content-center">
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <!-- <label>Follow Up Date and time:</label> -->
                                                 <div class="input-group date" id="reservationdatetime4" data-target-input="nearest" pla>
-                                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdatetime4" placeholder="Start Date and time"/>
+                                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdatetime4" placeholder="Start Date and time" name="date_start" />
                                                     <div class="input-group-append" data-target="#reservationdatetime4" data-toggle="datetimepicker">
                                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                     </div>
@@ -78,7 +79,7 @@
                                             <div class="form-group">
                                                 <!-- <label>Follow Up Date and time:</label> -->
                                                 <div class="input-group date" id="reservationdatetime4end" data-target-input="nearest" pla>
-                                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdatetime4end" placeholder="End Date and time"/>
+                                                    <input type="text" class="form-control datetimepicker-input" data-target="#reservationdatetime4end" placeholder="End Date and time" name="date_end" />
                                                     <div class="input-group-append" data-target="#reservationdatetime4end" data-toggle="datetimepicker">
                                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                     </div>
@@ -87,26 +88,26 @@
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
-                                                <input type="text" class="form-control" id="" placeholder="Subject">
+                                                <input type="text" class="form-control" id="" placeholder="Subject" name="subject">
                                             </div>
                                         </div>
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <!-- <label>Message</label> -->
-                                                <textarea class="form-control" rows="3" placeholder="Remarks ..." ></textarea>
+                                                <textarea class="form-control" rows="3" placeholder="Remarks ..." name="remarks"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <div class="custom-file">
-                                                    <input type="file" class="custom-file-input" id="customFile" placeholder="Location File">
+                                                    <input type="file" class="custom-file-input" id="customFile" placeholder="Location File" name="attach">
                                                     <label class="custom-file-label" for="customFile">Location File</label>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-md-4">
                                             <!-- <label>Status</label> -->
-                                            <select class="form-control mb-2" style="width: 100%;">
+                                            <select class="form-control mb-2" style="width: 100%;" name="status">
                                                 <option selected="selected">Status</option>
                                                 @foreach(\App\Models\MastStatus::get() as $key => $value)
                                                 <option value="{{$value->statusID}}">{{$value->status}}</option>
@@ -117,7 +118,7 @@
                                             <div class="form-group">
                                                 <!-- <label>Follow Up Date and time:</label> -->
                                                 <div class="input-group date" id="followupdate" data-target-input="nearest" pla>
-                                                    <input type="text" class="form-control datetimepicker-input" data-target="#followupdate" placeholder="Follow Up Date"/>
+                                                    <input type="text" class="form-control datetimepicker-input" data-target="#followupdate" placeholder="Follow Up Date" name="date_follow" />
                                                     <div class="input-group-append" data-target="#followupdate" data-toggle="datetimepicker">
                                                         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
                                                     </div>
