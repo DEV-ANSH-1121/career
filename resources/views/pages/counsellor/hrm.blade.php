@@ -193,42 +193,7 @@
                                 <tbody>
                                     @foreach($data['hrmList'] as $key => $student)
                                         <tr>
-                                            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <!-- <h5 class="modal-title" id="exampleModalLongTitle">Select Contact Mode</h5> -->
-                                                            <button type="hidden" style="display:none;" class="list1 hidee"  data-filter="c_button"></button>
-                                                            <button class="list1" data-filter="contactbyme"><i class="fas fa-long-arrow-alt-up"></i>Contact by me</button>
-                                                            <button class="list2" data-filter="contactbyclient"><i class="fas fa-long-arrow-alt-down"></i>Contact by client</button>
-                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                            <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="container">
-                                                                <div class="select_mode">
-                                                                    <button type="hidden"  class="list hidee" ></button>
-                                                                    <a href="{{route('user.counsellorCall')}}"><button class="list contactbyme itembox1"><i class="fas fa-mobile-alt"></i>Call</button></a> 
-                                                                    <a href="{{route('user.counsellorEmail')}}"><button class="list contactbyme itembox1" ><i class="fas fa-at"></i>Email</button></a> 
-                                                                    <a href="{{route('user.counsellorSms')}}"><button class="list contactbyme itembox1"><i class="fas fa-comment-alt"></i>SMS</button></a>
-                                                                    <a href="{{route('user.counsellorWhatsapp')}}"><button class="list itembox1 contactbyme" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
-                                                                    <a href="{{route('user.counsellorVisit')}}">  <button class="list contactbyme itembox1"><i class="fas fa-walking"></i>Visit</button></a>
-                                                                    <a href="{{route('user.clientCall')}}"><button class="list contactbyclient itembox1" ><i class="fas fa-mobile-alt"></i>Call</button></a>
-                                                                    <a href="{{route('user.clientEmail')}}"> <button class="list contactbyclient itembox1" ><i class="fas fa-at"></i>Email</button></a>
-                                                                    <a href="{{route('user.clientSms')}}"><button class="list contactbyclient itembox1" ><i class="fas fa-comment-alt"></i>SMS</button></a>
-                                                                    <a href="{{route('user.clientWhatsapp')}}"><button class="list contactbyclient itembox1" ><i class="fab fa-whatsapp"></i>WhatsApp</button></a>
-                                                                    <a href="{{route('user.clientVisit')}}"> <button class="list contactbyclient itembox1" ><i class="fas fa-walking"></i>Visit</button></a>
-                                                                </div>
-                                                                <form class="form">
-                                                                </form>
-                                                            </div>
-                                                        </div>
-                                                        <!-- <div class="modal-footer">
-                                                            </div> -->
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @include('pages.counsellor.includes.contact-buttony')
                                             <td>
                                                 <div class="s_number">
                                                     <div class="top_">
@@ -243,7 +208,7 @@
                                                     </div>
                                                     <div class="bottom_">
                                                         <span class="span_icon">
-                                                        <a href="#" data-toggle="modal" data-target="#exampleModalCenter"><i class="fas fa-mobile-alt"></i></a>
+                                                        <a href="#" data-toggle="modal" data-target="#exampleModalCenter" class="contact-ini" data-stid="{{$student->userID}}"><i class="fas fa-mobile-alt"></i></a>
                                                         </span>
                                                         <div>
                                                             <span class="span_icon">
