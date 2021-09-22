@@ -422,7 +422,7 @@
                 </div>
                   <div class="col-12">
                     <div class="imgbox_Scheduler">
-                       <img src="images/current-perform.png" width="100%" alt="Study progress">
+                       <img src="{{url('postlogin/images/current-perform.png')}}" width="100%" alt="Study progress">
                     </div>
                   </div> 
                 </div>
@@ -456,7 +456,7 @@
                 </div>
                   <div class="col-12 text-center">
                     <div class="imgbox_Employability">
-                       <img src="images/employ.png" alt="Study progress">
+                       <img src="{{url('postlogin/images/employ.png')}}" alt="Study progress">
                     </div>
                   </div>
                   <div class="col-12 text-right">
@@ -484,13 +484,13 @@
               <div class="card-body">
                 <div class="row">
                 <div class="col-md-6">
-                 <img src="images/junior.png" width="100%">
+                 <img src="{{url('postlogin/images/junior.png')}}" width="100%">
                 </div>
                  <div class="col-md-6">
-                   <img src="images/student.png" width="100%">
+                   <img src="{{url('postlogin/images/student.png')}}" width="100%">
                 </div>
                  <div class="col-md-6">
-                 <img src="images/collage.png" width="100%">
+                 <img src="{{url('postlogin/images/collage.png')}}" width="100%">
                 </div> 
                 </div>
                 
